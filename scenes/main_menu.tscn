@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://bd5mjln0uyis4"]
+
+[ext_resource type="Script" uid="uid://b8b2dajmkaihu" path="res://scenes/main_menu.gd" id="1_8ln24"]
+[ext_resource type="Texture2D" uid="uid://wuss55fgqrei" path="res://assets/LANDING PAGE/LANDING PAGE.png" id="2_rtw2f"]
+[ext_resource type="FontFile" uid="uid://cyujdm46vij5" path="res://assets/FONT/04B_30__.TTF" id="3_oa1go"]
+[ext_resource type="Texture2D" uid="uid://cyp75d56nmdkf" path="res://assets/OTHER UI-ASSETS/buttons/PlayButton.png" id="4_tbmy8"]
+[ext_resource type="Texture2D" uid="uid://ouo4bxi0tc0k" path="res://assets/OTHER UI-ASSETS/buttons/SettingsButton.png" id="5_jk1qb"]
+
+[sub_resource type="Theme" id="Theme_5dd4i"]
+default_font = ExtResource("3_oa1go")
+
+[sub_resource type="Theme" id="Theme_lgwnu"]
+default_font = ExtResource("3_oa1go")
+
+[node name="MainMenu" type="Control" unique_id=1637504522]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8ln24")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1665254637]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -87.0
+offset_right = -19.0
+offset_bottom = -87.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.033123, 1.2696974)
+texture = ExtResource("2_rtw2f")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="GameTitle" type="Label" parent="." unique_id=5524890]
+layout_mode = 0
+offset_left = 275.0
+offset_top = 165.0
+offset_right = 915.0
+offset_bottom = 246.0
+theme = SubResource("Theme_5dd4i")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+text = "Kusinegros"
+
+[node name="NewButton" type="TextureButton" parent="." unique_id=1484414429]
+layout_mode = 0
+offset_left = 459.99997
+offset_top = 301.99997
+offset_right = 1132.0
+offset_bottom = 595.0
+scale = Vector2(0.3287941, 0.25153866)
+texture_normal = ExtResource("4_tbmy8")
+
+[node name="Label" type="Label" parent="NewButton" unique_id=801483017]
+layout_mode = 0
+offset_left = 87.46467
+offset_top = 101.933754
+offset_right = 781.46466
+offset_bottom = 202.93375
+theme = SubResource("Theme_lgwnu")
+theme_override_font_sizes/font_size = 75
+text = "New Game"
+
+[node name="ContinueButton" type="TextureButton" parent="." unique_id=2747617]
+layout_mode = 0
+offset_left = 463.00006
+offset_top = 384.00003
+offset_right = 1135.0
+offset_bottom = 677.0
+scale = Vector2(0.323, 0.252)
+texture_normal = ExtResource("4_tbmy8")
+
+[node name="Label" type="Label" parent="ContinueButton" unique_id=632077773]
+layout_mode = 0
+offset_left = 82.16377
+offset_top = 98.535866
+offset_right = 717.16376
+offset_bottom = 199.53586
+theme = SubResource("Theme_lgwnu")
+theme_override_font_sizes/font_size = 80
+text = "Continue"
+
+[node name="SettingsButton" type="TextureButton" parent="." unique_id=1724343619]
+layout_mode = 0
+offset_left = 463.00003
+offset_top = 469.00003
+offset_right = 1159.0
+offset_bottom = 855.0
+scale = Vector2(0.30391318, 0.1863458)
+texture_normal = ExtResource("5_jk1qb")
+
+[node name="Label" type="Label" parent="SettingsButton" unique_id=1612368231]
+layout_mode = 0
+offset_left = 82.16377
+offset_top = 98.535866
+offset_right = 717.16376
+offset_bottom = 199.53586
+scale = Vector2(1.0070051, 2.0251124)
+theme = SubResource("Theme_lgwnu")
+theme_override_font_sizes/font_size = 80
+text = "Settings"
+
+[connection signal="pressed" from="NewButton" to="." method="_on_new_button_pressed"]
+[connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
