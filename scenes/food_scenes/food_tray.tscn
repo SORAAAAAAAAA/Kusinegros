@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cs8c0yd41h0rl"]
 
-[ext_resource type="Script" uid="uid://dh4xnyt8msf1b" path="res://food_tray.gd" id="1_0p75n"]
+[ext_resource type="Script" uid="uid://dh4xnyt8msf1b" path="res://scenes/food_scenes/food_tray.gd" id="1_0p75n"]
 
 [node name="FoodTray" type="TextureButton" unique_id=1887151873]
 anchors_preset = 15
