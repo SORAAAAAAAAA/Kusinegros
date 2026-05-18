@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c8p7u8bjkj8aq"]
 
-[ext_resource type="Script" uid="uid://1j8ybhkti307" path="res://rice_station.gd" id="1_bhdn0"]
+[ext_resource type="Script" uid="uid://1j8ybhkti307" path="res://scenes/food_scenes/rice_station.gd" id="1_bhdn0"]
 [ext_resource type="Texture2D" uid="uid://dp6ji0mhls8k1" path="res://assets/FOOD ASSETS/rice/rice_full.png" id="2_pweyf"]
 [ext_resource type="Texture2D" uid="uid://be8gjyhneogum" path="res://assets/FOOD ASSETS/rice/rice_half_empty.png" id="3_1dujb"]
 [ext_resource type="Texture2D" uid="uid://d1iusomobxc6x" path="res://assets/FOOD ASSETS/rice/rice_empty.png" id="4_mo77g"]

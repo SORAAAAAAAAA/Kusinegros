@@ -13,7 +13,6 @@ config_version=5
 config/name="Kusinegros"
 run/main_scene="uid://bd5mjln0uyis4"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
 
 [autoload]
 
