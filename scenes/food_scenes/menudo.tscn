@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c7mgxnvjfhm7a"]
+
+[ext_resource type="PackedScene" uid="uid://cs8c0yd41h0rl" path="res://scenes/food_scenes/food_tray.tscn" id="1_b1qsr"]
+[ext_resource type="Texture2D" uid="uid://dr2ijp81lnm1y" path="res://assets/FOOD ASSETS/menudo/food_tray_menudo_full.png" id="2_512yg"]
+[ext_resource type="Texture2D" uid="uid://df0e8j1pphf78" path="res://assets/FOOD ASSETS/menudo/food_tray_menudo_half_empty.png" id="3_vgt5o"]
+[ext_resource type="Texture2D" uid="uid://b4yfrnrtj04iv" path="res://assets/FOOD ASSETS/menudo/food_tray_menudo_empty.png" id="4_e1htl"]
+
+[node name="FoodTray" unique_id=1887151873 instance=ExtResource("1_b1qsr")]
+texture_normal = ExtResource("2_512yg")
+food_name = "Menudo"
+tex_full = ExtResource("2_512yg")
+tex_half = ExtResource("3_vgt5o")
+tex_empty = ExtResource("4_e1htl")

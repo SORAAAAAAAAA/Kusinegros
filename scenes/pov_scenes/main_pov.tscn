@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://3ixrdww6g6qm"]
+
+[ext_resource type="Texture2D" uid="uid://b2mvljpgkl2xg" path="res://assets/FRONT VIEW POV/front_pov bg.png" id="1_omurv"]
+[ext_resource type="Texture2D" uid="uid://cmlbkjugiui6u" path="res://assets/FRONT VIEW POV/counter_front_panel.png" id="2_jetsb"]
+[ext_resource type="Script" uid="uid://dw6imakpjscd5" path="res://scenes/pov_scenes/scripts/assembly_plate.gd" id="3_68lk1"]
+
+[node name="MainPOV" type="Control" unique_id=1147711962]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="." unique_id=1716247626]
+layout_mode = 0
+offset_left = -15.000001
+offset_top = -183.0
+offset_right = 2685.0
+offset_bottom = 2517.0
+scale = Vector2(0.4362444, 0.3773972)
+texture = ExtResource("1_omurv")
+stretch_mode = 6
+
+[node name="CounterTop" type="TextureRect" parent="." unique_id=362716555]
+layout_mode = 0
+offset_left = -52.0
+offset_top = 370.0
+offset_right = 2348.0
+offset_bottom = 1980.0
+scale = Vector2(0.24929662, 0.191292)
+texture = ExtResource("2_jetsb")
+
+[node name="CounterTop2" type="TextureRect" parent="." unique_id=427797639]
+layout_mode = 0
+offset_left = 398.0
+offset_top = 370.0
+offset_right = 2798.0
+offset_bottom = 1980.0
+scale = Vector2(0.24929662, 0.191292)
+texture = ExtResource("2_jetsb")
+
+[node name="CounterTop3" type="TextureRect" parent="." unique_id=1411721010]
+layout_mode = 0
+offset_left = 650.0
+offset_top = 370.0
+offset_right = 3050.0
+offset_bottom = 1980.0
+scale = Vector2(0.24929662, 0.191292)
+texture = ExtResource("2_jetsb")
+
+[node name="CustomerSlots" type="Node2D" parent="." unique_id=949597275]
+
+[node name="Slot1" type="Marker2D" parent="CustomerSlots" unique_id=1382023444]
+position = Vector2(128, 320)
+
+[node name="Slot2" type="Marker2D" parent="CustomerSlots" unique_id=119998333]
+position = Vector2(320, 320)
+
+[node name="Slot3" type="Marker2D" parent="CustomerSlots" unique_id=882747861]
+position = Vector2(544, 320)
+
+[node name="Slot4" type="Marker2D" parent="CustomerSlots" unique_id=1475090537]
+position = Vector2(800, 320)
+
+[node name="Slot5" type="Marker2D" parent="CustomerSlots" unique_id=1594328709]
+position = Vector2(1024, 320)
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=212629507]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 422.99997
+offset_right = 43.0
+offset_bottom = 462.99997
+scale = Vector2(28.60458, 4.900526)
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 3
+columns = 5
+
+[node name="AssemblyPlate" type="TextureButton" parent="." unique_id=1906557177]
+layout_mode = 0
+offset_left = 577.0
+offset_top = 564.0
+offset_right = 617.0
+offset_bottom = 604.0
+script = ExtResource("3_68lk1")

@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cs8c0yd41h0rl"]
+
+[ext_resource type="Script" uid="uid://dh4xnyt8msf1b" path="res://food_tray.gd" id="1_0p75n"]
+
+[node name="FoodTray" type="TextureButton" unique_id=1887151873]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 362.0
+offset_top = 156.0
+offset_right = 1258.0
+offset_bottom = 1556.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2045425, 0.20347814)
+script = ExtResource("1_0p75n")
+
+[node name="RefillTimer" type="Timer" parent="." unique_id=62660737]
+one_shot = true
+
+[node name="RefillBar" type="ProgressBar" parent="." unique_id=56395457]
+visible = false
+layout_mode = 0
+offset_left = 337.3382
+offset_top = 14.743596
+offset_right = 341.3382
+offset_bottom = 41.743595
+scale = Vector2(344.05524, 6.074763)
+show_percentage = false
+
+[connection signal="timeout" from="RefillTimer" to="." method="_on_refill_timer_timeout"]

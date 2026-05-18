@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bwdbhpwytb24x"]
+
+[ext_resource type="PackedScene" uid="uid://cs8c0yd41h0rl" path="res://scenes/food_scenes/food_tray.tscn" id="1_of3pi"]
+[ext_resource type="Texture2D" uid="uid://dxxlf41i40s64" path="res://assets/FOOD ASSETS/chicken_pastil/food_tray_chicken_pastil_full.png" id="2_ybkf8"]
+[ext_resource type="Texture2D" uid="uid://caydwgdi34opo" path="res://assets/FOOD ASSETS/chicken_pastil/food_tray_chicken_pastil_half_empty.png" id="3_dahxd"]
+[ext_resource type="Texture2D" uid="uid://dc0dsxqq2rsk0" path="res://assets/FOOD ASSETS/chicken_pastil/food_tray_chicken_pastil_empty.png" id="4_jj1gf"]
+
+[node name="FoodTray" unique_id=1887151873 instance=ExtResource("1_of3pi")]
+texture_normal = ExtResource("2_ybkf8")
+food_name = "Pastil"
+tex_full = ExtResource("2_ybkf8")
+tex_half = ExtResource("3_dahxd")
+tex_empty = ExtResource("4_jj1gf")

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://pyorx5xd5llh"]
+
+[ext_resource type="PackedScene" uid="uid://cs8c0yd41h0rl" path="res://scenes/food_scenes/food_tray.tscn" id="1_0niu3"]
+[ext_resource type="Texture2D" uid="uid://cyidbvrjqnr3t" path="res://assets/FOOD ASSETS/pork_with_mushroom/food_tray_pork_with_mushrooms_full.png" id="2_px4nq"]
+[ext_resource type="Texture2D" uid="uid://de5t8xckqsh28" path="res://assets/FOOD ASSETS/pork_with_mushroom/food_tray_pork_with_mushrooms_half_empty.png" id="3_alkbh"]
+[ext_resource type="Texture2D" uid="uid://cjym0e1mpoyqu" path="res://assets/FOOD ASSETS/pork_with_mushroom/food_tray_pork_with_mushrooms_empty.png" id="4_dspn1"]
+
+[node name="FoodTray" unique_id=1887151873 instance=ExtResource("1_0niu3")]
+texture_normal = ExtResource("2_px4nq")
+food_name = "Pork Mushroom"
+tex_full = ExtResource("2_px4nq")
+tex_half = ExtResource("3_alkbh")
+tex_empty = ExtResource("4_dspn1")

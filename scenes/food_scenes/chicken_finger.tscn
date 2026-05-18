@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c8i3g7p63nllm"]
+
+[ext_resource type="PackedScene" uid="uid://cs8c0yd41h0rl" path="res://scenes/food_scenes/food_tray.tscn" id="1_8c84t"]
+[ext_resource type="Texture2D" uid="uid://dbiyerstmri8x" path="res://assets/FOOD ASSETS/chicken_fingers/food_tray_chicken_fingers_full.png" id="2_tj4pm"]
+[ext_resource type="Texture2D" uid="uid://dxlaryhxa100h" path="res://assets/FOOD ASSETS/chicken_fingers/food_tray_chicken_fingers_half_empty.png" id="3_6077o"]
+[ext_resource type="Texture2D" uid="uid://cotsq6brmdvrk" path="res://assets/FOOD ASSETS/chicken_fingers/food_tray_chicken_fingers_empty.png" id="4_yjtfi"]
+
+[node name="FoodTray" unique_id=1887151873 instance=ExtResource("1_8c84t")]
+texture_normal = ExtResource("2_tj4pm")
+food_name = "chicken_finger"
+tex_full = ExtResource("2_tj4pm")
+tex_half = ExtResource("3_6077o")
+tex_empty = ExtResource("4_yjtfi")
