@@ -1,6 +1,6 @@
 extends TextureButton
 
-@export var food_name: String = "Ulam"
+@export var food_name: String = ""
 @export var max_portions: int = 8
 
 # --- NEW: Texture slots for the Inspector ---
@@ -13,27 +13,31 @@ var is_refilling: bool = false
 
 @onready var refill_timer = $RefillTimer
 @onready var refill_bar = $RefillBar
-# Assuming MainPOV is the parent holding the AssemblyPlate
-@onready var plate = get_node("/root/MainPOV/AssemblyPlate") 
+
 
 func _ready():
 	portions_left = max_portions
 	refill_bar.hide()
 	update_tray_visuals() # Set the initial graphic
 	
-func _pressed():
+func _on_pressed():
+	# Look at all the plates currently in the grid
+	var plates = get_node("/root/MainPOV/GridContainerPlates").get_children()
+	
 	if is_refilling or portions_left <= 0: 
 		return
-		
-	# Check if the plate can take the food
-	if plate.current_ulam == "":
-		plate.add_ulam(food_name)
-		portions_left -= 1
-		
-		update_tray_visuals() # Check if we need to show the half-full sprite
-		
-		if portions_left <= 0:
-			start_refill()
+	
+	for plate in plates:
+		# Find the first plate that doesn't have an ulam yet
+		if plate.current_ulam == "":
+			plate.add_ulam(food_name)
+			portions_left -= 1
+			update_tray_visuals()
+			
+			if portions_left <= 0:
+				start_refill()
+			
+			return # Stop looping once we found a plate!
 
 # --- NEW: Logic to determine which sprite to show ---
 func update_tray_visuals():

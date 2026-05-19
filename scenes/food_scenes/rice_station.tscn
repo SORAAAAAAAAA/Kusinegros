@@ -10,8 +10,14 @@
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 256.00003
+offset_top = 48.0
+offset_right = 1152.0
+offset_bottom = 1448.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.2813688, 0.26457226)
+texture_normal = ExtResource("2_pweyf")
 script = ExtResource("1_bhdn0")
 tex_full = ExtResource("2_pweyf")
 tex_half = ExtResource("3_1dujb")
@@ -30,4 +36,5 @@ offset_bottom = 131.0
 scale = Vector2(45.633194, 1.0946472)
 show_percentage = false
 
+[connection signal="pressed" from="." to="." method="_on_pressed"]
 [connection signal="timeout" from="CookingTimer" to="." method="_on_cooking_timer_timeout"]

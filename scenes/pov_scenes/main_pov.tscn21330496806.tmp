@@ -127,14 +127,6 @@ theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 1
 columns = 2
 
-[node name="RiceStation" parent="." unique_id=1567660347 instance=ExtResource("15_05dfs")]
-layout_mode = 1
-offset_left = 930.0
-offset_top = 329.0
-offset_right = 1826.0
-offset_bottom = 1729.0
-scale = Vector2(0.12830383, 0.12064463)
-
 [node name="PlateStackButton" type="TextureButton" parent="." unique_id=2076157133]
 layout_mode = 0
 offset_left = 786.9999
@@ -145,6 +137,15 @@ scale = Vector2(0.12493252, 0.12493252)
 texture_normal = ExtResource("13_n4c5g")
 script = ExtResource("14_05dfs")
 plate_scene = ExtResource("15_c0n7d")
+
+[node name="RiceStation" parent="." unique_id=1567660347 instance=ExtResource("15_05dfs")]
+layout_mode = 1
+offset_left = 930.0
+offset_top = 329.0
+offset_right = 1826.0
+offset_bottom = 1729.0
+scale = Vector2(0.12830383, 0.12064463)
+max_portions = null
 
 [node name="TrashBin" type="TextureButton" parent="." unique_id=1919398363]
 layout_mode = 0
