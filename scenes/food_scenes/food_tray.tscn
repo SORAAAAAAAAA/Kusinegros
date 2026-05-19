@@ -3,16 +3,14 @@
 [ext_resource type="Script" uid="uid://dh4xnyt8msf1b" path="res://scenes/food_scenes/food_tray.gd" id="1_0p75n"]
 
 [node name="FoodTray" type="TextureButton" unique_id=1887151873]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 362.0
-offset_top = 156.0
-offset_right = 1258.0
-offset_bottom = 1556.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.2045425, 0.20347814)
+custom_minimum_size = Vector2(120, 120)
+offset_right = 20.0
+offset_bottom = 20.0
+scale = Vector2(1, 1.0284656)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+ignore_texture_size = true
+stretch_mode = 5
 script = ExtResource("1_0p75n")
 
 [node name="RefillTimer" type="Timer" parent="." unique_id=62660737]

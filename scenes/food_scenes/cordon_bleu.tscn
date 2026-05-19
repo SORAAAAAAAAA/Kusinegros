@@ -7,7 +7,7 @@
 
 [node name="FoodTray" unique_id=1887151873 instance=ExtResource("1_xbvss")]
 texture_normal = ExtResource("2_3sbps")
-food_name = "Cordon Bleu"
+food_name = "cordon"
 tex_full = ExtResource("2_3sbps")
 tex_half = ExtResource("3_7tfnf")
 tex_empty = ExtResource("4_upd0m")
