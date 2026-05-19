@@ -52,7 +52,7 @@ func update_visuals():
 	# Priority 1: Is it cooking? Show the closed, steaming pot.
 	if is_cooking:
 		texture_normal = tex_cooking
-	# Priority 2: 6 to 10 portions
+	# Priority 2: 9-16 portions
 	elif portions_left > (max_portions / 2):
 		texture_normal = tex_full
 	# Priority 3: 1 to 5 portions

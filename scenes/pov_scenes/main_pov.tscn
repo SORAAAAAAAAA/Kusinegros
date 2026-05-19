@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://cgrtq834p4mnj" path="res://assets/OTHER UI-ASSETS/trash_can/trash_can_closed.png" id="17_n6eyk"]
 [ext_resource type="Texture2D" uid="uid://dw7r2808q5dop" path="res://assets/OTHER UI-ASSETS/trash_can/trash_can_open.png" id="18_31ng2"]
 [ext_resource type="Texture2D" uid="uid://d1suo7rsdc54w" path="res://assets/OTHER UI-ASSETS/trash_can/trash_can_hover.png" id="19_v6amk"]
+[ext_resource type="Script" uid="uid://ct1bx4prpdw6r" path="res://scenes/pov_scenes/trash_bin.gd" id="20_31ng2"]
 
 [node name="MainPOV" type="Control" unique_id=1147711962]
 layout_mode = 3
@@ -157,5 +158,6 @@ texture_pressed = ExtResource("18_31ng2")
 texture_hover = ExtResource("19_v6amk")
 ignore_texture_size = true
 stretch_mode = 5
+script = ExtResource("20_31ng2")
 
 [connection signal="pressed" from="PlateStackButton" to="PlateStackButton" method="_on_plate_stack_button_pressed"]
