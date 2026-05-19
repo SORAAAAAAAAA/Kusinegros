@@ -26,4 +26,5 @@ offset_bottom = 41.743595
 scale = Vector2(344.05524, 6.074763)
 show_percentage = false
 
+[connection signal="pressed" from="." to="." method="_on_pressed"]
 [connection signal="timeout" from="RefillTimer" to="." method="_on_refill_timer_timeout"]

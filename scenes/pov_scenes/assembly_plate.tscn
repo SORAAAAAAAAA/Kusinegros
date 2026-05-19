@@ -45,7 +45,7 @@ ulam_only_textures = {
 "sisig": ExtResource("9_4ijio")
 }
 full_plate_textures = {
-"Adobo": ExtResource("4_ud35w"),
+"adobo": ExtResource("4_ud35w"),
 "cordon": ExtResource("6_a8p8k"),
 "menudo": ExtResource("7_f2ljn"),
 "pansit": ExtResource("15_pt4cx"),

@@ -13,28 +13,37 @@ var is_cooking: bool = false
 
 @onready var cook_timer = $CookingTimer
 @onready var cook_bar = $CookingBar
-# Make sure this path matches your MainPOV setup
-@onready var plate = get_node("/root/MainPOV/AssemblyPlate") 
 
 func _ready():
 	portions_left = max_portions
 	cook_bar.hide()
 	update_visuals()
 	
-func _pressed():
+func _on_pressed():
+	var plates = get_node("/root/MainPOV/GridContainerPlates").get_children()
+
 	if is_cooking: 
 		return
 		
+	if plates.is_empty():
+		print("No plates yet...")
+		return
+		
 	if portions_left > 0:
-		# Check if the plate needs rice
-		if not plate.has_rice:
-			plate.add_rice()
-			portions_left -= 1
-			update_visuals()
-			
-			# Start cooking automatically when it runs out
-			if portions_left <= 0:
-				start_cooking()
+		# Loop through all dynamically spawned plates in the grid
+		for plate in plates:
+			# Find the first plate that needs rice
+			if not plate.has_rice:
+				plate.add_rice()
+				portions_left -= 1
+				update_visuals()
+				
+				# Start cooking automatically when it runs out
+				if portions_left <= 0:
+					start_cooking()
+					
+				# IMPORTANT: Stop the loop so we only add rice to ONE plate per click!
+				return 
 	else:
 		# Failsafe: if it's empty and not cooking, click to start
 		start_cooking()

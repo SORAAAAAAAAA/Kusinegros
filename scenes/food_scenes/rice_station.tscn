@@ -36,4 +36,5 @@ offset_bottom = 131.0
 scale = Vector2(45.633194, 1.0946472)
 show_percentage = false
 
+[connection signal="pressed" from="." to="." method="_on_pressed"]
 [connection signal="timeout" from="CookingTimer" to="." method="_on_cooking_timer_timeout"]
