@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cujaihjb77bni"]
+
+[ext_resource type="Texture2D" uid="uid://cifwxjyhtkfvb" path="res://assets/2ND POV/2ndpov.png" id="1_hm8ln"]
+[ext_resource type="Texture2D" uid="uid://d2lwcxytbenp1" path="res://assets/2ND POV/counter.png" id="2_eoap7"]
+
+[node name="2nd_pov" type="Control" unique_id=1580903826]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1151.0
+offset_bottom = 649.0
+
+[node name="2Ndpov" type="TextureRect" parent="." unique_id=138519211]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -39.0
+offset_right = 1153.8442
+offset_bottom = 647.0
+texture = ExtResource("1_hm8ln")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=615933463]
+layout_mode = 0
+offset_left = 70.31824
+offset_top = 182.0
+offset_right = 586.40063
+offset_bottom = 647.0
+texture = ExtResource("2_eoap7")
+expand_mode = 1
