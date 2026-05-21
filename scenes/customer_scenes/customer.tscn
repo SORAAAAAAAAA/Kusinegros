@@ -4,6 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://crsm278tlsl1u" path="res://assets/OTHER UI-ASSETS/audio/new_customer.mp3" id="2_wsgmf"]
 [ext_resource type="AudioStream" uid="uid://c2x755y6qxg2y" path="res://assets/OTHER UI-ASSETS/audio/correct_order.mp3" id="3_6q0c4"]
 [ext_resource type="AudioStream" uid="uid://dksefrasslpgj" path="res://assets/OTHER UI-ASSETS/audio/wrong_order.mp3" id="4_hk8v6"]
+[ext_resource type="PackedScene" uid="uid://myfnvl072l8l" path="res://scenes/customer_scenes/mood_bar.tscn" id="5_6q0c4"]
 
 [node name="Customer" type="TextureRect" unique_id=1851465821]
 custom_minimum_size = Vector2(145, 350)
@@ -70,3 +71,10 @@ volume_db = -5.0
 [node name="SfxWrong" type="AudioStreamPlayer" parent="." unique_id=255567340]
 stream = ExtResource("4_hk8v6")
 volume_db = -5.0
+
+[node name="MoodBar" parent="." unique_id=1100839181 instance=ExtResource("5_6q0c4")]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 18.0
+offset_right = 130.0
+offset_bottom = 33.0

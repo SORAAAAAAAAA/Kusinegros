@@ -14,7 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://cmyhrarpd2v6u" path="res://assets/FOOD ASSETS/plate/plate_sisig_rice.png" id="8_a31ll"]
 [ext_resource type="Texture2D" uid="uid://bl7h80nlah2vv" path="res://assets/FOOD ASSETS/plate/plate_only_pansit.png" id="8_xh41c"]
 [ext_resource type="Texture2D" uid="uid://dnj3g3y0b8si8" path="res://assets/FOOD ASSETS/plate/plate_only_sisig.png" id="9_4ijio"]
+[ext_resource type="Texture2D" uid="uid://csl6tew7uqby7" path="res://assets/FOOD ASSETS/plate/plate_only_carbonara.png" id="10_1mx6s"]
 [ext_resource type="Texture2D" uid="uid://cqfos23l4poqh" path="res://assets/FOOD ASSETS/plate/plate_pansit_rice.png" id="15_pt4cx"]
+[ext_resource type="Texture2D" uid="uid://dypbv4eyl771i" path="res://assets/FOOD ASSETS/plate/plate_carbonara_rice.png" id="17_ubmpg"]
 
 [node name="AssemblyPlate" type="TextureButton" unique_id=1818213175]
 custom_minimum_size = Vector2(100, 100)
@@ -38,6 +40,7 @@ tex_empty = ExtResource("2_yn505")
 tex_rice_only = ExtResource("3_41r65")
 ulam_only_textures = {
 "adobo": ExtResource("4_tgj8c"),
+"carbonara": ExtResource("10_1mx6s"),
 "cordon": ExtResource("6_ubmpg"),
 "menudo": ExtResource("7_sp1wo"),
 "pansit": ExtResource("8_xh41c"),
@@ -46,6 +49,7 @@ ulam_only_textures = {
 }
 full_plate_textures = {
 "adobo": ExtResource("4_ud35w"),
+"carbonara": ExtResource("17_ubmpg"),
 "cordon": ExtResource("6_a8p8k"),
 "menudo": ExtResource("7_f2ljn"),
 "pansit": ExtResource("15_pt4cx"),
