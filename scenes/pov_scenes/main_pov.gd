@@ -21,7 +21,7 @@ func _ready():
 # These run automatically whenever the GameManager shouts that a change happened!
 
 func _on_money_changed(new_amount: int):
-	# Update the text and add the Peso sign back in
+	# Update the money
 	money_text.text = " " + str(new_amount)
 
 func _on_day_changed(new_day: int):
