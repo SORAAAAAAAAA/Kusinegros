@@ -10,6 +10,11 @@ extends TextureRect
 @export var tex_semi_happy: Texture2D
 @export var tex_angry: Texture2D
 
+# --- AUDIO ---
+@onready var sfx_arrive = $SfxArrive
+@onready var sfx_correct = $SfxCorrect
+@onready var sfx_wrong = $SfxWrong
+
 # --- PATIENCE SYSTEM ---
 var max_patience: float = 30.0 # Customer will wait 30 seconds total
 var current_patience: float
@@ -25,6 +30,7 @@ func _ready():
 	character_art.texture = tex_happy
 	current_patience = max_patience
 	my_current_order = GameManager.get_random_order()
+	sfx_arrive.play()
 	print("New customer arrived! They want: ", my_current_order)
 	
 	# --- 1. SET THE ORDER PICTURE ---
@@ -120,11 +126,22 @@ func _drop_data(at_position, data):
 		# Tell the GameManager to process the sale with our new total
 		GameManager.process_successful_sale(my_current_order, final_payment)
 		
-		data.queue_free() # Delete the plate
-		queue_free()  # Delete the customer
+		# 1. Delete the plate so it doesn't linger
+		data.queue_free() 
+		
+		# 2. Instantly hide the customer so it looks like they left
+		hide() 
+		
+		# 3. Play the success sound
+		sfx_correct.play()
+		
+		# 4. THE TRICK: Wait for the sound to finish playing!
+		await sfx_correct.finished
+		
+		# 5. Now it's safe to delete the customer permanently
+		queue_free()
 	else:
-		# They reject it! Notice we use 'plate_contents' here so the console 
-		# prints exactly what the player gave them.
+		sfx_wrong.play()
 		print("Hey, I ordered ", my_current_order, " not ", plate_contents, "!")
 		# We DO NOT delete the plate here, so the player gets it back!
 

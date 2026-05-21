@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bd5mjln0uyis4"]
 
 [ext_resource type="Script" uid="uid://b8b2dajmkaihu" path="res://scenes/main_menu.gd" id="1_8ln24"]
-[ext_resource type="Texture2D" uid="uid://wuss55fgqrei" path="res://assets/LANDING PAGE/LANDING PAGE.png" id="2_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://douy4qw82w5md" path="res://assets/LANDING PAGE/MainMenu.png" id="2_8ln24"]
 [ext_resource type="FontFile" uid="uid://cyujdm46vij5" path="res://assets/FONT/04B_30__.TTF" id="3_oa1go"]
 [ext_resource type="Texture2D" uid="uid://cyp75d56nmdkf" path="res://assets/OTHER UI-ASSETS/buttons/PlayButton.png" id="4_tbmy8"]
 [ext_resource type="Texture2D" uid="uid://ouo4bxi0tc0k" path="res://assets/OTHER UI-ASSETS/buttons/SettingsButton.png" id="5_jk1qb"]
@@ -22,19 +22,15 @@ grow_vertical = 2
 script = ExtResource("1_8ln24")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1665254637]
+custom_minimum_size = Vector2(1152, 648)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -19.0
-offset_top = -87.0
-offset_right = -19.0
-offset_bottom = -87.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.033123, 1.2696974)
-texture = ExtResource("2_rtw2f")
-expand_mode = 1
+texture = ExtResource("2_8ln24")
+expand_mode = 2
 stretch_mode = 6
 
 [node name="GameTitle" type="Label" parent="." unique_id=5524890]

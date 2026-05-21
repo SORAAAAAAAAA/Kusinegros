@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://cb6rqdhjh6dhp"]
 
 [ext_resource type="Script" uid="uid://h2k8jxixnmsb" path="res://scenes/customer_scenes/customer.gd" id="2_i3o4q"]
+[ext_resource type="AudioStream" uid="uid://crsm278tlsl1u" path="res://assets/OTHER UI-ASSETS/audio/new_customer.mp3" id="2_wsgmf"]
+[ext_resource type="AudioStream" uid="uid://c2x755y6qxg2y" path="res://assets/OTHER UI-ASSETS/audio/correct_order.mp3" id="3_6q0c4"]
+[ext_resource type="AudioStream" uid="uid://dksefrasslpgj" path="res://assets/OTHER UI-ASSETS/audio/wrong_order.mp3" id="4_hk8v6"]
 
 [node name="Customer" type="TextureRect" unique_id=1851465821]
 custom_minimum_size = Vector2(145, 350)
@@ -55,3 +58,15 @@ offset_bottom = 350.0
 mouse_filter = 2
 expand_mode = 1
 stretch_mode = 6
+
+[node name="SfxArrive" type="AudioStreamPlayer" parent="." unique_id=1272452448]
+stream = ExtResource("2_wsgmf")
+volume_db = -5.0
+
+[node name="SfxCorrect" type="AudioStreamPlayer" parent="." unique_id=563134916]
+stream = ExtResource("3_6q0c4")
+volume_db = -5.0
+
+[node name="SfxWrong" type="AudioStreamPlayer" parent="." unique_id=255567340]
+stream = ExtResource("4_hk8v6")
+volume_db = -5.0
