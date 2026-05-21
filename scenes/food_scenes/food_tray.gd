@@ -21,11 +21,11 @@ func _ready():
 	update_tray_visuals() # Set the initial graphic
 	
 func _on_pressed():
+	if portions_left <= 0 and is_refilling == false:
+		start_refill()
+		
 	# Look at all the plates currently in the grid
 	var plates = get_node("/root/MainPOV/GridContainerPlates").get_children()
-	
-	if is_refilling or portions_left <= 0: 
-		return
 	
 	for plate in plates:
 		# Find the first plate that doesn't have an ulam yet
@@ -33,9 +33,6 @@ func _on_pressed():
 			plate.add_ulam(food_name)
 			portions_left -= 1
 			update_tray_visuals()
-			
-			if portions_left <= 0:
-				start_refill()
 			
 			return # Stop looping once we found a plate!
 
@@ -50,11 +47,10 @@ func update_tray_visuals():
 
 func start_refill():
 	is_refilling = true
-	update_tray_visuals() # Will set it to the empty texture
-	
 	refill_bar.show()
 	refill_bar.max_value = 3.0 
 	refill_timer.start(3.0)
+	update_tray_visuals() 
 
 func _process(_delta):
 	if is_refilling:

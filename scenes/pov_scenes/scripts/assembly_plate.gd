@@ -10,6 +10,8 @@ var current_ulam: String = ""
 @export var ulam_only_textures: Dictionary = {}
 @export var full_plate_textures: Dictionary = {}
 
+var saved_texture: Texture2D
+
 func _ready():
 	# Always start empty
 	texture_normal = tex_empty
@@ -56,7 +58,7 @@ func clear_plate():
 func _get_drag_data(at_position):
 	# 1. Create a visual preview (the "ghost" image that follows the mouse)
 	var preview_texture = TextureRect.new()
-	preview_texture.texture = texture_normal # Copy whatever the plate currently looks like!
+	preview_texture.texture = texture_normal # Copy the plate's current look
 	
 	# Keep the preview the exact same size as the real plate
 	preview_texture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
@@ -69,7 +71,16 @@ func _get_drag_data(at_position):
 	
 	# Tell Godot to use this as the drag visual
 	set_drag_preview(preview_control)
-	texture_normal = null
 	
-	# 3. Return 'self'. This passes the actual plate node data to the Trash Bin!
+	# 3. THE BULLETPROOF TRICK:
+	# DO NOT set texture_normal to null! 
+	# Just make the entire plate completely transparent. 
+	modulate.a = 0.0
+	
+	# 4. Return 'self' to pass the actual plate node data
 	return self
+	
+func _notification(what):
+	# This triggers the exact moment the user releases the mouse button
+	if what == NOTIFICATION_DRAG_END:
+		modulate.a = 1.0

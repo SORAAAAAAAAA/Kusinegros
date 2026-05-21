@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dh4xnyt8msf1b" path="res://scenes/food_scenes/food_tray.gd" id="1_0p75n"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w8d1m"]
+bg_color = Color(0.3137255, 0.78431374, 0.47058824, 1)
+
 [node name="FoodTray" type="TextureButton" unique_id=1887151873]
 custom_minimum_size = Vector2(120, 120)
 offset_right = 20.0
@@ -18,12 +21,14 @@ one_shot = true
 
 [node name="RefillBar" type="ProgressBar" parent="." unique_id=56395457]
 visible = false
+custom_minimum_size = Vector2(100, 5)
 layout_mode = 0
-offset_left = 337.3382
-offset_top = 14.743596
-offset_right = 341.3382
-offset_bottom = 41.743595
-scale = Vector2(344.05524, 6.074763)
+offset_left = 9.0
+offset_top = -31.114313
+offset_right = 109.0
+offset_bottom = -4.114313
+theme_override_styles/fill = SubResource("StyleBoxFlat_w8d1m")
+max_value = 3.0
 show_percentage = false
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

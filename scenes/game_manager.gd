@@ -2,38 +2,41 @@ extends Node
 
 # --- GAME STATS ---
 var money: int = 0
-var active_orders: Array = []
+var current_day: int = 1 # The game starts on Day 1
 
-var available_menu: Array = ["adobo", "pastil", "menudo", "pansit", "sisig", "carbonara"] 
+var available_menu: Dictionary = {
+	"ulam": ["adobo", "pastil", "menudo", "pansit", "sisig", "carbonara", "cordon"],
+	"rice": ["rice"] 
+} 
 
-# --- SIGNALS (To update your UI) ---
+# --- SIGNALS ---
 signal money_changed(new_amount)
-signal order_added(dish_name)
-signal order_completed(dish_name)
+signal day_changed(new_day)
 
-# Call this on a timer, or when a customer walks in
-func generate_new_order():
-	# Pick a random food from the menu
-	var random_dish = available_menu.pick_random()
-	active_orders.append(random_dish)
+# Call this when a customer spawns
+func get_random_order() -> String:
+	var chance = randi_range(1, 100)
 	
-	print("New order received: ", random_dish)
-	order_added.emit(random_dish) # Tells the UI to draw a speech bubble
-
-# Call this when the player drops a plate on a customer
-func try_serve_plate(plate_ulam: String) -> bool:
-	# Check if any customer actually ordered this food
-	if plate_ulam in active_orders:
-		
-		# Success! Remove the order and give the player money
-		active_orders.erase(plate_ulam)
-		money += 50 # Add 50 pesos/coins
-		print("Successfully served: ", plate_ulam, " | Total Money: ", money)
-		
-		money_changed.emit(money) # Tells the UI to update the money text
-		order_completed.emit(plate_ulam) # Tells the UI to remove the speech bubble
-		
-		return true # Tell the plate it was a successful drop
+	if chance <= 33:
+		# 33% Chance: Just Ulam
+		return available_menu["ulam"].pick_random()
+	elif chance <= 66:
+		# 33% Chance: Just Rice
+		return "rice"
 	else:
-		print("Nobody ordered ", plate_ulam, "!")
-		return false # Tell the plate it was rejected
+		# 34% Chance: COMBO MEAL!
+		# Pick a random ulam, and add "_rice" to it (e.g., "adobo_rice")
+		var chosen_ulam = available_menu["ulam"].pick_random()
+		return chosen_ulam + "_rice"
+
+# Call this when a specific customer confirms they got the right food
+func process_successful_sale(dish_name: String, payment_amount: int):
+	money += payment_amount
+	print("Sale processed for: ", dish_name, " | Earned: ", payment_amount, " | Total Money: ", money)
+	money_changed.emit(money)
+
+# Call this when the player finishes a shift!
+func advance_to_next_day():
+	current_day += 1
+	print("Starting Day ", current_day, "!")
+	day_changed.emit(current_day)

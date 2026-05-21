@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cb6rqdhjh6dhp"]
+
+[ext_resource type="Script" uid="uid://h2k8jxixnmsb" path="res://scenes/customer_scenes/customer.gd" id="2_i3o4q"]
+
+[node name="Customer" type="TextureRect" unique_id=1851465821]
+custom_minimum_size = Vector2(145, 350)
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.49400002
+anchor_right = 0.5
+anchor_bottom = 0.49400002
+offset_left = -576.0
+offset_top = -320.112
+offset_right = -446.0
+offset_bottom = 29.888
+scale = Vector2(0.27606285, 0.2747198)
+mouse_filter = 0
+expand_mode = 1
+stretch_mode = 6
+script = ExtResource("2_i3o4q")
+
+[node name="Visual" type="Control" parent="." unique_id=653132011]
+layout_mode = 1
+anchor_left = 0.526
+anchor_top = 0.499
+anchor_right = 0.526
+anchor_bottom = 0.499
+offset_left = -76.270004
+offset_top = -174.65001
+offset_right = -76.270004
+offset_bottom = -174.65001
+mouse_filter = 2
+
+[node name="OrderBubble" type="TextureRect" parent="Visual" unique_id=1389198347]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.053000003
+anchor_top = 0.93200004
+anchor_right = -0.053000003
+anchor_bottom = 0.93200004
+offset_left = 45.0
+offset_top = -50.0
+offset_right = 125.0
+offset_bottom = 30.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CustomerArt" type="TextureRect" parent="Visual" unique_id=411498793]
+custom_minimum_size = Vector2(145, 350)
+layout_mode = 0
+offset_right = 145.0
+offset_bottom = 350.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6

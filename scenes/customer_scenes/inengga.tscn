@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c38vxsa2n67kd"]
+
+[ext_resource type="PackedScene" uid="uid://cb6rqdhjh6dhp" path="res://scenes/customer_scenes/customer.tscn" id="1_dhqqt"]
+[ext_resource type="Texture2D" uid="uid://bqoxp0drl06ho" path="res://assets/CHARACTERS/customers/customer_5/Customer_5 (Happy).png" id="2_j6nhl"]
+[ext_resource type="Texture2D" uid="uid://b0ah6ss4q8o3m" path="res://assets/CHARACTERS/customers/customer_5/Customer_5 (Semi-happy).png" id="3_vbe0n"]
+[ext_resource type="Texture2D" uid="uid://v4vtsjfoxir3" path="res://assets/CHARACTERS/customers/customer_5/Customer_5 (Angry).png" id="4_e5dvb"]
+
+[node name="Customer" unique_id=1851465821 instance=ExtResource("1_dhqqt")]
+customer_name = "inengga"
+tex_happy = ExtResource("2_j6nhl")
+tex_semi_happy = ExtResource("3_vbe0n")
+tex_angry = ExtResource("4_e5dvb")
