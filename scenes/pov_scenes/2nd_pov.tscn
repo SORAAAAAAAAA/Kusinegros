@@ -2,10 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://d206x42u1nsdn" path="res://assets/2ND POV/2npov.png" id="1_eoap7"]
 [ext_resource type="Script" uid="uid://cppqhl4lehtyq" path="res://scenes/pov_scenes/second_pov_controller.gd" id="1_f246j"]
-[ext_resource type="Texture2D" uid="uid://d2lwcxytbenp1" path="res://assets/2ND POV/counter.png" id="2_eoap7"]
 [ext_resource type="PackedScene" uid="uid://b6w8fgwhxey6c" path="res://scenes/table.tscn" id="3_eoap7"]
 [ext_resource type="PackedScene" uid="uid://101v5h6jcrer" path="res://scenes/table_flipped.tscn" id="3_y5t78"]
+[ext_resource type="PackedScene" uid="uid://3ixrdww6g6qm" path="res://scenes/pov_scenes/main_pov.tscn" id="4_uc3bt"]
 [ext_resource type="Script" uid="uid://dgkuxns6rsmgo" path="res://scenes/pov_scenes/table_manager.gd" id="5_rw3u7"]
+[ext_resource type="Texture2D" uid="uid://dhpcwqilhg3wu" path="res://assets/2ND POV/counter (1).png" id="5_y5t78"]
+[ext_resource type="Texture2D" uid="uid://d1o7jwhu7jema" path="res://assets/2ND POV/counter_on_hover.png" id="7_q55f5"]
 
 [node name="2nd_pov" type="Control" unique_id=1580903826]
 layout_mode = 3
@@ -15,6 +17,7 @@ offset_bottom = 649.0
 script = ExtResource("1_f246j")
 table_scene = ExtResource("3_eoap7")
 table_flipped_scene = ExtResource("3_y5t78")
+main_scene = ExtResource("4_uc3bt")
 
 [node name="Background" type="TextureRect" parent="." unique_id=138519211]
 layout_mode = 0
@@ -25,14 +28,17 @@ offset_bottom = 649.0
 texture = ExtResource("1_eoap7")
 expand_mode = 1
 
-[node name="Counter" type="TextureRect" parent="." unique_id=615933463]
+[node name="Counter" type="TextureButton" parent="." unique_id=1243870104]
 layout_mode = 0
-offset_left = 71.0
-offset_top = 218.0
-offset_right = 543.0
-offset_bottom = 652.0
-texture = ExtResource("2_eoap7")
-expand_mode = 1
+offset_left = -30.0
+offset_top = 204.0
+offset_right = 511.74017
+offset_bottom = 651.5245
+rotation = -0.034906585
+texture_normal = ExtResource("5_y5t78")
+texture_hover = ExtResource("7_q55f5")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="TablesContainer" type="Control" parent="." unique_id=1634170158]
 anchors_preset = 0

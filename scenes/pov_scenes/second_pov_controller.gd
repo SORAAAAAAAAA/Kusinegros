@@ -6,7 +6,8 @@ extends Control
 
 @onready var tables_container: Control = $TablesContainer
 @onready var table_manager: TableManager = $TableManager
-
+@export var main_scene: PackedScene # Drag your MainScene.tscn here in the Inspector!
+@onready var counter_button: TextureButton = $Counter # Make sure the name matches your Counter node!
 # --- ALL TABLE POSITIONS ---
 var all_table_positions: Array[Vector2] = [
 	Vector2(203.0, 131.0),   # Position for Table #1 (Your Starting Table!)
@@ -17,6 +18,11 @@ var all_table_positions: Array[Vector2] = [
 
 func _ready() -> void:
 	spawn_all_tables()
+	
+	if counter_button:
+		counter_button.pressed.connect(_on_counter_pressed)
+	else:
+		print("Controller Error: Could not find the Counter TextureButton!")
 
 func spawn_all_tables() -> void:
 	var extra_tables_count: int = 3
@@ -77,3 +83,15 @@ func request_seat_for_customer() -> Marker2D:
 			
 	print("Controller: Seat request failed! No available or clean stools right now.")
 	return null
+	
+	# =====================================================================
+# SCENE TRANSITIONS
+# =====================================================================
+func _on_counter_pressed() -> void:
+	print("Counter clicked! Returning to Main Scene...")
+	
+	if main_scene:
+		# This safely swaps the active scene in Godot to your Main Scene
+		get_tree().change_scene_to_packed(main_scene)
+	else:
+		print("Controller Error: Main Scene asset is missing from the Inspector export slot!")

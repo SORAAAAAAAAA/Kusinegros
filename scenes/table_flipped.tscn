@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://101v5h6jcrer"]
 
-[ext_resource type="Texture2D" uid="uid://b0yyid1q4gpyo" path="res://assets/2ND POV/table_w_chairs/clean.png" id="1_t807g"]
+[ext_resource type="Texture2D" uid="uid://0oep1yvuofuu" path="res://assets/2ND POV/table_w_chairs/w_chair.png" id="1_t807g"]
 [ext_resource type="Script" uid="uid://djf32h8yppkti" path="res://scenes/pov_scenes/scripts/table.gd" id="2_i0vr6"]
-[ext_resource type="Texture2D" uid="uid://bus6sk67s8wdh" path="res://assets/2ND POV/table_w_chairs/dirty.png" id="3_r2yy0"]
+[ext_resource type="Texture2D" uid="uid://brxhrrn2lkd41" path="res://assets/2ND POV/table_w_chairs/wchair.png" id="3_i0vr6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eotx8"]
 bg_color = Color(0.7254902, 0.19607843, 0.2, 1)
@@ -21,7 +21,7 @@ stretch_mode = 4
 flip_h = true
 script = ExtResource("2_i0vr6")
 clean_texture = ExtResource("1_t807g")
-dirty_texture = ExtResource("3_r2yy0")
+dirty_texture = ExtResource("3_i0vr6")
 
 [node name="Seats" type="Node2D" parent="." unique_id=1937261328]
 
