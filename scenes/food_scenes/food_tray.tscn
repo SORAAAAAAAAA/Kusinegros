@@ -20,13 +20,12 @@ script = ExtResource("1_0p75n")
 one_shot = true
 
 [node name="RefillBar" type="ProgressBar" parent="." unique_id=56395457]
-visible = false
-custom_minimum_size = Vector2(100, 5)
+custom_minimum_size = Vector2(80, 5)
 layout_mode = 0
-offset_left = 9.0
-offset_top = -31.114313
-offset_right = 109.0
-offset_bottom = -4.114313
+offset_left = 20.0
+offset_top = 50.0
+offset_right = 100.0
+offset_bottom = 63.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_w8d1m")
 max_value = 3.0
 show_percentage = false

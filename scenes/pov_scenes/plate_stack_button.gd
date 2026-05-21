@@ -4,8 +4,10 @@ extends TextureButton
 @export var plate_scene: PackedScene 
 
 @onready var plate_grid = $"../GridContainerPlates" # Adjust this path if necessary
+@onready var sfx_plate = $"../SfxPlate"
 
 func _on_plate_stack_button_pressed():
+	sfx_plate.play()
 	# Check if we already have 4 plates (a 2x2 grid full)
 	if plate_grid.get_child_count() >= 4:
 		print("Grid is full! Cannot spawn more plates.")

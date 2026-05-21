@@ -5,6 +5,9 @@
 [ext_resource type="FontFile" uid="uid://cyujdm46vij5" path="res://assets/FONT/04B_30__.TTF" id="3_oa1go"]
 [ext_resource type="Texture2D" uid="uid://cyp75d56nmdkf" path="res://assets/OTHER UI-ASSETS/buttons/PlayButton.png" id="4_tbmy8"]
 [ext_resource type="Texture2D" uid="uid://ouo4bxi0tc0k" path="res://assets/OTHER UI-ASSETS/buttons/SettingsButton.png" id="5_jk1qb"]
+[ext_resource type="Texture2D" uid="uid://dxb63st5bhk0x" path="res://assets/OTHER UI-ASSETS/buttons/DarkPlayButton.png" id="5_oa1go"]
+[ext_resource type="Texture2D" uid="uid://cktntyyyc021t" path="res://assets/OTHER UI-ASSETS/buttons/DarkSettingsButton.png" id="7_tbmy8"]
+[ext_resource type="AudioStream" uid="uid://cukck3jpsrq3h" path="res://assets/OTHER UI-ASSETS/audio/button_clicked.mp3" id="8_tbmy8"]
 
 [sub_resource type="Theme" id="Theme_5dd4i"]
 default_font = ExtResource("3_oa1go")
@@ -52,6 +55,9 @@ offset_right = 1132.0
 offset_bottom = 595.0
 scale = Vector2(0.3287941, 0.25153866)
 texture_normal = ExtResource("4_tbmy8")
+texture_pressed = ExtResource("5_oa1go")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="Label" type="Label" parent="NewButton" unique_id=801483017]
 layout_mode = 0
@@ -71,6 +77,9 @@ offset_right = 1135.0
 offset_bottom = 677.0
 scale = Vector2(0.323, 0.252)
 texture_normal = ExtResource("4_tbmy8")
+texture_pressed = ExtResource("5_oa1go")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="Label" type="Label" parent="ContinueButton" unique_id=632077773]
 layout_mode = 0
@@ -88,8 +97,11 @@ offset_left = 463.00003
 offset_top = 469.00003
 offset_right = 1159.0
 offset_bottom = 855.0
-scale = Vector2(0.30391318, 0.1863458)
+scale = Vector2(0.31151113, 0.19100453)
 texture_normal = ExtResource("5_jk1qb")
+texture_pressed = ExtResource("7_tbmy8")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="Label" type="Label" parent="SettingsButton" unique_id=1612368231]
 layout_mode = 0
@@ -101,6 +113,20 @@ scale = Vector2(1.0070051, 2.0251124)
 theme = SubResource("Theme_lgwnu")
 theme_override_font_sizes/font_size = 80
 text = "Settings"
+
+[node name="SfxClicked" type="AudioStreamPlayer" parent="." unique_id=425944938]
+stream = ExtResource("8_tbmy8")
+volume_db = -5.0
+
+[node name="FadeOverlay" type="ColorRect" parent="." unique_id=135760770]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
 
 [connection signal="pressed" from="NewButton" to="." method="_on_new_button_pressed"]
 [connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]
