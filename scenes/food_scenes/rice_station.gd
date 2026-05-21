@@ -22,8 +22,8 @@ func _ready():
 func _on_pressed():
 	var plates = get_node("/root/MainPOV/GridContainerPlates").get_children()
 
-	if is_cooking: 
-		return
+	if !is_cooking and portions_left <= 0: 
+		start_cooking()
 		
 	if plates.is_empty():
 		print("No plates yet...")
@@ -37,16 +37,9 @@ func _on_pressed():
 				plate.add_rice()
 				portions_left -= 1
 				update_visuals()
-				
-				# Start cooking automatically when it runs out
-				if portions_left <= 0:
-					start_cooking()
 					
 				# IMPORTANT: Stop the loop so we only add rice to ONE plate per click!
 				return 
-	else:
-		# Failsafe: if it's empty and not cooking, click to start
-		start_cooking()
 
 func update_visuals():
 	# Priority 1: Is it cooking? Show the closed, steaming pot.

@@ -3,8 +3,11 @@ extends Control
 # 1. Grab our Unique UI Nodes!
 @onready var day_number = %DayNumber
 @onready var money_text = %MoneyText
+@onready var scene_transition = $HUD/SceneTransition
+@onready var sfx_start = $SfxStart
 
 func _ready():
+	sfx_start.play()
 	# 2. CONNECT THE RADIO SIGNALS
 	# Tell the UI to listen to the GameManager, and run our update functions when it hears something.
 	GameManager.money_changed.connect(_on_money_changed)
@@ -15,6 +18,16 @@ func _ready():
 	# We force an update right now so it correctly displays Day 1 and ₱0.
 	_on_money_changed(GameManager.money)
 	_on_day_changed(GameManager.current_day)
+	
+	# --- THE FADE IN TRANSITION ---
+	# The scene starts completely black. We smoothly fade it to transparent!
+	var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	
+	# Fade the alpha to 0.0 over 0.8 seconds (matching your menu fade speed)
+	tween.tween_property(scene_transition, "modulate:a", 0.0, 0.8)
+	
+	# Once the fade is completely finished, hide the node entirely to save rendering memory
+	tween.tween_callback(scene_transition.hide)
 
 
 # 4. THE UPDATE FUNCTIONS

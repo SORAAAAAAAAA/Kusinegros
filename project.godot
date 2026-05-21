@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Kusinegros"
-run/main_scene="uid://3ixrdww6g6qm"
+run/main_scene="uid://bd5mjln0uyis4"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
 [autoload]

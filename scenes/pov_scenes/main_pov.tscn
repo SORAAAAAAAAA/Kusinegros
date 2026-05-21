@@ -32,6 +32,8 @@
 [ext_resource type="FontFile" uid="uid://cyujdm46vij5" path="res://assets/FONT/04B_30__.TTF" id="29_82122"]
 [ext_resource type="Texture2D" uid="uid://cy5rixhb6i3gb" path="res://assets/OTHER UI-ASSETS/buttons/CoinBackground.png" id="30_mntjb"]
 [ext_resource type="Texture2D" uid="uid://dkkj20njxyr8u" path="res://assets/OTHER UI-ASSETS/coins/coinFront.png" id="32_mntjb"]
+[ext_resource type="AudioStream" uid="uid://cmgvnnnykg3uv" path="res://assets/OTHER UI-ASSETS/audio/game_start.mp3" id="33_u5556"]
+[ext_resource type="AudioStream" uid="uid://c4kfirhlbkhwv" path="res://assets/OTHER UI-ASSETS/audio/plate_sound.mp3" id="34_6mlrh"]
 
 [node name="MainPOV" type="Control" unique_id=1147711962]
 layout_mode = 3
@@ -266,6 +268,23 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("29_82122")
 text = "0"
+
+[node name="SceneTransition" type="ColorRect" parent="HUD" unique_id=668854839]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="SfxStart" type="AudioStreamPlayer" parent="." unique_id=2103384696]
+stream = ExtResource("33_u5556")
+volume_db = -5.0
+
+[node name="SfxPlate" type="AudioStreamPlayer" parent="." unique_id=844319291]
+stream = ExtResource("34_6mlrh")
+volume_db = -5.0
 
 [connection signal="timeout" from="CustomerSlots/SpawnTimer" to="CustomerSlots" method="_on_spawn_timer_timeout"]
 [connection signal="pressed" from="PlateStackButton" to="PlateStackButton" method="_on_plate_stack_button_pressed"]

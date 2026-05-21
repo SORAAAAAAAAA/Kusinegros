@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://d1iusomobxc6x" path="res://assets/FOOD ASSETS/rice/rice_empty.png" id="4_mo77g"]
 [ext_resource type="Texture2D" uid="uid://bhw8y7wlqspfx" path="res://assets/FOOD ASSETS/rice/rice_cooking.png" id="5_2tjly"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhdn0"]
+bg_color = Color(0.3137255, 0.78431374, 0.47058824, 1)
+
 [node name="RiceStation" type="TextureButton" unique_id=1567660347]
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,12 +31,13 @@ tex_cooking = ExtResource("5_2tjly")
 one_shot = true
 
 [node name="CookingBar" type="ProgressBar" parent="." unique_id=1924628201]
+custom_minimum_size = Vector2(800, 130)
 layout_mode = 0
-offset_left = 456.0
-offset_top = 104.0
-offset_right = 460.0
-offset_bottom = 131.0
-scale = Vector2(45.633194, 1.0946472)
+offset_left = 653.946
+offset_top = 1209.4994
+offset_right = 1453.946
+offset_bottom = 1339.4994
+theme_override_styles/fill = SubResource("StyleBoxFlat_bhdn0")
 show_percentage = false
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
