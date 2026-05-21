@@ -2,14 +2,19 @@ extends Control
 
 @onready var sfx_clicked = $SfxClicked
 @onready var fade_overlay = $FadeOverlay
+@onready var volume_slider = %VolumeSlider
+@onready var settings_overlay = %SettingsOverlay
 
 # Store the path here so we don't have to retype it multiple times!
 var target_scene_path = "res://scenes/pov_scenes/main_pov.tscn"
+var master_bus_index: int
 
 
 func _ready() -> void:
 	# Keep the process loop turned off until we actually need to load something
 	set_process(false)
+	settings_overlay.hide()
+	master_bus_index = AudioServer.get_bus_index("Master")
 
 
 func _process(delta):
@@ -43,7 +48,7 @@ func _on_new_button_pressed() -> void:
 	
 	# 2. RESET GAME DATA (Clean Slate)
 	GameManager.current_day = 1
-	GameManager.money = 0
+	GameManager.daily_earnings = 0
 	
 	# 3. KICK OFF THE BACKGROUND LOAD INSTANTLY
 	# We tell the engine to start fetching the heavy data in the background 
@@ -73,4 +78,21 @@ func _on_continue_button_pressed() -> void:
 
 func _on_settings_button_pressed() -> void:
 	sfx_clicked.play()
+	settings_overlay.show()
 	# opens the settings menu
+
+
+# 3. THE VOLUME SLIDER LOGIC
+func _on_volume_slider_value_changed(value: float) -> void:
+	# Translate the 0.0 - 1.0 slider value into Decibels using linear_to_db,
+	# and apply it to the Master audio bus!
+	AudioServer.set_bus_volume_db(master_bus_index, linear_to_db(value))
+	
+	# Optional: Play a sound effect every time they drag the slider so they can hear the change!
+	if not sfx_clicked.playing:
+		sfx_clicked.play()
+
+
+func _on_back_button_pressed() -> void:
+	sfx_clicked.play()
+	settings_overlay.hide()
