@@ -6,6 +6,8 @@ extends TextureRect
 @onready var mood_bar = $MoodBar
 @onready var switch_pov_button = %SwitchPOVButton
 
+var play_spawn_animation: bool = false
+
 # --- MOOD TEXTURES ---
 @export var customer_name: String
 @export var tex_happy: Texture2D
@@ -18,7 +20,7 @@ extends TextureRect
 @onready var sfx_wrong = $SfxWrong
 
 # --- PATIENCE SYSTEM (MVC UPDATED) ---
-var my_global_id: int = -1 # -1 means it hasn't been registered with the brain yet
+var my_global_id: int = -1 
 var max_patience: float = 30.0 # Customer will wait 30 seconds total
 var my_current_order: String = ""
 
@@ -30,21 +32,12 @@ var current_mood = Mood.HAPPY
 func _ready():
 	character_art.texture = tex_happy
 	
-	# 1. THE MEMORY CHECK: Did I just spawn, or was I rebuilt?
-	var is_brand_new: bool = (my_global_id == -1)
+	# THE MVC UPGRADE: We are now a 100% Pure Puppet. 
+	# The GameManager already created our ID and Order before we spawned!
 	
-	# --- REGISTER ONLY IF NEW ---
-	if is_brand_new:
-		my_current_order = GameManager.get_random_order()
-		
-		# Register with the brain and get our unique ID!
-		my_global_id = GameManager.register_new_customer(my_current_order, max_patience, scene_file_path)
-		
-		sfx_arrive.play()
-		print("New customer arrived! ID: ", my_global_id, " | Order: ", my_current_order)
-	
-	# Connect signals and max value
+	# Connect signals and grab max value from the brain
 	GameManager.customer_angry_leave.connect(_on_global_angry_leave)
+	
 	if GameManager.active_customers.has(my_global_id):
 		mood_bar.max_value = GameManager.active_customers[my_global_id]["max_patience"]
 
@@ -100,9 +93,10 @@ func _ready():
 			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_sisig_rice.png")
 			
 
-	# --- 2. SPAWN ANIMATION (ONLY PLAY IF BRAND NEW) ---
-	if is_brand_new:
-		# They just walked in! Play the slide and bounce.
+	# --- 2. SPAWN ANIMATION ---
+	# We rely entirely on the boolean passed down by main_pov.gd!
+	if play_spawn_animation:
+		sfx_arrive.play()
 		modulate.a = 0.0 
 		if visuals_node:
 			visuals_node.position.x -= 100.0 # Start left
@@ -133,6 +127,7 @@ func _can_drop_data(at_position, data):
 		if data.current_ulam != "" or data.has_rice:
 			return true
 	return false
+
 
 # 3. What happens when the plate is dropped on ME?
 func _drop_data(at_position, data):
@@ -208,15 +203,15 @@ func check_mood_change(time_left: float):
 	
 	if percentage_left > 0.6 and current_mood != Mood.HAPPY:
 		current_mood = Mood.HAPPY
-		character_art.texture = tex_happy # UPDATED
+		character_art.texture = tex_happy 
 		
 	elif percentage_left <= 0.6 and percentage_left > 0.3 and current_mood != Mood.SEMI:
 		current_mood = Mood.SEMI
-		character_art.texture = tex_semi_happy # UPDATED
+		character_art.texture = tex_semi_happy 
 		
 	elif percentage_left <= 0.3 and current_mood != Mood.ANGRY:
 		current_mood = Mood.ANGRY
-		character_art.texture = tex_angry # UPDATED
+		character_art.texture = tex_angry 
 
 
 # THE MVC UPGRADE: We now trigger this when the global brain yells at us

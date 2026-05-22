@@ -17,37 +17,51 @@ extends Control
 @onready var end_of_day_screen = %EndOfDayScreen
 
 func _ready():
-	sfx_start.play()
 	switch_pov_button.pressed.connect(_on_switch_pov_button_pressed)
 	
-	# Hide the end of day screen at the start of the shift
 	if end_of_day_screen:
 		end_of_day_screen.hide()
 
-	# 2. CONNECT THE RADIO SIGNALS
-	# Listen to the GameManager for all HUD updates
+	# 1. CONNECT THE RADIO SIGNALS
 	GameManager.money_changed.connect(_on_money_changed)
 	GameManager.day_changed.connect(_on_day_changed)
-	
-	# Listen to the GameManager for the Clock and Shift status
 	GameManager.time_updated.connect(_on_time_updated)
 	GameManager.shift_ended.connect(_on_shift_ended)
 	
-	# 3. INITIALIZE THE UI
-	# Assuming GameManager has these variables, force an update on load
+	# ADD THIS NEW CONNECTION: Listen for live spawns
+	GameManager.live_customer_spawned.connect(_on_live_spawn_received)
+	
+	# 2. INITIALIZE THE UI
 	if "money" in GameManager:
 		_on_money_changed(GameManager.money)
 	_on_day_changed(GameManager.current_day)
-	
-	# --- THE FADE IN TRANSITION ---
-	var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(scene_transition, "modulate:a", 0.0, 0.8)
-	tween.tween_callback(scene_transition.hide)
 
-	if not GameManager.is_shop_open and GameManager.time_elapsed == 0.0:
+
+	# --- 3. THE MVC STARTUP CHECK ---
+	# Check the Global Brain: Is it exactly 7:00 AM?
+	if GameManager.time_elapsed == 0.0:
+		
+		# Yes! This is the very first time we are loading the day.
+		if sfx_start:
+			sfx_start.play()
+			
+		if scene_transition:
+			scene_transition.show()
+			var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+			tween.tween_property(scene_transition, "modulate:a", 0.0, 0.8)
+			tween.tween_callback(scene_transition.hide)
+
+		# Start the clock!
 		GameManager.start_new_shift()
 		
-	# 5. REBUILD THE ROOM
+	else:
+		# No! Time has already passed. We are just returning from the 2nd POV.
+		# Skip the sound, skip the timer restart, and instantly hide the black screen!
+		if scene_transition:
+			scene_transition.hide()
+
+
+	# 4. REBUILD THE ROOM
 	_rebuild_room()
 
 
@@ -128,3 +142,20 @@ func _rebuild_room():
 			print("Successfully rebuilt Customer ID: ", id, " with order: ", data["order"])
 		else:
 			print("ERROR: Could not load the scene file at: ", path)
+			
+func _on_live_spawn_received(id: int):
+	# Grab their data from the brain
+	var data = GameManager.active_customers[id]
+	var specific_character_scene = load(data["scene_path"])
+	
+	if specific_character_scene:
+		var puppet = specific_character_scene.instantiate()
+		
+		# Inject memory
+		puppet.my_global_id = id
+		puppet.my_current_order = data["order"]
+		
+		# TELL THE PUPPET TO PLAY ITS INTRO ANIMATION
+		puppet.play_spawn_animation = true 
+		
+		customer_container.add_child(puppet)

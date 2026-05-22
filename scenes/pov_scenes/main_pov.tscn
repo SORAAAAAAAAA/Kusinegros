@@ -3,19 +3,12 @@
 [ext_resource type="Script" uid="uid://c8nasys7se7mt" path="res://scenes/pov_scenes/main_pov.gd" id="1_82122"]
 [ext_resource type="Texture2D" uid="uid://b2mvljpgkl2xg" path="res://assets/FRONT VIEW POV/front_pov bg.png" id="1_omurv"]
 [ext_resource type="Texture2D" uid="uid://1tqflwd03mwr" path="res://assets/FRONT VIEW POV/slanted_counter.png" id="2_83ock"]
-[ext_resource type="PackedScene" uid="uid://by7j2x40iv1rj" path="res://scenes/customer_scenes/ana.tscn" id="3_6nxrk"]
 [ext_resource type="PackedScene" uid="uid://c8i3g7p63nllm" path="res://scenes/food_scenes/chicken_finger.tscn" id="3_jetsb"]
 [ext_resource type="PackedScene" uid="uid://doovanrfwqtq7" path="res://scenes/food_scenes/carbonara.tscn" id="3_n4c5g"]
-[ext_resource type="Script" uid="uid://dnni0bd7bfjkf" path="res://scenes/pov_scenes/customer_slots.gd" id="3_v6amk"]
-[ext_resource type="PackedScene" uid="uid://bl4b2mfd44hdw" path="res://scenes/customer_scenes/clara.tscn" id="4_d058m"]
 [ext_resource type="PackedScene" uid="uid://plngxl4k72d5" path="res://scenes/food_scenes/chicken_adobo.tscn" id="4_f3hb8"]
 [ext_resource type="PackedScene" uid="uid://baqyvrm2jkxve" path="res://scenes/food_scenes/chicken_bbq.tscn" id="5_7k4av"]
-[ext_resource type="PackedScene" uid="uid://c38vxsa2n67kd" path="res://scenes/customer_scenes/inengga.tscn" id="5_g0esl"]
-[ext_resource type="PackedScene" uid="uid://djgmnjov72y1s" path="res://scenes/customer_scenes/iniga.tscn" id="6_1cwlq"]
 [ext_resource type="PackedScene" uid="uid://dasqdtp5xhsho" path="res://scenes/food_scenes/chicken_pastil.tscn" id="7_05dfs"]
-[ext_resource type="PackedScene" uid="uid://bi4g3ucroi4t2" path="res://scenes/customer_scenes/juan.tscn" id="7_82122"]
 [ext_resource type="PackedScene" uid="uid://t3xuf0pmohs4" path="res://scenes/food_scenes/cordon_bleu.tscn" id="8_c0n7d"]
-[ext_resource type="PackedScene" uid="uid://s5rgy6i7ribp" path="res://scenes/customer_scenes/lullu.tscn" id="8_mntjb"]
 [ext_resource type="PackedScene" uid="uid://c7mgxnvjfhm7a" path="res://scenes/food_scenes/menudo.tscn" id="9_5a1r8"]
 [ext_resource type="PackedScene" uid="uid://brosr2bo674ey" path="res://scenes/food_scenes/pansit.tscn" id="10_7y4s6"]
 [ext_resource type="PackedScene" uid="uid://cw024klg1k507" path="res://scenes/food_scenes/pork_hamonado.tscn" id="11_n6eyk"]
@@ -67,12 +60,6 @@ offset_left = 109.0
 offset_top = 143.0
 offset_right = 459.0
 offset_bottom = 493.0
-script = ExtResource("3_v6amk")
-customer_scenes = Array[PackedScene]([ExtResource("3_6nxrk"), ExtResource("4_d058m"), ExtResource("5_g0esl"), ExtResource("6_1cwlq"), ExtResource("7_82122"), ExtResource("8_mntjb")])
-
-[node name="SpawnTimer" type="Timer" parent="CustomerSlots" unique_id=1207330888]
-wait_time = 3.0
-autostart = true
 
 [node name="TrashBin" type="TextureButton" parent="." unique_id=1919398363]
 layout_mode = 0
@@ -321,10 +308,6 @@ text = "0"
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1184.0
-offset_top = -16.0
-offset_right = 1184.0
-offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -370,6 +353,5 @@ volume_db = -5.0
 stream = ExtResource("37_u6qb6")
 volume_db = -5.0
 
-[connection signal="timeout" from="CustomerSlots/SpawnTimer" to="CustomerSlots" method="_on_spawn_timer_timeout"]
 [connection signal="pressed" from="PlateStackButton" to="PlateStackButton" method="_on_plate_stack_button_pressed"]
 [connection signal="pressed" from="HUD/SwitchPOVButton" to="." method="_on_switch_pov_button_pressed"]

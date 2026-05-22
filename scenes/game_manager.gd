@@ -1,5 +1,18 @@
 extends Node
 
+var available_customer_scenes: Array[String] = [
+	"res://scenes/customer_scenes/ana.tscn", 
+	"res://scenes/customer_scenes/juan.tscn",
+	"res://scenes/customer_scenes/clara.tscn",
+	"res://scenes/customer_scenes/inengga.tscn",
+	"res://scenes/customer_scenes/iniga.tscn",
+	"res://scenes/customer_scenes/lullu.tscn",
+]
+var current_spawn_timer: float = 0.0
+
+# The brain will shout this signal when a customer spawns while you are watching!
+signal live_customer_spawned(id: int)
+
 # --- CUSTOMER DATA TRACKING ---
 var active_customers: Dictionary = {}
 var next_customer_id: int = 0
@@ -70,6 +83,11 @@ func _process(delta: float) -> void:
 			
 			# Delete them from the brain
 			active_customers.erase(id)
+			
+		# 2. NEW: THE BACKGROUND SPAWNER
+		current_spawn_timer -= delta
+		if current_spawn_timer <= 0:
+			_try_spawn_background_customer()
 		
 func register_new_customer(order: String, max_patience: float, scene_path: String) -> int:
 	var id = next_customer_id
@@ -149,3 +167,28 @@ func start_next_day():
 	
 	# Reload the main game scene to start the new day!
 	get_tree().reload_current_scene()
+
+func _try_spawn_background_customer():
+	var max_customers = clampi(current_day + 1, 1, 5)
+	
+	# Is there an empty space at the counter?
+	if active_customers.size() < max_customers:
+		
+		if available_customer_scenes.is_empty(): 
+			return
+			
+		# Pick a random path and random order
+		var random_path = available_customer_scenes.pick_random()
+		var random_order = get_random_order()
+		
+		# 1. THE BRAIN CREATES THE CUSTOMER IN SECRET
+		var new_id = register_new_customer(random_order, 30.0, random_path)
+		
+		# 2. Tell the UI to build them (If the player is currently in the room)
+		live_customer_spawned.emit(new_id)
+		
+		print("Brain spawned customer ", new_id, " in the background!")
+		
+		# Reset the global timer based on the current Day speed!
+		var new_speed = maxf(5.0 - (current_day * 0.5), 2.5)
+		current_spawn_timer = new_speed
