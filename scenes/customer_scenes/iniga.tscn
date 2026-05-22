@@ -10,7 +10,3 @@ customer_name = "iniga"
 tex_happy = ExtResource("2_rmp2d")
 tex_semi_happy = ExtResource("3_yx4bi")
 tex_angry = ExtResource("4_3v86g")
-
-[node name="Visual" parent="." index="0" unique_id=653132011]
-offset_left = -76.270004
-offset_right = -76.270004

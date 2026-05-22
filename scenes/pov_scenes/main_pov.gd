@@ -1,5 +1,6 @@
 extends Control 
 
+
 # 1. Grab our Unique UI Nodes!
 @onready var day_number = %DayNumber
 @onready var money_text = %MoneyText
@@ -8,13 +9,16 @@ extends Control
 # Scene Nodes
 @onready var scene_transition = $HUD/SceneTransition
 @onready var sfx_start = $SfxStart
+@onready var sfx_clicked = $SfxClicked
+@onready var switch_pov_button = %SwitchPOVButton
 
 # Core Loop Nodes (Make sure to right-click these and "Access as Unique Name" too!)
-@onready var customer_container = %CustomerContainer
+@onready var customer_container = %CustomerSlots
 @onready var end_of_day_screen = %EndOfDayScreen
 
 func _ready():
 	sfx_start.play()
+	switch_pov_button.pressed.connect(_on_switch_pov_button_pressed)
 	
 	# Hide the end of day screen at the start of the shift
 	if end_of_day_screen:
@@ -40,9 +44,11 @@ func _ready():
 	tween.tween_property(scene_transition, "modulate:a", 0.0, 0.8)
 	tween.tween_callback(scene_transition.hide)
 
-	# 4. START THE CLOCK!
-	# Tell the global brain to begin the shift
-	GameManager.start_new_shift()
+	if not GameManager.is_shop_open and GameManager.time_elapsed == 0.0:
+		GameManager.start_new_shift()
+		
+	# 5. REBUILD THE ROOM
+	_rebuild_room()
 
 
 # 5. THE UPDATE FUNCTIONS
@@ -79,3 +85,46 @@ func _process(delta):
 func _show_day_summary():
 	print("All customers cleared. Showing summary.")
 	end_of_day_screen.show()
+
+
+# =====================================================================
+# INSTANT SCENE TRANSITION
+# =====================================================================
+func _on_switch_pov_button_pressed() -> void:
+	if sfx_clicked: 
+		sfx_clicked.play()
+	
+	print("Switch POV clicked! Moving to 2nd POV...")
+	
+	# Because the GameManager tracks IDs in real-time now, 
+	# we just instantly leave! The brain will remember everything.
+	get_tree().change_scene_to_file("res://scenes/pov_scenes/2nd_pov.tscn")
+	
+func _rebuild_room():
+	print("--- ROOM REBUILD TRIGGERED ---")
+	print("Brain Memory: ", GameManager.active_customers.size(), " customers waiting.")
+	
+	for id in GameManager.active_customers.keys():
+		var data = GameManager.active_customers[id]
+		var path = data["scene_path"]
+		
+		# Safety Check 1: Did we get a valid file path?
+		if path == null or path == "":
+			print("ERROR: Customer ID ", id, " has an empty scene_path! Cannot rebuild.")
+			continue 
+			
+		var specific_character_scene = load(path)
+		
+		# Safety Check 2: Did the file load correctly?
+		if specific_character_scene:
+			var restored_customer = specific_character_scene.instantiate()
+			
+			# Inject the memory!
+			restored_customer.my_global_id = id
+			restored_customer.my_current_order = data["order"]
+			
+			# Put them back at the counter
+			customer_container.add_child(restored_customer)
+			print("Successfully rebuilt Customer ID: ", id, " with order: ", data["order"])
+		else:
+			print("ERROR: Could not load the scene file at: ", path)

@@ -1,8 +1,17 @@
 extends Node
 
+# --- CUSTOMER DATA TRACKING ---
+var active_customers: Dictionary = {}
+var next_customer_id: int = 0
+
+# Signal to tell the visual 2D node to walk away if the player is currently watching
+signal customer_angry_leave(id: int)
+
+
 # --- SIGNALS (The Broadcasters) ---
 signal shift_ended
 signal time_updated(time_string: String)
+
 
 # --- Progression Variables ---
 var current_day: int = 1
@@ -39,8 +48,44 @@ func _process(delta: float) -> void:
 		# Tell the game exactly what percentage of the day is done
 		var percent = time_elapsed / shift_duration
 		_broadcast_time(percent)
+		
+	# THE REAL-TIME PATIENCE DRAIN
+	if is_shop_open:
+		var customers_to_remove = []
+		
+		for id in active_customers.keys():
+			active_customers[id]["patience"] -= delta
+			
+			# Did they run out of time?
+			if active_customers[id]["patience"] <= 0:
+				customers_to_remove.append(id)
+				
+		# Process the angry customers!
+		for id in customers_to_remove:
+			print("Customer ", id, " stormed out! Applying penalty.")
+			# (Optional: Subtract money or add a strike here!)
+			
+			# Yell at the 2D node to play its walk-out animation
+			customer_angry_leave.emit(id) 
+			
+			# Delete them from the brain
+			active_customers.erase(id)
+		
+func register_new_customer(order: String, max_patience: float, scene_path: String) -> int:
+	var id = next_customer_id
+	next_customer_id += 1
+	
+	active_customers[id] = {
+		"order": order,
+		"patience": max_patience,
+		"max_patience": max_patience,
+		"scene_path": scene_path 
+	}
+	return id
 
-
+func remove_customer(id: int):
+	active_customers.erase(id)
+	
 func start_new_shift():
 	# Reset the clock for the new day
 	time_elapsed = 0.0
