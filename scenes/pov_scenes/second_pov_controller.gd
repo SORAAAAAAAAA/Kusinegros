@@ -23,6 +23,8 @@ func _ready() -> void:
 		counter_button.pressed.connect(_on_counter_pressed)
 	else:
 		print("Controller Error: Could not find the Counter TextureButton!")
+		
+	GameManager.day_completely_cleared.connect(_force_return_to_main)
 
 func spawn_all_tables() -> void:
 	var extra_tables_count: int = 3
@@ -84,7 +86,7 @@ func request_seat_for_customer() -> Marker2D:
 	print("Controller: Seat request failed! No available or clean stools right now.")
 	return null
 	
-	# =====================================================================
+# =====================================================================
 # SCENE TRANSITIONS
 # =====================================================================
 func _on_counter_pressed() -> void:
@@ -95,3 +97,10 @@ func _on_counter_pressed() -> void:
 		get_tree().change_scene_to_packed(main_scene)
 	else:
 		print("Controller Error: Main Scene asset is missing from the Inspector export slot!")
+		
+func _force_return_to_main():
+	print("Shift over! Auto-returning to the front counter...")
+	
+	# Swap back to the main room. 
+	# Make sure this path exactly matches your main_pov.tscn file location!
+	get_tree().change_scene_to_file("res://scenes/pov_scenes/main_pov.tscn")

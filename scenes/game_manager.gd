@@ -8,42 +8,38 @@ var available_customer_scenes: Array[String] = [
 	"res://scenes/customer_scenes/iniga.tscn",
 	"res://scenes/customer_scenes/lullu.tscn",
 ]
+var available_menu: Dictionary = {
+	"ulam": ["adobo", "pastil", "menudo", "pansit", "carbonara", "cordon", "finger", "hamonado", "bbq","mushroom"],
+	"rice": ["rice"] 
+} 
 var current_spawn_timer: float = 0.0
 
 # The brain will shout this signal when a customer spawns while you are watching!
 signal live_customer_spawned(id: int)
+signal day_completely_cleared
 
 # --- CUSTOMER DATA TRACKING ---
 var active_customers: Dictionary = {}
 var next_customer_id: int = 0
 
-# Signal to tell the visual 2D node to walk away if the player is currently watching
+# -- Signals
 signal customer_angry_leave(id: int)
-
-
-# --- SIGNALS (The Broadcasters) ---
+signal money_changed(new_amount)
+signal day_changed(new_day)
 signal shift_ended
 signal time_updated(time_string: String)
-
 
 # --- Progression Variables ---
 var current_day: int = 1
 var total_money: int = 0
 var daily_earnings: int = 0
+var customers_served_today: int = 0
+var is_day_completely_over: bool = false
 
 # --- CLOCK VARIABLES ---
 var shift_duration: float = 90.0 # How long a day is in real seconds
 var time_elapsed: float = 0.0
 var is_shop_open: bool = false
-
-var available_menu: Dictionary = {
-	"ulam": ["adobo", "pastil", "menudo", "pansit", "carbonara", "cordon", "finger", "hamonado", "bbq","mushroom"],
-	"rice": ["rice"] 
-} 
-
-# --- SIGNALS ---
-signal money_changed(new_amount)
-signal day_changed(new_day)
 
 func _process(delta: float) -> void:
 	# If the shop is closed, stop running the clock
@@ -76,7 +72,7 @@ func _process(delta: float) -> void:
 		# Process the angry customers!
 		for id in customers_to_remove:
 			print("Customer ", id, " stormed out! Applying penalty.")
-			# (Optional: Subtract money or add a strike here!)
+			# (Optional: Subtract money or add a strike here!)	
 			
 			# Yell at the 2D node to play its walk-out animation
 			customer_angry_leave.emit(id) 
@@ -88,7 +84,13 @@ func _process(delta: float) -> void:
 		current_spawn_timer -= delta
 		if current_spawn_timer <= 0:
 			_try_spawn_background_customer()
-		
+			
+	if not is_shop_open and not is_day_completely_over:
+		# If the shop is closed, check if the brain's memory of customers is finally empty
+		print("Brain: The shop is closed")
+		is_day_completely_over = true
+		day_completely_cleared.emit()
+	
 func register_new_customer(order: String, max_patience: float, scene_path: String) -> int:
 	var id = next_customer_id
 	next_customer_id += 1
@@ -105,13 +107,16 @@ func remove_customer(id: int):
 	active_customers.erase(id)
 	
 func start_new_shift():
-	# Reset the clock for the new day
-	time_elapsed = 0.0
-	is_shop_open = true
-	_broadcast_time(0.0) 
-	print("--- DAY ", current_day, " STARTED! ---")
-
-
+		# Reset the clock for the new day
+		active_customers.clear()
+		is_day_completely_over = false
+		customers_served_today = 0
+		daily_earnings = 0
+		time_elapsed = 0.0
+		is_shop_open = true
+		_broadcast_time(0.0) 
+		print("--- DAY ", current_day, " STARTED! ---")
+	
 func _broadcast_time(percent_passed: float):
 	# 1. Math to calculate the 10-hour shift (7 AM - 5 PM)
 	var total_shift_minutes = 600.0 
@@ -155,28 +160,18 @@ func get_random_order() -> String:
 
 # Call this when a specific customer confirms they got the right food
 func process_successful_sale(dish_name: String, payment_amount: int):
+	customers_served_today += 1
+	total_money += payment_amount
 	daily_earnings += payment_amount
 	print("Sale processed for: ", dish_name, " | Earned: ", payment_amount, " | Total Money: ", total_money)
-	money_changed.emit(daily_earnings)
-
-# Call this when the player clicks "Next Day"
-func start_next_day():
-	total_money += daily_earnings
-	daily_earnings = 0 # Reset the register for the new day
-	current_day += 1
+	money_changed.emit(total_money)
 	
-	# Reload the main game scene to start the new day!
-	get_tree().reload_current_scene()
-
 func _try_spawn_background_customer():
 	var max_customers = clampi(current_day + 1, 1, 5)
-	
 	# Is there an empty space at the counter?
 	if active_customers.size() < max_customers:
-		
 		if available_customer_scenes.is_empty(): 
 			return
-			
 		# Pick a random path and random order
 		var random_path = available_customer_scenes.pick_random()
 		var random_order = get_random_order()

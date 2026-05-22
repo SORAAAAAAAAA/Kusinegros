@@ -1,10 +1,9 @@
 extends Control 
 
-
 # 1. Grab our Unique UI Nodes!
 @onready var day_number = %DayNumber
 @onready var money_text = %MoneyText
-@onready var time_text = %TimeText # <-- Added the unique Time node!
+@onready var time_text = %TimeText 
 
 # Scene Nodes
 @onready var scene_transition = $HUD/SceneTransition
@@ -27,20 +26,20 @@ func _ready():
 	GameManager.day_changed.connect(_on_day_changed)
 	GameManager.time_updated.connect(_on_time_updated)
 	GameManager.shift_ended.connect(_on_shift_ended)
+	GameManager.day_completely_cleared.connect(_trigger_end_of_day)
 	
 	# ADD THIS NEW CONNECTION: Listen for live spawns
 	GameManager.live_customer_spawned.connect(_on_live_spawn_received)
 	
 	# 2. INITIALIZE THE UI
-	if "money" in GameManager:
-		_on_money_changed(GameManager.money)
+	if "total_money" in GameManager:
+		_on_money_changed(GameManager.total_money)
 	_on_day_changed(GameManager.current_day)
 
 
 	# --- 3. THE MVC STARTUP CHECK ---
 	# Check the Global Brain: Is it exactly 7:00 AM?
 	if GameManager.time_elapsed == 0.0:
-		
 		# Yes! This is the very first time we are loading the day.
 		if sfx_start:
 			sfx_start.play()
@@ -60,9 +59,11 @@ func _ready():
 		if scene_transition:
 			scene_transition.hide()
 
-
 	# 4. REBUILD THE ROOM
 	_rebuild_room()
+	
+	if GameManager.is_day_completely_over:
+		_trigger_end_of_day()
 
 
 # 5. THE UPDATE FUNCTIONS
@@ -84,21 +85,6 @@ func _on_shift_ended():
 	# The clock hit 5:00 PM! 
 	print("5:00 PM! The doors are closed!")
 	# Note: If you have a Customer Spawner script/timer, tell it to stop spawning here!
-
-
-# 6. THE END-OF-DAY CHECK
-func _process(delta):
-	# We constantly check: Is the shop closed? Is the end screen NOT visible yet?
-	if not GameManager.is_shop_open and end_of_day_screen and not end_of_day_screen.visible:
-		
-		# If the shop is closed, wait patiently for the remaining customers to leave.
-		# Once the container hits 0, trigger the Day Summary!
-		if customer_container.get_child_count() == 0:
-			_show_day_summary()
-
-func _show_day_summary():
-	print("All customers cleared. Showing summary.")
-	end_of_day_screen.show()
 
 
 # =====================================================================
@@ -150,8 +136,7 @@ func _on_live_spawn_received(id: int):
 	
 	if specific_character_scene:
 		var puppet = specific_character_scene.instantiate()
-		
-		# Inject memory
+
 		puppet.my_global_id = id
 		puppet.my_current_order = data["order"]
 		
@@ -159,3 +144,7 @@ func _on_live_spawn_received(id: int):
 		puppet.play_spawn_animation = true 
 		
 		customer_container.add_child(puppet)
+		
+func _trigger_end_of_day():
+	print("All customers cleared. Showing summary.")
+	%EndOfDayScreen.show_summary()

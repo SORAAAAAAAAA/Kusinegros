@@ -1,0 +1,318 @@
+[gd_scene format=3 uid="uid://b3bc31d5ax1rp"]
+
+[ext_resource type="Texture2D" uid="uid://b6rfbjq3ll24c" path="res://assets/OTHER UI-ASSETS/buttons/DayBackground.png" id="1_d384v"]
+[ext_resource type="FontFile" uid="uid://cyujdm46vij5" path="res://assets/FONT/04B_30__.TTF" id="2_w4mmi"]
+[ext_resource type="Texture2D" uid="uid://cy5rixhb6i3gb" path="res://assets/OTHER UI-ASSETS/buttons/CoinBackground.png" id="3_n6gur"]
+[ext_resource type="Texture2D" uid="uid://dkkj20njxyr8u" path="res://assets/OTHER UI-ASSETS/coins/coinFront.png" id="4_a1gln"]
+[ext_resource type="Texture2D" uid="uid://dqjxib55ewxs" path="res://assets/OTHER UI-ASSETS/buttons/SwitchButton.png" id="5_vec4l"]
+[ext_resource type="Texture2D" uid="uid://ct7gay3ls7hlg" path="res://assets/OTHER UI-ASSETS/buttons/SwitchButtonDark.png" id="6_46mon"]
+[ext_resource type="Script" uid="uid://pa8nrrbwxl7h" path="res://scenes/pov_scenes/end_of_day_screen.gd" id="7_x875q"]
+[ext_resource type="Texture2D" uid="uid://bnlqnu16lh2qk" path="res://assets/OTHER UI-ASSETS/buttons/SettingsBG.png" id="8_1dopw"]
+[ext_resource type="Texture2D" uid="uid://bsag67v1t355x" path="res://assets/OTHER UI-ASSETS/buttons/DarkBlueButton.png" id="9_0aloi"]
+
+[node name="HUD" type="CanvasLayer" unique_id=2003519141]
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1170734907]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 20
+
+[node name="TopBar" type="HBoxContainer" parent="MarginContainer" unique_id=1325739676]
+layout_mode = 2
+
+[node name="DayTimeHUD" type="HBoxContainer" parent="MarginContainer/TopBar" unique_id=367463889]
+layout_mode = 2
+theme_override_constants/separation = -15
+
+[node name="DayBackground" type="NinePatchRect" parent="MarginContainer/TopBar/DayTimeHUD" unique_id=1420409380]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("1_d384v")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TopBar/DayTimeHUD/DayBackground" unique_id=223266268]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -22.0
+offset_right = 15.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TopBar/DayTimeHUD/DayBackground/MarginContainer" unique_id=271345945]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 3
+
+[node name="DayText" type="Label" parent="MarginContainer/TopBar/DayTimeHUD/DayBackground/MarginContainer/VBoxContainer" unique_id=36007434]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7921569, 0.9411765, 0.972549, 1)
+theme_override_fonts/font = ExtResource("2_w4mmi")
+text = "Day"
+horizontal_alignment = 1
+
+[node name="DayNumber" type="Label" parent="MarginContainer/TopBar/DayTimeHUD/DayBackground/MarginContainer/VBoxContainer" unique_id=827643701]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7921569, 0.9411765, 0.972549, 1)
+theme_override_fonts/font = ExtResource("2_w4mmi")
+text = "1"
+horizontal_alignment = 1
+
+[node name="TimeBackground" type="NinePatchRect" parent="MarginContainer/TopBar/DayTimeHUD" unique_id=705750849]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+texture = ExtResource("1_d384v")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TopBar/DayTimeHUD/TimeBackground" unique_id=197374659]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.0
+offset_top = -8.5
+offset_right = 29.0
+offset_bottom = 8.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoxContainer" type="HBoxContainer" parent="MarginContainer/TopBar/DayTimeHUD/TimeBackground/MarginContainer" unique_id=1356383219]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="TimeText" type="Label" parent="MarginContainer/TopBar/DayTimeHUD/TimeBackground/MarginContainer/BoxContainer" unique_id=1838246052]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.7921569, 0.9411765, 0.972549, 1)
+theme_override_fonts/font = ExtResource("2_w4mmi")
+theme_override_font_sizes/font_size = 10
+text = "7:00 Am"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="MarginContainer/TopBar" unique_id=525293052]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MoneyBackground" type="NinePatchRect" parent="MarginContainer/TopBar" unique_id=787295908]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+texture = ExtResource("3_n6gur")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TopBar/MoneyBackground" unique_id=1704675196]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -20.0
+offset_right = 60.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TopBar/MoneyBackground/MarginContainer" unique_id=2038029811]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="CoinIcon" type="TextureRect" parent="MarginContainer/TopBar/MoneyBackground/MarginContainer/HBoxContainer" unique_id=546948355]
+clip_contents = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("4_a1gln")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="MoneyText" type="Label" parent="MarginContainer/TopBar/MoneyBackground/MarginContainer/HBoxContainer" unique_id=1536160320]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_w4mmi")
+text = "0"
+
+[node name="SwitchPOVButton" type="TextureButton" parent="." unique_id=51066065]
+unique_name_in_owner = true
+offset_left = 1112.0
+offset_top = 200.0
+offset_right = 1152.0
+offset_bottom = 240.0
+texture_normal = ExtResource("5_vec4l")
+texture_pressed = ExtResource("6_46mon")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SwitchPOVButton" unique_id=718101401]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -11.5
+offset_right = 7.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_w4mmi")
+theme_override_font_sizes/font_size = 20
+text = "➜"
+
+[node name="SceneTransition" type="ColorRect" parent="." unique_id=957309018]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=919639917]
+
+[node name="EndOfDayScreen" type="Control" parent="CanvasLayer" unique_id=1860583974]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_x875q")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/EndOfDayScreen" unique_id=240212369]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/EndOfDayScreen/ColorRect" unique_id=2043361901]
+custom_minimum_size = Vector2(700, 500)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("8_1dopw")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/EndOfDayScreen/ColorRect/TextureRect" unique_id=781584729]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer" unique_id=1992756486]
+layout_mode = 2
+
+[node name="ShiftOverText" type="Label" parent="CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer" unique_id=277936448]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.43120447, 0.28682762, 0.12913251, 1)
+theme_override_fonts/font = ExtResource("2_w4mmi")
+theme_override_font_sizes/font_size = 50
+text = "ShifT Over"
+horizontal_alignment = 1
+
+[node name="StatsText" type="Label" parent="CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer" unique_id=264705337]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("2_w4mmi")
+theme_override_font_sizes/font_size = 25
+text = "Customer: 0
+Profit: 0"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer" unique_id=692850890]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 100
+
+[node name="Leave" type="TextureButton" parent="CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=878497944]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+texture_normal = ExtResource("1_d384v")
+texture_pressed = ExtResource("9_0aloi")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Leave" unique_id=723822688]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_w4mmi")
+theme_override_font_sizes/font_size = 12
+text = "Leave"
+vertical_alignment = 1
+
+[node name="Continue" type="TextureButton" parent="CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2040771333]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = ExtResource("5_vec4l")
+texture_pressed = ExtResource("6_46mon")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Continue" unique_id=1544551860]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_w4mmi")
+theme_override_font_sizes/font_size = 11
+text = "Continue"
+vertical_alignment = 1

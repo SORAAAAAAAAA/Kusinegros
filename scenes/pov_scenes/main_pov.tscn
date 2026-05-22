@@ -22,7 +22,10 @@
 [ext_resource type="Texture2D" uid="uid://d1suo7rsdc54w" path="res://assets/OTHER UI-ASSETS/trash_can/trash_can_hover.png" id="19_v6amk"]
 [ext_resource type="Script" uid="uid://ct1bx4prpdw6r" path="res://scenes/pov_scenes/trash_bin.gd" id="20_31ng2"]
 [ext_resource type="Texture2D" uid="uid://b6rfbjq3ll24c" path="res://assets/OTHER UI-ASSETS/buttons/DayBackground.png" id="28_1cwlq"]
+[ext_resource type="Texture2D" uid="uid://bnlqnu16lh2qk" path="res://assets/OTHER UI-ASSETS/buttons/SettingsBG.png" id="28_82122"]
+[ext_resource type="Script" uid="uid://pa8nrrbwxl7h" path="res://scenes/pov_scenes/end_of_day_screen.gd" id="28_u5556"]
 [ext_resource type="FontFile" uid="uid://cyujdm46vij5" path="res://assets/FONT/04B_30__.TTF" id="29_82122"]
+[ext_resource type="Texture2D" uid="uid://bsag67v1t355x" path="res://assets/OTHER UI-ASSETS/buttons/DarkBlueButton.png" id="29_mntjb"]
 [ext_resource type="Texture2D" uid="uid://cy5rixhb6i3gb" path="res://assets/OTHER UI-ASSETS/buttons/CoinBackground.png" id="30_mntjb"]
 [ext_resource type="Texture2D" uid="uid://dkkj20njxyr8u" path="res://assets/OTHER UI-ASSETS/coins/coinFront.png" id="32_mntjb"]
 [ext_resource type="Texture2D" uid="uid://dqjxib55ewxs" path="res://assets/OTHER UI-ASSETS/buttons/SwitchButton.png" id="33_rndx6"]
@@ -162,9 +165,21 @@ texture_normal = ExtResource("13_n4c5g")
 script = ExtResource("14_05dfs")
 plate_scene = ExtResource("15_c0n7d")
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=1599473230]
+[node name="SfxStart" type="AudioStreamPlayer" parent="." unique_id=2103384696]
+stream = ExtResource("33_u5556")
+volume_db = -5.0
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD" unique_id=1518851381]
+[node name="SfxPlate" type="AudioStreamPlayer" parent="." unique_id=844319291]
+stream = ExtResource("34_6mlrh")
+volume_db = -5.0
+
+[node name="SfxClicked" type="AudioStreamPlayer" parent="." unique_id=1021317427]
+stream = ExtResource("37_u6qb6")
+volume_db = -5.0
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=2003519141]
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD" unique_id=1170734907]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 64.0
@@ -173,14 +188,14 @@ theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 20
 
-[node name="TopBar" type="HBoxContainer" parent="HUD/MarginContainer" unique_id=717010967]
+[node name="TopBar" type="HBoxContainer" parent="HUD/MarginContainer" unique_id=1325739676]
 layout_mode = 2
 
-[node name="DayTimeHUD" type="HBoxContainer" parent="HUD/MarginContainer/TopBar" unique_id=1510848083]
+[node name="DayTimeHUD" type="HBoxContainer" parent="HUD/MarginContainer/TopBar" unique_id=367463889]
 layout_mode = 2
 theme_override_constants/separation = -15
 
-[node name="DayBackground" type="NinePatchRect" parent="HUD/MarginContainer/TopBar/DayTimeHUD" unique_id=1062600248]
+[node name="DayBackground" type="NinePatchRect" parent="HUD/MarginContainer/TopBar/DayTimeHUD" unique_id=1420409380]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 texture = ExtResource("28_1cwlq")
@@ -189,7 +204,7 @@ patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/TopBar/DayTimeHUD/DayBackground" unique_id=11331024]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/TopBar/DayTimeHUD/DayBackground" unique_id=223266268]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -203,19 +218,19 @@ offset_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer/TopBar/DayTimeHUD/DayBackground/MarginContainer" unique_id=35529400]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer/TopBar/DayTimeHUD/DayBackground/MarginContainer" unique_id=271345945]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 3
 
-[node name="DayText" type="Label" parent="HUD/MarginContainer/TopBar/DayTimeHUD/DayBackground/MarginContainer/VBoxContainer" unique_id=1776723099]
+[node name="DayText" type="Label" parent="HUD/MarginContainer/TopBar/DayTimeHUD/DayBackground/MarginContainer/VBoxContainer" unique_id=36007434]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7921569, 0.9411765, 0.972549, 1)
 theme_override_fonts/font = ExtResource("29_82122")
 text = "Day"
 horizontal_alignment = 1
 
-[node name="DayNumber" type="Label" parent="HUD/MarginContainer/TopBar/DayTimeHUD/DayBackground/MarginContainer/VBoxContainer" unique_id=956990562]
+[node name="DayNumber" type="Label" parent="HUD/MarginContainer/TopBar/DayTimeHUD/DayBackground/MarginContainer/VBoxContainer" unique_id=827643701]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7921569, 0.9411765, 0.972549, 1)
@@ -223,7 +238,7 @@ theme_override_fonts/font = ExtResource("29_82122")
 text = "1"
 horizontal_alignment = 1
 
-[node name="TimeBackground" type="NinePatchRect" parent="HUD/MarginContainer/TopBar/DayTimeHUD" unique_id=698304799]
+[node name="TimeBackground" type="NinePatchRect" parent="HUD/MarginContainer/TopBar/DayTimeHUD" unique_id=705750849]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 size_flags_horizontal = 2
@@ -234,7 +249,7 @@ patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/TopBar/DayTimeHUD/TimeBackground" unique_id=734935766]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/TopBar/DayTimeHUD/TimeBackground" unique_id=197374659]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -248,11 +263,11 @@ offset_bottom = 8.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BoxContainer" type="HBoxContainer" parent="HUD/MarginContainer/TopBar/DayTimeHUD/TimeBackground/MarginContainer" unique_id=133468019]
+[node name="BoxContainer" type="HBoxContainer" parent="HUD/MarginContainer/TopBar/DayTimeHUD/TimeBackground/MarginContainer" unique_id=1356383219]
 layout_mode = 2
 theme_override_constants/separation = 3
 
-[node name="TimeText" type="Label" parent="HUD/MarginContainer/TopBar/DayTimeHUD/TimeBackground/MarginContainer/BoxContainer" unique_id=1960341585]
+[node name="TimeText" type="Label" parent="HUD/MarginContainer/TopBar/DayTimeHUD/TimeBackground/MarginContainer/BoxContainer" unique_id=1838246052]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -262,16 +277,16 @@ theme_override_font_sizes/font_size = 10
 text = "7:00 Am"
 horizontal_alignment = 1
 
-[node name="Spacer" type="Control" parent="HUD/MarginContainer/TopBar" unique_id=831928467]
+[node name="Spacer" type="Control" parent="HUD/MarginContainer/TopBar" unique_id=525293052]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MoneyBackground" type="NinePatchRect" parent="HUD/MarginContainer/TopBar" unique_id=1402990841]
+[node name="MoneyBackground" type="NinePatchRect" parent="HUD/MarginContainer/TopBar" unique_id=787295908]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 texture = ExtResource("30_mntjb")
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/TopBar/MoneyBackground" unique_id=1013964148]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/TopBar/MoneyBackground" unique_id=1704675196]
 custom_minimum_size = Vector2(120, 30)
 layout_mode = 1
 anchors_preset = 8
@@ -286,11 +301,11 @@ offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer/TopBar/MoneyBackground/MarginContainer" unique_id=196606062]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer/TopBar/MoneyBackground/MarginContainer" unique_id=2038029811]
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="CoinIcon" type="TextureRect" parent="HUD/MarginContainer/TopBar/MoneyBackground/MarginContainer/HBoxContainer" unique_id=2099096549]
+[node name="CoinIcon" type="TextureRect" parent="HUD/MarginContainer/TopBar/MoneyBackground/MarginContainer/HBoxContainer" unique_id=546948355]
 clip_contents = true
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
@@ -298,22 +313,13 @@ texture = ExtResource("32_mntjb")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="MoneyText" type="Label" parent="HUD/MarginContainer/TopBar/MoneyBackground/MarginContainer/HBoxContainer" unique_id=1924520907]
+[node name="MoneyText" type="Label" parent="HUD/MarginContainer/TopBar/MoneyBackground/MarginContainer/HBoxContainer" unique_id=1536160320]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("29_82122")
 text = "0"
 
-[node name="SceneTransition" type="ColorRect" parent="HUD" unique_id=668854839]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
-
-[node name="SwitchPOVButton" type="TextureButton" parent="HUD" unique_id=1939560864]
+[node name="SwitchPOVButton" type="TextureButton" parent="HUD" unique_id=51066065]
 unique_name_in_owner = true
 offset_left = 1112.0
 offset_top = 200.0
@@ -324,7 +330,7 @@ texture_pressed = ExtResource("34_u6qb6")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="HUD/SwitchPOVButton" unique_id=2091244306]
+[node name="Label" type="Label" parent="HUD/SwitchPOVButton" unique_id=718101401]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -341,17 +347,141 @@ theme_override_fonts/font = ExtResource("29_82122")
 theme_override_font_sizes/font_size = 20
 text = "➜"
 
-[node name="SfxStart" type="AudioStreamPlayer" parent="." unique_id=2103384696]
-stream = ExtResource("33_u5556")
-volume_db = -5.0
+[node name="SceneTransition" type="ColorRect" parent="HUD" unique_id=957309018]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
-[node name="SfxPlate" type="AudioStreamPlayer" parent="." unique_id=844319291]
-stream = ExtResource("34_6mlrh")
-volume_db = -5.0
+[node name="CanvasLayer" type="CanvasLayer" parent="HUD" unique_id=919639917]
 
-[node name="SfxClicked" type="AudioStreamPlayer" parent="." unique_id=1021317427]
-stream = ExtResource("37_u6qb6")
-volume_db = -5.0
+[node name="EndOfDayScreen" type="Control" parent="HUD/CanvasLayer" unique_id=1860583974]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("28_u5556")
+
+[node name="ColorRect" type="ColorRect" parent="HUD/CanvasLayer/EndOfDayScreen" unique_id=240212369]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="TextureRect" type="TextureRect" parent="HUD/CanvasLayer/EndOfDayScreen/ColorRect" unique_id=2043361901]
+custom_minimum_size = Vector2(700, 500)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("28_82122")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect" unique_id=781584729]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer" unique_id=1992756486]
+layout_mode = 2
+
+[node name="ShiftOverText" type="Label" parent="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer" unique_id=277936448]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.43120447, 0.28682762, 0.12913251, 1)
+theme_override_fonts/font = ExtResource("29_82122")
+theme_override_font_sizes/font_size = 50
+text = "ShifT Over"
+horizontal_alignment = 1
+
+[node name="StatsText" type="Label" parent="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer" unique_id=264705337]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("29_82122")
+theme_override_font_sizes/font_size = 25
+text = "Customer: 0
+Profit: 0"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer" unique_id=692850890]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 100
+
+[node name="Leave" type="TextureButton" parent="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=878497944]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+texture_normal = ExtResource("28_1cwlq")
+texture_pressed = ExtResource("29_mntjb")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Leave" unique_id=723822688]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("29_82122")
+theme_override_font_sizes/font_size = 12
+text = "Leave"
+vertical_alignment = 1
+
+[node name="Continue" type="TextureButton" parent="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2040771333]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = ExtResource("33_rndx6")
+texture_pressed = ExtResource("34_u6qb6")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Continue" unique_id=1544551860]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("29_82122")
+theme_override_font_sizes/font_size = 11
+text = "Continue"
+vertical_alignment = 1
 
 [connection signal="pressed" from="PlateStackButton" to="PlateStackButton" method="_on_plate_stack_button_pressed"]
-[connection signal="pressed" from="HUD/SwitchPOVButton" to="." method="_on_switch_pov_button_pressed"]
