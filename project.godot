@@ -21,6 +21,7 @@ TimeManager="*uid://dr1o5bifk7xaa"
 FinanceManager="*uid://1gm035yjub1w"
 CustomerManager="*uid://8xo5exkdqxlw"
 KitchenManager="*uid://bsj27ea8bs7u1"
+SaveManager="*uid://dkt4bl06r34dp"
 
 [physics]
 

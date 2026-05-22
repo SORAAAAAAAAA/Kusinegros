@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 	if time_elapsed >= shift_duration:
 		# OUT OF TIME!
 		is_shop_open = false
-		shift_ended.emit() 
+		shift_ended.emit()
 		_broadcast_time(1.0) # Force the clock to exactly 5:00 PM
 	else:
 		# Tell the game exactly what percentage of the day is done

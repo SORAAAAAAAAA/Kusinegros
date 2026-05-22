@@ -66,9 +66,7 @@ func _ready():
 	_rebuild_room()
 	_rebuild_plates()
 	
-	if CustomerManager.is_day_completely_over:
-		_trigger_end_of_day()
-
+	TimeManager.shift_ended.connect(_trigger_end_of_day)
 
 # 5. THE UPDATE FUNCTIONS
 # These run automatically whenever the GameManager shouts that a change happened!
@@ -88,7 +86,7 @@ func _on_time_updated(time_string: String):
 func _on_shift_ended():
 	# The clock hit 5:00 PM! 
 	print("5:00 PM! The doors are closed!")
-	# Note: If you have a Customer Spawner script/timer, tell it to stop spawning here!
+	
 
 
 # =====================================================================
@@ -172,5 +170,5 @@ func _on_live_spawn_received(id: int):
 		customer_container.add_child(puppet)
 		
 func _trigger_end_of_day():
-	print("All customers cleared. Showing summary.")
+	print("Showing summary.")
 	%EndOfDayScreen.show_summary()

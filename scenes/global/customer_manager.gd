@@ -4,7 +4,6 @@ extends Node
 signal live_customer_spawned(id: int)
 signal customer_angry_leave(id: int)
 signal day_completely_cleared
-
 # --- MENU & SCENES ---
 var available_customer_scenes: Array[String] = [
 	"res://scenes/customer_scenes/ana.tscn", 
@@ -23,7 +22,6 @@ var available_menu: Dictionary = {
 var active_customers: Dictionary = {}
 var next_customer_id: int = 0
 var current_spawn_timer: float = 0.0
-var is_day_completely_over: bool = false
 
 
 func _process(delta: float) -> void:
@@ -45,18 +43,12 @@ func _process(delta: float) -> void:
 		current_spawn_timer -= delta
 		if current_spawn_timer <= 0:
 			_try_spawn_background_customer()
-			
-	# 3. THE END OF DAY CHECK
-	if not TimeManager.is_shop_open and not is_day_completely_over:
-			print("Hostess: The shop is closed")
-			is_day_completely_over = true
-			day_completely_cleared.emit()
+		
 
 
 # --- FUNCTIONS ---
 func reset_for_new_shift():
 	active_customers.clear()
-	is_day_completely_over = false
 	current_spawn_timer = 0.0
 
 func register_new_customer(order: String, max_patience: float, scene_path: String) -> int:

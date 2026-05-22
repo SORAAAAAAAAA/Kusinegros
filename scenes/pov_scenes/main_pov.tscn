@@ -487,3 +487,5 @@ text = "Continue"
 vertical_alignment = 1
 
 [connection signal="pressed" from="PlateStackButton" to="PlateStackButton" method="_on_plate_stack_button_pressed"]
+[connection signal="pressed" from="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Leave" to="HUD/CanvasLayer/EndOfDayScreen" method="_on_leave_pressed"]
+[connection signal="pressed" from="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Continue" to="HUD/CanvasLayer/EndOfDayScreen" method="_on_continue_pressed"]

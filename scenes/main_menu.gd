@@ -8,13 +8,19 @@ extends Control
 # Store the path here so we don't have to retype it multiple times!
 var target_scene_path = "res://scenes/pov_scenes/main_pov.tscn"
 var master_bus_index: int
-
+@onready var continue_button = %ContinueButton
+@onready var new_game_button = %NewGameButton
 
 func _ready() -> void:
 	# Keep the process loop turned off until we actually need to load something
 	set_process(false)
 	settings_overlay.hide()
 	master_bus_index = AudioServer.get_bus_index("Master")
+	
+	if SaveManager.has_save_file():
+		continue_button.disabled = false
+	else:
+		continue_button.disabled = true # Grey it out so they can't click it!
 
 
 func _process(delta):
@@ -46,6 +52,10 @@ func _on_new_button_pressed() -> void:
 	$NewButton.disabled = true
 	sfx_clicked.play()
 	
+	TimeManager.current_day = 1
+	FinanceManager.total_money = 0
+	
+	
 	# 3. KICK OFF THE BACKGROUND LOAD INSTANTLY
 	# We tell the engine to start fetching the heavy data in the background 
 	# right now, while our Main Thread handles the UI fade-out.
@@ -67,9 +77,27 @@ func _on_new_button_pressed() -> void:
 
 
 func _on_continue_button_pressed() -> void:
+	$ContinueButton.disabled = true
 	sfx_clicked.play()
-	# You will use the exact same background loading logic here later, 
-	# but instead of resetting GameManager data, you will load it from a save file!
+	# 1. Tell the Archivist to inject the saved data into the Managers
+	SaveManager.load_game()
+	
+	# 2. Load into the game!
+	ResourceLoader.load_threaded_request(target_scene_path)
+	
+	# 4. START THE VISUAL FADE
+	var tween = create_tween()
+	tween.tween_property(fade_overlay, "color:a", 1.0, 0.5)
+	
+	# 5. WAIT FOR THE VISUALS TO FINISH
+	# (Because this takes 0.8 seconds, we no longer need the 0.1s timer! 
+	# The sound has plenty of time to play.)
+	await tween.finished
+	
+	# 6. TURN ON THE PROCESS LOOP
+	# The screen is now completely black. We wake up the _process function 
+	# to check if the background loading finished while we were fading.
+	set_process(true)
 
 
 func _on_settings_button_pressed() -> void:
@@ -90,5 +118,6 @@ func _on_volume_slider_value_changed(value: float) -> void:
 
 
 func _on_back_button_pressed() -> void:
-	sfx_clicked.play()
 	settings_overlay.hide()
+
+	sfx_clicked.play()

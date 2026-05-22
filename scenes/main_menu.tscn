@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cyp75d56nmdkf" path="res://assets/OTHER UI-ASSETS/buttons/PlayButton.png" id="4_tbmy8"]
 [ext_resource type="Texture2D" uid="uid://ouo4bxi0tc0k" path="res://assets/OTHER UI-ASSETS/buttons/SettingsButton.png" id="5_jk1qb"]
 [ext_resource type="Texture2D" uid="uid://dxb63st5bhk0x" path="res://assets/OTHER UI-ASSETS/buttons/DarkPlayButton.png" id="5_oa1go"]
+[ext_resource type="Texture2D" uid="uid://b788564rgfgc5" path="res://assets/OTHER UI-ASSETS/buttons/disabled button.png" id="7_lgwnu"]
 [ext_resource type="Texture2D" uid="uid://cktntyyyc021t" path="res://assets/OTHER UI-ASSETS/buttons/DarkSettingsButton.png" id="7_tbmy8"]
 [ext_resource type="AudioStream" uid="uid://cukck3jpsrq3h" path="res://assets/OTHER UI-ASSETS/audio/button_clicked.mp3" id="8_tbmy8"]
 [ext_resource type="Texture2D" uid="uid://bnlqnu16lh2qk" path="res://assets/OTHER UI-ASSETS/buttons/SettingsBG.png" id="10_5dd4i"]
@@ -47,6 +48,7 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="NewButton" type="TextureButton" parent="." unique_id=1484414429]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 460.0
 offset_top = 325.99997
@@ -69,6 +71,7 @@ theme_override_font_sizes/font_size = 75
 text = "New Game"
 
 [node name="ContinueButton" type="TextureButton" parent="." unique_id=2747617]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 463.0001
 offset_top = 418.00003
@@ -77,6 +80,7 @@ offset_bottom = 711.0
 scale = Vector2(0.323, 0.252)
 texture_normal = ExtResource("4_tbmy8")
 texture_pressed = ExtResource("5_oa1go")
+texture_disabled = ExtResource("7_lgwnu")
 ignore_texture_size = true
 stretch_mode = 5
 
