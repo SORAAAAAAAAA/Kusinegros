@@ -46,10 +46,6 @@ func _on_new_button_pressed() -> void:
 	$NewButton.disabled = true
 	sfx_clicked.play()
 	
-	# 2. RESET GAME DATA (Clean Slate)
-	GameManager.current_day = 1
-	GameManager.daily_earnings = 0
-	
 	# 3. KICK OFF THE BACKGROUND LOAD INSTANTLY
 	# We tell the engine to start fetching the heavy data in the background 
 	# right now, while our Main Thread handles the UI fade-out.

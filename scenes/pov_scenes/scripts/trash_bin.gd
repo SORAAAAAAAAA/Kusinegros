@@ -14,4 +14,5 @@ func _can_drop_data(at_position, data):
 func _drop_data(at_position, data):
 	# 'data' is the actual plate node we returned in Step 1.
 	# We just throw it in the trash by deleting it from the game!
+	KitchenManager.remove_plate(data.my_plate_index)
 	data.queue_free()

@@ -1,5 +1,9 @@
 extends TextureButton
 
+
+# Change this in the Godot Inspector! (Left Plate = 0, Middle = 1, Right = 2)
+@export var my_plate_index: int = 0
+
 var has_rice: bool = false
 var current_ulam: String = ""
 
@@ -16,17 +20,68 @@ func _ready():
 	# Always start empty
 	texture_normal = tex_empty
 
+
+# =====================================================================
+# ADDING FOOD (Player Actions)
+# =====================================================================
+
 func add_rice():
 	if has_rice:
 		return
 	has_rice = true
 	update_visuals()
+	_report_to_chef() # Tell the Autoload!
 
 func add_ulam(ulam_name: String):
 	if current_ulam != "":
 		return
 	current_ulam = ulam_name
 	update_visuals()
+	_report_to_chef() # Tell the Autoload!
+
+func clear_plate():
+	has_rice = false
+	current_ulam = ""
+	update_visuals()
+	KitchenManager.clear_plate(my_plate_index) # Tell the Autoload!
+
+
+# =====================================================================
+# THE CHEF COMMUNICATION (New Architecture)
+# =====================================================================
+
+func _report_to_chef():
+	# Translate our local variables into a single string for the memory bank
+	var food_string = ""
+	
+	if has_rice and current_ulam != "":
+		food_string = current_ulam + "_rice"
+	elif has_rice:
+		food_string = "rice"
+	elif current_ulam != "":
+		food_string = current_ulam
+		
+	# Save it to the global memory
+	KitchenManager.save_plate_state(my_plate_index, food_string)
+
+
+# main_pov.gd will call this function to rebuild the plate when switching cameras!
+func add_food_to_plate(food_string: String):
+	# Parse the string backward into our local variables
+	if food_string == "rice":
+		has_rice = true
+	elif food_string.ends_with("_rice"):
+		has_rice = true
+		current_ulam = food_string.replace("_rice", "")
+	else:
+		current_ulam = food_string
+		
+	update_visuals()
+
+
+# =====================================================================
+# VISUALS & DRAG LOGIC (Untouched!)
+# =====================================================================
 
 func update_visuals():
 	if has_rice and current_ulam != "":
@@ -49,12 +104,7 @@ func update_visuals():
 	else:
 		texture_normal = tex_empty
 
-func clear_plate():
-	has_rice = false
-	current_ulam = ""
-	update_visuals()
 
-# This built-in Godot function triggers automatically when you click and drag this UI node
 func _get_drag_data(at_position):
 	# 1. Create a visual preview (the "ghost" image that follows the mouse)
 	var preview_texture = TextureRect.new()
@@ -73,8 +123,6 @@ func _get_drag_data(at_position):
 	set_drag_preview(preview_control)
 	
 	# 3. THE BULLETPROOF TRICK:
-	# DO NOT set texture_normal to null! 
-	# Just make the entire plate completely transparent. 
 	modulate.a = 0.0
 	
 	# 4. Return 'self' to pass the actual plate node data

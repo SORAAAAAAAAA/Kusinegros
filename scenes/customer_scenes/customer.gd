@@ -36,10 +36,10 @@ func _ready():
 	# The GameManager already created our ID and Order before we spawned!
 	
 	# Connect signals and grab max value from the brain
-	GameManager.customer_angry_leave.connect(_on_global_angry_leave)
+	CustomerManager.customer_angry_leave.connect(_on_global_angry_leave)
 	
-	if GameManager.active_customers.has(my_global_id):
-		mood_bar.max_value = GameManager.active_customers[my_global_id]["max_patience"]
+	if CustomerManager.active_customers.has(my_global_id):
+		mood_bar.max_value = CustomerManager.active_customers[my_global_id]["max_patience"]
 
 
 	# --- 1. SET THE ORDER PICTURE ---
@@ -161,11 +161,14 @@ func _drop_data(at_position, data):
 			final_payment -= 20 # Angry discount (30 total)
 		
 		# Tell the GameManager to process the sale with our new total
-		GameManager.process_successful_sale(my_current_order, final_payment)
+		GameManager.process_successful_sale(my_current_order, final_payment, my_global_id)
 		
 		# THE MVC UPGRADE: Tell the brain we have been fed!
-		GameManager.remove_customer(my_global_id)
-		
+		CustomerManager.remove_customer(my_global_id)
+		KitchenManager.remove_plate(data.my_plate_index)
+	
+		# Destroy the physical node, using 'data' instead of 'plate'
+		data.queue_free()
 		# 1. Delete the plate so it doesn't linger
 		data.queue_free() 
 		
@@ -183,12 +186,11 @@ func _drop_data(at_position, data):
 	else:
 		sfx_wrong.play()
 		print("Hey, I ordered ", my_current_order, " not ", plate_contents, "!")
-
-
+		
 func _process(delta):
 	# THE MVC UPGRADE: Sync completely with the global brain
-	if GameManager.active_customers.has(my_global_id):
-		var time_left = GameManager.active_customers[my_global_id]["patience"]
+	if CustomerManager.active_customers.has(my_global_id):
+		var time_left = CustomerManager.active_customers[my_global_id]["patience"]
 		
 		# Force the progress bar to match the brain
 		mood_bar.value = time_left

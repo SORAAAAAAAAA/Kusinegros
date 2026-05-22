@@ -24,7 +24,7 @@ func _ready() -> void:
 	else:
 		print("Controller Error: Could not find the Counter TextureButton!")
 		
-	GameManager.day_completely_cleared.connect(_force_return_to_main)
+	CustomerManager.day_completely_cleared.connect(_force_return_to_main)
 
 func spawn_all_tables() -> void:
 	var extra_tables_count: int = 3

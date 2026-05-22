@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://cgrtq834p4mnj" path="res://assets/OTHER UI-ASSETS/trash_can/trash_can_closed.png" id="17_n6eyk"]
 [ext_resource type="Texture2D" uid="uid://dw7r2808q5dop" path="res://assets/OTHER UI-ASSETS/trash_can/trash_can_open.png" id="18_31ng2"]
 [ext_resource type="Texture2D" uid="uid://d1suo7rsdc54w" path="res://assets/OTHER UI-ASSETS/trash_can/trash_can_hover.png" id="19_v6amk"]
-[ext_resource type="Script" uid="uid://ct1bx4prpdw6r" path="res://scenes/pov_scenes/trash_bin.gd" id="20_31ng2"]
+[ext_resource type="Script" uid="uid://ct1bx4prpdw6r" path="res://scenes/pov_scenes/scripts/trash_bin.gd" id="20_31ng2"]
 [ext_resource type="Texture2D" uid="uid://b6rfbjq3ll24c" path="res://assets/OTHER UI-ASSETS/buttons/DayBackground.png" id="28_1cwlq"]
 [ext_resource type="Texture2D" uid="uid://bnlqnu16lh2qk" path="res://assets/OTHER UI-ASSETS/buttons/SettingsBG.png" id="28_82122"]
 [ext_resource type="Script" uid="uid://pa8nrrbwxl7h" path="res://scenes/pov_scenes/end_of_day_screen.gd" id="28_u5556"]
@@ -42,6 +42,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_82122")
+plate_scene = ExtResource("15_c0n7d")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1716247626]
 layout_mode = 1
@@ -131,6 +132,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="GridContainerPlates" type="GridContainer" parent="." unique_id=2013205974]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0

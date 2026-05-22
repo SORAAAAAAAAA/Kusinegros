@@ -4,6 +4,7 @@ extends Control
 @onready var day_number = %DayNumber
 @onready var money_text = %MoneyText
 @onready var time_text = %TimeText 
+@export var plate_scene: PackedScene
 
 # Scene Nodes
 @onready var scene_transition = $HUD/SceneTransition
@@ -14,6 +15,8 @@ extends Control
 # Core Loop Nodes (Make sure to right-click these and "Access as Unique Name" too!)
 @onready var customer_container = %CustomerSlots
 @onready var end_of_day_screen = %EndOfDayScreen
+@onready var plate_container = $GridContainerPlates
+
 
 func _ready():
 	switch_pov_button.pressed.connect(_on_switch_pov_button_pressed)
@@ -22,24 +25,24 @@ func _ready():
 		end_of_day_screen.hide()
 
 	# 1. CONNECT THE RADIO SIGNALS
-	GameManager.money_changed.connect(_on_money_changed)
-	GameManager.day_changed.connect(_on_day_changed)
-	GameManager.time_updated.connect(_on_time_updated)
-	GameManager.shift_ended.connect(_on_shift_ended)
-	GameManager.day_completely_cleared.connect(_trigger_end_of_day)
+	FinanceManager.money_changed.connect(_on_money_changed)
+	TimeManager.day_changed.connect(_on_day_changed)
+	TimeManager.time_updated.connect(_on_time_updated)
+	TimeManager.shift_ended.connect(_on_shift_ended)
 	
-	# ADD THIS NEW CONNECTION: Listen for live spawns
-	GameManager.live_customer_spawned.connect(_on_live_spawn_received)
+	# Listen for live spawns
+	CustomerManager.live_customer_spawned.connect(_on_live_spawn_received)
 	
 	# 2. INITIALIZE THE UI
-	if "total_money" in GameManager:
-		_on_money_changed(GameManager.total_money)
-	_on_day_changed(GameManager.current_day)
+	if "total_money" in FinanceManager:
+		_on_money_changed(FinanceManager.total_money)
+		
+	_on_day_changed(TimeManager.current_day)
 
 
 	# --- 3. THE MVC STARTUP CHECK ---
 	# Check the Global Brain: Is it exactly 7:00 AM?
-	if GameManager.time_elapsed == 0.0:
+	if TimeManager.time_elapsed == 0.0:
 		# Yes! This is the very first time we are loading the day.
 		if sfx_start:
 			sfx_start.play()
@@ -61,8 +64,9 @@ func _ready():
 
 	# 4. REBUILD THE ROOM
 	_rebuild_room()
+	_rebuild_plates()
 	
-	if GameManager.is_day_completely_over:
+	if CustomerManager.is_day_completely_over:
 		_trigger_end_of_day()
 
 
@@ -99,13 +103,35 @@ func _on_switch_pov_button_pressed() -> void:
 	# Because the GameManager tracks IDs in real-time now, 
 	# we just instantly leave! The brain will remember everything.
 	get_tree().change_scene_to_file("res://scenes/pov_scenes/2nd_pov.tscn")
+
+func _rebuild_plates():
+	print("--- REBUILDING DYNAMIC PLATES ---")
+	
+	# Sweep the room of accidental editor plates
+	for child in plate_container.get_children():
+		child.queue_free()
+		
+	# THE FIX: Loop through the Dictionary Keys!
+	for id in KitchenManager.plate_memory.keys():
+		
+		var restored_plate = plate_scene.instantiate()
+		
+		# Inject the exact ID from the dictionary!
+		restored_plate.my_plate_index = id
+		
+		plate_container.add_child(restored_plate)
+		
+		var saved_food = KitchenManager.plate_memory[id]
+		if saved_food != "":
+			restored_plate.add_food_to_plate(saved_food)
+			print("Restored ", saved_food, " on Plate ID ", id)
 	
 func _rebuild_room():
 	print("--- ROOM REBUILD TRIGGERED ---")
-	print("Brain Memory: ", GameManager.active_customers.size(), " customers waiting.")
+	print("Brain Memory: ", CustomerManager.active_customers.size(), " customers waiting.")
 	
-	for id in GameManager.active_customers.keys():
-		var data = GameManager.active_customers[id]
+	for id in CustomerManager.active_customers.keys():
+		var data = CustomerManager.active_customers[id]
 		var path = data["scene_path"]
 		
 		# Safety Check 1: Did we get a valid file path?
@@ -131,7 +157,7 @@ func _rebuild_room():
 			
 func _on_live_spawn_received(id: int):
 	# Grab their data from the brain
-	var data = GameManager.active_customers[id]
+	var data = CustomerManager.active_customers[id]
 	var specific_character_scene = load(data["scene_path"])
 	
 	if specific_character_scene:
