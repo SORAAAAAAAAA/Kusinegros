@@ -54,6 +54,7 @@ script = ExtResource("5_rw3u7")
 position = Vector2(497, 375)
 
 [node name="WaitLine" type="Node2D" parent="." unique_id=653287266]
+position = Vector2(-26, 0)
 
 [node name="Spot1" type="Marker2D" parent="WaitLine" unique_id=979294205]
 position = Vector2(481, 407)

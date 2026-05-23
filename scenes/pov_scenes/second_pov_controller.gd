@@ -12,7 +12,9 @@ extends Control
 
 # --- QUEUE SYSTEM ---
 @onready var wait_line_container = $WaitLine 
-var waiting_queue: Array[Node2D] = []
+
+# THE FIX 1: Untyped array prevents Godot 4 from wiping your queue memory!
+var waiting_queue: Array = [] 
 
 var all_table_positions: Array[Vector2] = [
 	Vector2(203.0, 131.0),
@@ -106,8 +108,10 @@ func _on_incoming_customer(customer_data: Dictionary) -> void:
 		var queue_customer = original_scene.instantiate()
 		var wait_spots = wait_line_container.get_children()
 		
-		# Clean out any old/deleted customers first
-		waiting_queue = waiting_queue.filter(func(c): return is_instance_valid(c))
+		# THE FIX 2: Safely clean the queue without wiping the array data
+		for i in range(waiting_queue.size() - 1, -1, -1):
+			if not is_instance_valid(waiting_queue[i]):
+				waiting_queue.remove_at(i)
 		
 		if waiting_queue.size() < wait_spots.size():
 			var assigned_spot = wait_spots[waiting_queue.size()]
@@ -120,30 +124,28 @@ func _on_incoming_customer(customer_data: Dictionary) -> void:
 			print("2nd POV: Wait line is full! Customer walked away.")
 
 func _on_any_table_cleaned(table: Node) -> void:
-	# Filter out any angry customers who left
-	waiting_queue = waiting_queue.filter(func(c): return is_instance_valid(c))
+	# THE FIX 3: Wait 0.1 seconds so the TableManager can mark the seat empty!
+	await get_tree().create_timer(0.1).timeout
+	
+	# THE FIX 4: Safely clean the queue again
+	for i in range(waiting_queue.size() - 1, -1, -1):
+		if not is_instance_valid(waiting_queue[i]):
+			waiting_queue.remove_at(i)
 	
 	if waiting_queue.size() > 0:
-		var next_in_line = waiting_queue.pop_front()
 		var new_stool = request_seat_for_customer()
 		
 		if new_stool:
 			# --- THE HANDOFF ---
-			# 1. Grab their data before we delete them
+			var next_in_line = waiting_queue.pop_front()
 			var saved_data = next_in_line.my_data
 			var current_global_pos = next_in_line.global_position
 			
-			# 2. Delete the original standing customer
 			next_in_line.queue_free()
 			
-			# 3. Spawn the Puppet in their exact place!
 			var puppet = diner_customer_scene.instantiate()
 			new_stool.add_child(puppet)
-			
-			# Snap the puppet to where the original customer was standing
 			puppet.global_position = current_global_pos 
-			
-			# Tell the puppet to walk to the table and sit
 			puppet.setup_and_seat(saved_data)
 			
 			# --- MOVE THE REST OF THE LINE FORWARD ---

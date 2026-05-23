@@ -90,6 +90,11 @@ func _ready():
 # ==========================================
 func setup_and_wait(customer_data: Dictionary) -> void:
 	in_queue_mode = true
+	
+	# --- THE FIX: Force visibility and render on top ---
+	show()
+	z_index = 100
+	
 	my_data = customer_data
 	my_global_id = customer_data["id"]
 	my_current_order = customer_data["order"]
@@ -101,6 +106,10 @@ func setup_and_wait(customer_data: Dictionary) -> void:
 	# Sync patience directly from the brain right away
 	if CustomerManager.active_customers.has(my_global_id):
 		mood_bar.max_value = CustomerManager.active_customers[my_global_id]["max_patience"]
+
+	# --- THE FIX: Smoothly slide them to the center of their assigned Marker2D ---
+	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "position", Vector2.ZERO, 0.8)
 
 func advance_in_line(new_spot: Marker2D) -> void:
 	# Change parent to the next marker
