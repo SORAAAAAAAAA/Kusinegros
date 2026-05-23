@@ -3,8 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://d206x42u1nsdn" path="res://assets/2ND POV/2npov.png" id="1_eoap7"]
 [ext_resource type="Script" uid="uid://cppqhl4lehtyq" path="res://scenes/pov_scenes/second_pov_controller.gd" id="1_f246j"]
 [ext_resource type="PackedScene" uid="uid://b6w8fgwhxey6c" path="res://scenes/table.tscn" id="3_eoap7"]
-[ext_resource type="PackedScene" path="res://scenes/table_flipped.tscn" id="3_y5t78"]
-[ext_resource type="PackedScene" uid="uid://3ixrdww6g6qm" path="res://scenes/pov_scenes/main_pov.tscn" id="4_uc3bt"]
+[ext_resource type="PackedScene" uid="uid://101v5h6jcrer" path="res://scenes/table_flipped.tscn" id="3_y5t78"]
 [ext_resource type="Script" uid="uid://dgkuxns6rsmgo" path="res://scenes/pov_scenes/table_manager.gd" id="5_rw3u7"]
 [ext_resource type="Texture2D" uid="uid://dhpcwqilhg3wu" path="res://assets/2ND POV/counter (1).png" id="5_y5t78"]
 [ext_resource type="Texture2D" uid="uid://d1o7jwhu7jema" path="res://assets/2ND POV/counter_on_hover.png" id="7_q55f5"]
@@ -17,7 +16,6 @@ offset_bottom = 649.0
 script = ExtResource("1_f246j")
 table_scene = ExtResource("3_eoap7")
 table_flipped_scene = ExtResource("3_y5t78")
-main_scene = ExtResource("4_uc3bt")
 
 [node name="Background" type="TextureRect" parent="." unique_id=138519211]
 layout_mode = 0

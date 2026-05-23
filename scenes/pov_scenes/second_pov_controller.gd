@@ -6,14 +6,14 @@ extends Control
 
 @onready var tables_container: Control = $TablesContainer
 @onready var table_manager: TableManager = $TableManager
-@export var main_scene: PackedScene # Drag your MainScene.tscn here in the Inspector!
 @onready var counter_button: TextureButton = $Counter # Make sure the name matches your Counter node!
+
 # --- ALL TABLE POSITIONS ---
 var all_table_positions: Array[Vector2] = [
 	Vector2(203.0, 131.0),   # Position for Table #1 (Your Starting Table!)
-	Vector2(-115.0, 6.0),  # Position for Table #2
+	Vector2(-115.0, 6.0),    # Position for Table #2
 	Vector2(191.0, 6.0),     # Position for Table #3
-	Vector2(-157.0, 131.0)  # Position for Table #4
+	Vector2(-157.0, 131.0)   # Position for Table #4
 ]
 
 func _ready() -> void:
@@ -24,7 +24,8 @@ func _ready() -> void:
 	else:
 		print("Controller Error: Could not find the Counter TextureButton!")
 		
-	CustomerManager.day_completely_cleared.connect(_force_return_to_main)
+	if has_node("/root/CustomerManager"):
+		CustomerManager.day_completely_cleared.connect(_force_return_to_main)
 
 func spawn_all_tables() -> void:
 	var extra_tables_count: int = 3
@@ -73,7 +74,6 @@ func spawn_table_from_shop(spawn_coord: Vector2, index: int) -> void:
 	# Hand it over to your TableManager node to be indexed and scaled
 	table_manager.register_table(new_table)
 
-
 # =====================================================================
 # CUSTOMER SEATING GATEWAY
 # =====================================================================
@@ -87,20 +87,20 @@ func request_seat_for_customer() -> Marker2D:
 	return null
 	
 # =====================================================================
-# SCENE TRANSITIONS
+# SCENE TRANSITIONS (UPDATED FOR GAMEMASTER STACKING)
 # =====================================================================
 func _on_counter_pressed() -> void:
-	print("Counter clicked! Returning to Main Scene...")
+	print("Counter clicked! Telling GameMaster to return to Main Scene...")
 	
-	if main_scene:
-		# This safely swaps the active scene in Godot to your Main Scene
-		get_tree().change_scene_to_packed(main_scene)
+	var game_master = get_parent()
+	if game_master and game_master.has_method("go_to_main_pov"):
+		game_master.go_to_main_pov()
 	else:
-		print("Controller Error: Main Scene asset is missing from the Inspector export slot!")
+		print("Controller Error: GameMaster parent not found or missing 'go_to_main_pov' method!")
 		
 func _force_return_to_main():
-	print("Shift over! Auto-returning to the front counter...")
+	print("Shift over! Telling GameMaster to auto-return to the front counter...")
 	
-	# Swap back to the main room. 
-	# Make sure this path exactly matches your main_pov.tscn file location!
-	get_tree().change_scene_to_file("res://scenes/pov_scenes/main_pov.tscn")
+	var game_master = get_parent()
+	if game_master and game_master.has_method("go_to_main_pov"):
+		game_master.go_to_main_pov()

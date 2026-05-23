@@ -20,10 +20,18 @@ func _ready():
 	update_visuals()
 	
 func _on_pressed():
-	var plates = get_node("/root/MainPOV/GridContainerPlates").get_children()
+	# THE FIX: Go up one level to MainPOV, then down into GridContainerPlates
+	var plate_container = get_node("../GridContainerPlates")
+	
+	if not plate_container:
+		print("Error: Could not find GridContainerPlates!")
+		return
+		
+	var plates = plate_container.get_children()
 
 	if !is_cooking and portions_left <= 0: 
 		start_cooking()
+		return # Added a return here so it doesn't try to serve empty rice!
 		
 	if plates.is_empty():
 		print("No plates yet...")
@@ -32,8 +40,8 @@ func _on_pressed():
 	if portions_left > 0:
 		# Loop through all dynamically spawned plates in the grid
 		for plate in plates:
-			# Find the first plate that needs rice
-			if not plate.has_rice:
+			# Find the first plate that needs rice (and safely check that it is actually a plate)
+			if "has_rice" in plate and not plate.has_rice:
 				plate.add_rice()
 				portions_left -= 1
 				update_visuals()

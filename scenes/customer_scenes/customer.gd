@@ -4,7 +4,6 @@ extends TextureRect
 @onready var visuals_node = $Visual
 @onready var character_art = $Visual/CustomerArt
 @onready var mood_bar = $MoodBar
-@onready var switch_pov_button = %SwitchPOVButton
 
 var play_spawn_animation: bool = false
 
@@ -59,7 +58,6 @@ func _ready():
 			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_only_pansit.png")
 		"carbonara":	
 			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_only_carbonara.png")
-		# change this later into its appropriate path
 		"mushroom":
 			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_only_pork_with_mushroom.png")
 		"finger":
@@ -71,7 +69,7 @@ func _ready():
 			
 		# --- COMBO MEALS ---
 		"adobo_rice":
-			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_adobo_rice.png") # Load your combo plate!
+			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_adobo_rice.png")
 		"pastil_rice":
 			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_chicken_pastil_rice.png")
 		"cordon_rice":
@@ -82,7 +80,6 @@ func _ready():
 			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_pansit_rice.png")
 		"carbonara_rice":
 			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_carbonara_rice.png")
-		# change this later into its appropriate path
 		"mushroom_rice":	
 			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_pork_with_mushroom_rice.png")
 		"finger_rice":	
@@ -167,8 +164,6 @@ func _drop_data(at_position, data):
 		CustomerManager.remove_customer(my_global_id)
 		KitchenManager.remove_plate(data.my_plate_index)
 	
-		# Destroy the physical node, using 'data' instead of 'plate'
-		data.queue_free()
 		# 1. Delete the plate so it doesn't linger
 		data.queue_free() 
 		
@@ -178,7 +173,7 @@ func _drop_data(at_position, data):
 		# 3. Play the success sound
 		sfx_correct.play()
 		
-		# 4. THE TRICK: Wait for the sound to finish playing!
+		# 4. Wait for the sound to finish playing!
 		await sfx_correct.finished
 		
 		# 5. Now it's safe to delete the customer permanently

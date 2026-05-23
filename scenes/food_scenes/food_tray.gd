@@ -25,12 +25,19 @@ func _on_pressed():
 		start_refill()
 		return
 		
-	# Look at all the plates currently in the grid
-	var plates = get_node("/root/MainPOV/GridContainerPlates").get_children()
+	# THE FIX: Bulletproof relative path!
+	# ".." goes up to GridContainerFood, the second ".." goes up to MainPOV.
+	var plate_container = get_node("../../GridContainerPlates")
+	
+	if not plate_container:
+		print("Error: Could not find GridContainerPlates!")
+		return
+		
+	var plates = plate_container.get_children()
 	
 	for plate in plates:
 		# Find the first plate that doesn't have an ulam yet
-		if plate.current_ulam == "":
+		if "current_ulam" in plate and plate.current_ulam == "":
 			plate.add_ulam(food_name)
 			portions_left -= 1
 			update_tray_visuals()

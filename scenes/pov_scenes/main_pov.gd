@@ -18,7 +18,6 @@ extends Control
 @onready var end_of_day_screen = %EndOfDayScreen
 @onready var plate_container = $GridContainerPlates
 
-
 func _ready():
 	switch_pov_button.pressed.connect(_on_switch_pov_button_pressed)
 	
@@ -40,7 +39,6 @@ func _ready():
 		
 	_on_day_changed(TimeManager.current_day)
 
-
 	# --- 3. THE MVC STARTUP CHECK ---
 	# Check the Global Brain: Is it exactly 7:00 AM?
 	if TimeManager.time_elapsed == 0.0:
@@ -58,8 +56,7 @@ func _ready():
 		GameManager.start_new_shift()
 		
 	else:
-		# No! Time has already passed. We are just returning from the 2nd POV.
-		# Skip the sound, skip the timer restart, and instantly hide the black screen!
+		# No! Time has already passed.
 		if scene_transition:
 			scene_transition.hide()
 
@@ -71,8 +68,6 @@ func _ready():
 	TimeManager.shift_ended.connect(_trigger_end_of_day)
 
 # 5. THE UPDATE FUNCTIONS
-# These run automatically whenever the GameManager shouts that a change happened!
-
 func _on_money_changed(new_amount: int):
 	# Update the money
 	money_text.text = " " + str(new_amount)
@@ -88,21 +83,23 @@ func _on_time_updated(time_string: String):
 func _on_shift_ended():
 	# The clock hit 5:00 PM! 
 	print("5:00 PM! The doors are closed!")
-	
 
 
 # =====================================================================
-# INSTANT SCENE TRANSITION
+# INSTANT SCENE TRANSITION (UPDATED FOR GAMEMASTER STACKING)
 # =====================================================================
 func _on_switch_pov_button_pressed() -> void:
 	if sfx_clicked: 
 		sfx_clicked.play()
 	
-	print("Switch POV clicked! Moving to 2nd POV...")
+	print("Switch POV clicked! Telling GameMaster to show 2nd POV...")
 	
-	# Because the GameManager tracks IDs in real-time now, 
-	# we just instantly leave! The brain will remember everything.
-	get_tree().change_scene_to_file("res://scenes/pov_scenes/2nd_pov.tscn")
+	# THE FIX: Tell the parent (GameMaster) to switch views instead of destroying the scene
+	var game_master = get_parent()
+	if game_master and game_master.has_method("go_to_second_pov"):
+		game_master.go_to_second_pov()
+	else:
+		print("Main POV Error: GameMaster parent not found or missing 'go_to_second_pov' method!")
 
 func _rebuild_plates():
 	print("--- REBUILDING DYNAMIC PLATES ---")
@@ -111,7 +108,7 @@ func _rebuild_plates():
 	for child in plate_container.get_children():
 		child.queue_free()
 		
-	# THE FIX: Loop through the Dictionary Keys!
+	# Loop through the Dictionary Keys!
 	for id in KitchenManager.plate_memory.keys():
 		
 		var restored_plate = plate_scene.instantiate()
