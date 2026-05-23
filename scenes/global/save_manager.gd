@@ -12,7 +12,7 @@ func save_game():
 	var data_to_save = {
 		"day": TimeManager.current_day,
 		"money": FinanceManager.total_money,
-		"available_meny": CustomerManager.available_menu
+		"available_menu": CustomerManager.available_menu
 	}
 	
 	# 2. Open the file and write the JSON data

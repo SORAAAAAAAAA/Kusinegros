@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cctjo008l8x2v"
+path="res://.godot/imported/main_menu_bg_music.mp3-d87efb6c1feeaaca0af6959dc412434c.mp3str"
+
+[deps]
+
+source_file="res://assets/OTHER UI-ASSETS/audio/main_menu_bg_music.mp3"
+dest_files=["res://.godot/imported/main_menu_bg_music.mp3-d87efb6c1feeaaca0af6959dc412434c.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

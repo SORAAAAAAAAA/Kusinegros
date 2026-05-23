@@ -9,9 +9,10 @@ extends Control
 var target_scene_path = "res://scenes/game_master.tscn"
 var master_bus_index: int
 @onready var continue_button = %ContinueButton
-@onready var new_game_button = %NewGameButton
+@onready var new_game_button = %NewButton
 
 func _ready() -> void:
+	MusicManager.play_menu_music()
 	# Keep the process loop turned off until we actually need to load something
 	set_process(false)
 	settings_overlay.hide()

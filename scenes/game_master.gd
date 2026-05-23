@@ -6,6 +6,7 @@ extends Node
 func _ready() -> void:
 	# Start the game looking at the Main POV
 	go_to_main_pov()
+	MusicManager.play_game_music()
 
 func go_to_main_pov() -> void:
 	main_pov.visible = true
