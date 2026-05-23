@@ -5,6 +5,7 @@ extends Control
 @onready var money_text = %MoneyText
 @onready var time_text = %TimeText 
 @export var plate_scene: PackedScene
+@onready var food_container = %GridContainerFood
 
 # Scene Nodes
 @onready var scene_transition = $HUD/SceneTransition
@@ -65,6 +66,7 @@ func _ready():
 	# 4. REBUILD THE ROOM
 	_rebuild_room()
 	_rebuild_plates()
+	_refresh_food_trays()
 	
 	TimeManager.shift_ended.connect(_trigger_end_of_day)
 
@@ -123,6 +125,18 @@ func _rebuild_plates():
 		if saved_food != "":
 			restored_plate.add_food_to_plate(saved_food)
 			print("Restored ", saved_food, " on Plate ID ", id)
+			
+func _refresh_food_trays():
+	print("--- SWEEPING THE KITCHEN COUNTER ---")
+	
+	# Look at every single tray in the grid
+	for tray in food_container.get_children():
+		
+		# Check if the tray's name tag exists in the Hostess's unlocked list
+		if CustomerManager.available_menu["ulam"].has(tray.food_name):
+			tray.show() # We own it, so put it on the counter!
+		else:
+			tray.hide() # We don't own it yet, make it invisible!
 	
 func _rebuild_room():
 	print("--- ROOM REBUILD TRIGGERED ---")

@@ -23,6 +23,7 @@ func _ready():
 func _on_pressed():
 	if portions_left <= 0 and is_refilling == false:
 		start_refill()
+		return
 		
 	# Look at all the plates currently in the grid
 	var plates = get_node("/root/MainPOV/GridContainerPlates").get_children()

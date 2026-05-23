@@ -3,10 +3,16 @@ extends Node
 const SAVE_PATH = "user://kusinegros_save.json"
 
 func save_game():
+	TimeManager.advance_to_next_day()
+	# Freeze the clock before the room reloads
+	TimeManager.is_shop_open = false
+	TimeManager.time_elapsed = 0.0
+	
 	# 1. Gather the data from your Managers
 	var data_to_save = {
 		"day": TimeManager.current_day,
-		"money": FinanceManager.total_money
+		"money": FinanceManager.total_money,
+		"available_meny": CustomerManager.available_menu
 	}
 	
 	# 2. Open the file and write the JSON data
@@ -46,6 +52,7 @@ func load_game() -> bool:
 	if saved_data:
 		TimeManager.current_day = saved_data["day"]
 		FinanceManager.total_money = saved_data["money"]
+		CustomerManager.available_menu = saved_data["available_menu"]
 		print("Archivist: Game loaded! Welcome back to Day ", TimeManager.current_day)
 		return true
 		

@@ -23,24 +23,12 @@ func show_summary():
 	show()
 	
 func _on_continue_pressed():
-	# Ask the TimeManager to advance the day
-	TimeManager.advance_to_next_day()
-	
 	SaveManager.save_game()
-	
-	# Freeze the clock before the room reloads
-	TimeManager.is_shop_open = false
-	TimeManager.time_elapsed = 0.0
-	
 	# Reload the room
 	get_tree().change_scene_to_file("res://scenes/pov_scenes/main_pov.tscn")
 
 func _on_leave_pressed():
-	TimeManager.advance_to_next_day()
 	SaveManager.save_game()
 	print("Shift abandoned! Returning to Main Menu...")
-	# Freeze the clock before the room reloads
-	TimeManager.is_shop_open = false
-	TimeManager.time_elapsed = 0.0
-	# Change this path to match your actual Main Menu scene!
+	
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

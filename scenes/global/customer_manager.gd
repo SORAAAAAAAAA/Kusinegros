@@ -14,7 +14,7 @@ var available_customer_scenes: Array[String] = [
 	"res://scenes/customer_scenes/lullu.tscn",
 ]
 var available_menu: Dictionary = {
-	"ulam": ["adobo", "pastil", "menudo", "pansit", "carbonara", "cordon", "finger", "hamonado", "bbq", "mushroom"],
+	"ulam": ["adobo"],
 	"rice": ["rice"] 
 } 
 
@@ -44,7 +44,11 @@ func _process(delta: float) -> void:
 		if current_spawn_timer <= 0:
 			_try_spawn_background_customer()
 		
-
+func add_new_ulam(ulam: String):
+	if not available_menu["ulam"].has(ulam):
+		available_menu["ulam"].append(ulam)
+	else:
+		print("Ulam Already available")
 
 # --- FUNCTIONS ---
 func reset_for_new_shift():

@@ -15,7 +15,6 @@ func add_funds(amount: int, reason: String = ""):
 	money_changed.emit(total_money)
 
 func deduct_funds(amount: int):
-	# (For the future, if you want to buy upgrades or penalize the player!)
 	total_money -= amount
 	money_changed.emit(total_money)
 
