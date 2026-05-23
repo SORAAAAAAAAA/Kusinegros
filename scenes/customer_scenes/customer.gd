@@ -5,12 +5,16 @@ extends TextureRect
 @onready var character_art = $Visual/CustomerArt
 @onready var mood_bar = $MoodBar
 
+# --- NEW: POP-UP VARIABLES ---
+@onready var payment_popup = $PaymentPopup
+@onready var payment_label = $PaymentPopup/Label
+
 var play_spawn_animation: bool = false
 
 # --- NEW: QUEUE VARIABLES ---
 var in_queue_mode: bool = false 
-var my_data: Dictionary # Stores their data so we can hand it to the puppet later
-var queue_patience: float = 30.0 # NEW: Their local timer for the wait line!
+var my_data: Dictionary 
+var queue_patience: float = 30.0 
 
 # --- MOOD TEXTURES ---
 @export var customer_name: String
@@ -23,7 +27,7 @@ var queue_patience: float = 30.0 # NEW: Their local timer for the wait line!
 @onready var sfx_correct = $SfxCorrect
 @onready var sfx_wrong = $SfxWrong
 
-# --- PATIENCE SYSTEM (MVC UPDATED) ---
+# --- PATIENCE SYSTEM ---
 var my_global_id: int = -1 
 var max_patience: float = 30.0 
 var my_current_order: String = ""
@@ -34,9 +38,12 @@ var current_mood = Mood.HAPPY
 func _ready():
 	character_art.texture = tex_happy
 	
+	if payment_popup:
+		payment_popup.hide()
+	
 	CustomerManager.customer_angry_leave.connect(_on_global_angry_leave)
 	
-	if CustomerManager.active_customers.has(my_global_id):
+	if CustomerManager.active_customers.has(my_global_id) and not in_queue_mode:
 		mood_bar.max_value = CustomerManager.active_customers[my_global_id]["max_patience"]
 
 	# --- 1. SET THE ORDER PICTURE ---
@@ -65,7 +72,6 @@ func _ready():
 		"hamonado_rice": order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_pork_hamonado_rice.png")
 			
 	# --- 2. SPAWN ANIMATION ---
-	# Do NOT play the counter bounce if we are in the queue!
 	if play_spawn_animation and not in_queue_mode:
 		sfx_arrive.play()
 		modulate.a = 0.0 
@@ -91,19 +97,19 @@ func _ready():
 # ==========================================
 func setup_and_wait(customer_data: Dictionary) -> void:
 	in_queue_mode = true
-	show()
-	z_index = 100
-	scale = Vector2(0.6, 0.6) # (Your scale fix)
+	show() 
+	z_index = 100 
+	scale = Vector2(0.6, 0.6) 
 	
 	my_data = customer_data
 	my_global_id = customer_data["id"]
 	my_current_order = customer_data["order"]
 	
-	if order_bubble: order_bubble.hide()
+	if order_bubble:
+		order_bubble.hide()
 		
-	# --- THE FIX: Set up their local queue patience ---
-	queue_patience = 30.0 # You can make this longer or shorter for the queue
-	max_patience = 30.0
+	queue_patience = 45.0 
+	max_patience = 45.0
 	mood_bar.max_value = max_patience
 	mood_bar.value = queue_patience
 
@@ -111,10 +117,7 @@ func setup_and_wait(customer_data: Dictionary) -> void:
 	tween.tween_property(self, "position", Vector2.ZERO, 0.8)
 
 func advance_in_line(new_spot: Marker2D) -> void:
-	# Change parent to the next marker
 	reparent(new_spot)
-	
-	# Smoothly slide them to the new spot (0,0 relative to the marker)
 	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "position", Vector2.ZERO, 0.4)
 
@@ -122,28 +125,20 @@ func advance_in_line(new_spot: Marker2D) -> void:
 # FRONT COUNTER LOGIC
 # ==========================================
 func _can_drop_data(at_position, data):
-	# NEW: Do not accept food if standing in the queue!
 	if in_queue_mode: return false
-	
 	if typeof(data) == TYPE_OBJECT and "current_ulam" in data and "has_rice" in data:
-		if data.current_ulam != "" or data.has_rice:
-			return true
+		if data.current_ulam != "" or data.has_rice: return true
 	return false
 
 func _drop_data(at_position, data):
 	var plate_contents: String = ""
 	
-	if data.has_rice and data.current_ulam != "":
-		plate_contents = data.current_ulam + "_rice"
-	elif data.has_rice:
-		plate_contents = "rice"
-	elif data.current_ulam != "":
-		plate_contents = data.current_ulam
+	if data.has_rice and data.current_ulam != "": plate_contents = data.current_ulam + "_rice"
+	elif data.has_rice: plate_contents = "rice"
+	elif data.current_ulam != "": plate_contents = data.current_ulam
 		
 	if plate_contents == my_current_order:
-		print("Yum! This is exactly what I ordered.")
 		var final_payment = 50 
-		
 		if current_mood == Mood.HAPPY: final_payment += 20 
 		elif current_mood == Mood.SEMI: final_payment += 0  
 		elif current_mood == Mood.ANGRY: final_payment -= 20 
@@ -153,23 +148,38 @@ func _drop_data(at_position, data):
 		KitchenManager.remove_plate(data.my_plate_index)
 	
 		data.queue_free() 
-		hide() 
-		sfx_correct.play()
-		await sfx_correct.finished
+		
+		# --- POP-UP ANIMATION LOGIC ---
+		if visuals_node: visuals_node.hide()
+		if mood_bar: mood_bar.hide()
+		
+		if payment_popup and payment_label:
+			payment_label.text = "+" + str(final_payment)
+			# Force the coin-color reward
+			payment_label.remove_theme_color_override("font_color")
+			payment_label.add_theme_color_override("font_color", Color.from_string("#fddb63", Color.WHITE))
+			payment_popup.show()
+			
+			var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+			tween.tween_property(payment_popup, "position:y", payment_popup.position.y - 60.0, 1.0)
+			tween.tween_property(payment_popup, "modulate:a", 0.0, 1.0)
+		
+		if sfx_correct: 
+			sfx_correct.play()
+			
+		await get_tree().create_timer(1.0).timeout
 		queue_free()
+		
 	else:
 		sfx_wrong.play()
-		print("Hey, I ordered ", my_current_order, " not ", plate_contents, "!")
 		
 func _process(delta):
 	if not in_queue_mode:
-		# MAIN POV: Still tracked by the Brain
 		if CustomerManager.active_customers.has(my_global_id):
 			var time_left = CustomerManager.active_customers[my_global_id]["patience"]
 			mood_bar.value = time_left
 			check_mood_change(time_left)
 	else:
-		# 2ND POV QUEUE: They track their own patience!
 		if queue_patience > 0:
 			queue_patience -= delta
 			mood_bar.value = queue_patience
@@ -177,7 +187,7 @@ func _process(delta):
 			
 			if queue_patience <= 0:
 				_on_queue_angry_leave()
-				
+
 func check_mood_change(time_left: float):
 	var percentage_left = time_left / max_patience
 	
@@ -191,20 +201,39 @@ func check_mood_change(time_left: float):
 		current_mood = Mood.ANGRY
 		character_art.texture = tex_angry 
 
+# ==========================================
+# PENALTY & LEAVE LOGIC
+# ==========================================
+
+func _on_queue_angry_leave():
+	queue_patience = 0
+	_show_penalty_popup_and_leave()
+
 func _on_global_angry_leave(id: int):
 	if id == my_global_id:
-		print("Customer left because it took too long!")
-		hide()
-		if sfx_wrong: 
-			sfx_wrong.play()
-			await sfx_wrong.finished
-		queue_free()
+		_show_penalty_popup_and_leave()
+
+func _show_penalty_popup_and_leave():
+	var penalty_amount: int = 20
+	
+	if has_node("/root/FinanceManager"):
+		FinanceManager.deduct_funds(penalty_amount)
+	
+	if visuals_node: visuals_node.hide()
+	if mood_bar: mood_bar.hide()
+	
+	if payment_popup and payment_label:
+		payment_label.text = "-" + str(penalty_amount)
+		payment_label.remove_theme_color_override("font_color")
+		payment_label.add_theme_color_override("font_color", Color.RED)
+		payment_popup.show()
 		
-func _on_queue_angry_leave():
-	queue_patience = 0 # Stop the timer
-	print("2nd POV: Customer got tired of waiting in line and left!")
-	hide()
+		var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		tween.tween_property(payment_popup, "position:y", payment_popup.position.y - 60.0, 1.0)
+		tween.tween_property(payment_popup, "modulate:a", 0.0, 1.0)
+	
 	if sfx_wrong: 
 		sfx_wrong.play()
-		await sfx_wrong.finished
+		
+	await get_tree().create_timer(1.0).timeout
 	queue_free()
