@@ -23,6 +23,7 @@ CustomerManager="*uid://8xo5exkdqxlw"
 KitchenManager="*uid://bsj27ea8bs7u1"
 SaveManager="*uid://dkt4bl06r34dp"
 MusicManager="*uid://bs7pkll1wemvn"
+ShopUI="*uid://bm7y0tl4r2a5x"
 
 [physics]
 

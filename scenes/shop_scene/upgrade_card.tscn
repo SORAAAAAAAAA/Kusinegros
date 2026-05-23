@@ -1,0 +1,209 @@
+[gd_scene format=3 uid="uid://13lo3e2kl1qu"]
+
+[sub_resource type="StyleBoxFlat" id="SB_card_normal"]
+bg_color = Color(0.118, 0.235, 0.165, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+shadow_color = Color(0, 0, 0, 0.28)
+shadow_size = 8
+shadow_offset = Vector2(3, 5)
+
+[sub_resource type="StyleBoxFlat" id="SB_placeholder"]
+bg_color = Color(0.18, 0.36, 0.25, 0.55)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="SB_buy_normal"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+bg_color = Color(0.78, 0.58, 0.18, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0.2, 0.12, 0, 0.4)
+shadow_size = 4
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="SB_buy_pressed"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+bg_color = Color(0.58, 0.4, 0.09, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0.2, 0.12, 0, 0.2)
+shadow_size = 2
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="SB_buy_hover"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+bg_color = Color(0.87, 0.67, 0.25, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0.2, 0.12, 0, 0.5)
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="SB_white_pill"]
+content_margin_left = 6.0
+content_margin_top = 3.0
+content_margin_right = 6.0
+content_margin_bottom = 3.0
+bg_color = Color(1, 1, 1, 0.92)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.12)
+shadow_size = 2
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="SB_coin"]
+bg_color = Color(1, 0.82, 0.18, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+shadow_color = Color(0.5, 0.35, 0, 0.5)
+shadow_size = 2
+shadow_offset = Vector2(0, 1)
+
+[node name="UpgradeCard" type="PanelContainer" unique_id=774546033]
+custom_minimum_size = Vector2(190, 270)
+theme_override_styles/panel = SubResource("SB_card_normal")
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=1314653441]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 14
+
+[node name="VBox" type="VBoxContainer" parent="Margin" unique_id=1624023416]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ImageWrap" type="CenterContainer" parent="Margin/VBox" unique_id=284966862]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+
+[node name="Placeholder" type="Panel" parent="Margin/VBox/ImageWrap" unique_id=846060567]
+custom_minimum_size = Vector2(84, 74)
+layout_mode = 2
+theme_override_styles/panel = SubResource("SB_placeholder")
+
+[node name="QuestionMark" type="Label" parent="Margin/VBox/ImageWrap/Placeholder" unique_id=774582633]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -17.0
+offset_right = 10.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+text = "?"
+
+[node name="ItemImage" type="TextureRect" parent="Margin/VBox/ImageWrap" unique_id=1275039358]
+visible = false
+custom_minimum_size = Vector2(88, 78)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="Margin/VBox" unique_id=2001390621]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.93, 0.88, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.55)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 14
+text = "Item Name"
+horizontal_alignment = 1
+
+[node name="DescLabel" type="Label" parent="Margin/VBox" unique_id=857805328]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.82, 0.72, 1)
+theme_override_font_sizes/font_size = 11
+text = "Item description
+goes here"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Spacer" type="Control" parent="Margin/VBox" unique_id=1002380045]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BuyButton" type="Button" parent="Margin/VBox" unique_id=2059552632]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("SB_buy_normal")
+theme_override_styles/pressed = SubResource("SB_buy_pressed")
+theme_override_styles/hover = SubResource("SB_buy_hover")
+theme_override_styles/focus = SubResource("SB_buy_normal")
+flat = true
+
+[node name="PillWrap" type="CenterContainer" parent="Margin/VBox/BuyButton" unique_id=1101741068]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 5.0
+offset_right = 94.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="WhitePill" type="PanelContainer" parent="Margin/VBox/BuyButton/PillWrap" unique_id=257620028]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_white_pill")
+
+[node name="BtnRow" type="HBoxContainer" parent="Margin/VBox/BuyButton/PillWrap/WhitePill" unique_id=805853375]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="CoinWrap" type="CenterContainer" parent="Margin/VBox/BuyButton/PillWrap/WhitePill/BtnRow" unique_id=552697819]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Coin" type="Panel" parent="Margin/VBox/BuyButton/PillWrap/WhitePill/BtnRow/CoinWrap" unique_id=1351413548]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_coin")
+
+[node name="PriceLabel" type="Label" parent="Margin/VBox/BuyButton/PillWrap/WhitePill/BtnRow" unique_id=1877865540]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14, 0.09, 0.03, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/font_size = 14
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1

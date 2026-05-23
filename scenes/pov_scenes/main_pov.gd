@@ -183,3 +183,7 @@ func _on_live_spawn_received(id: int):
 func _trigger_end_of_day():
 	print("Showing summary.")
 	%EndOfDayScreen.show_summary()
+
+
+func _on_shop_pressed() -> void:
+	ShopUI.open_shop()
