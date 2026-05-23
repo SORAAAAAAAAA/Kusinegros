@@ -14,6 +14,7 @@ signal table_cleaned(table: TableControl)
 
 # How long the player must wait while cleaning (in seconds)
 @export var cleaning_duration: float = 2.0 
+@export var max_customers_before_dirty: int = 3 # --- NEW: Easy to tweak later! ---
 
 @onready var seats_container: Node2D = $Seats
 @onready var clean_progress: ProgressBar = $CleanProgress
@@ -21,6 +22,7 @@ signal table_cleaned(table: TableControl)
 
 var available_seats: Array[Marker2D] = []
 var is_cleaning: bool = false
+var customers_fed: int = 0 # --- NEW: The 3-Strike Counter! ---
 
 func _ready() -> void:
 	reset_seats()
@@ -30,9 +32,8 @@ func _ready() -> void:
 	pressed.connect(_on_table_pressed)
 	clean_timer.timeout.connect(_on_cleaning_finished)
 	
-	# --- TEMPORARY TESTING LINE ---
-	# Force the table to start dirty so we can test the progress bar instantly!
-	set_state(State.DIRTY)
+	# Start the table clean!
+	set_state(State.EMPTY)
 
 func _process(_delta: float) -> void:
 	# If the player is actively wiping the table, update the progress bar smoothly
@@ -55,6 +56,15 @@ func claim_a_seat() -> Marker2D:
 			set_state(State.OCCUPIED)
 		return assigned_seat
 	return null
+
+# --- NEW: The function the customer calls when they leave ---
+func report_customer_finished() -> void:
+	customers_fed += 1
+	print("Table: Customer left. Customers fed so far: ", customers_fed)
+	
+	if customers_fed >= max_customers_before_dirty:
+		print("Table: 3 customers have eaten! The table is now dirty.")
+		set_state(State.DIRTY)
 
 # Changes internal states safely and triggers visuals
 func set_state(new_state: State) -> void:
@@ -92,7 +102,8 @@ func start_cleaning() -> void:
 
 func _on_cleaning_finished() -> void:
 	is_cleaning = false
+	customers_fed = 0 # --- NEW: Reset the loop! ---
 	set_state(State.EMPTY)
 	reset_seats() # Re-open all 3 stools for the next batch of students
 	table_cleaned.emit(self)
-	print("Table is sparkling clean!")
+	print("Table is sparkling clean and ready for 3 more customers!")
