@@ -61,13 +61,13 @@ func _ready():
 			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_only_carbonara.png")
 		# change this later into its appropriate path
 		"mushroom":
-			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_only_sisig.png")
+			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_only_pork_with_mushroom.png")
 		"finger":
-			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_only_sisig.png")
+			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_only_chicken_fingers.png")
 		"bbq":
-			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_only_sisig.png")
+			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_only_chicken_with_bbq_sauce.png")
 		"hamonado":	
-			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_sisig_rice.png")
+			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_only_pork_hamonado.png")
 			
 		# --- COMBO MEALS ---
 		"adobo_rice":
@@ -84,13 +84,13 @@ func _ready():
 			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_carbonara_rice.png")
 		# change this later into its appropriate path
 		"mushroom_rice":	
-			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_sisig_rice.png")
+			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_pork_with_mushroom_rice.png")
 		"finger_rice":	
-			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_sisig_rice.png")
+			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_chicken_fingers_rice.png")
 		"bbq_rice":	
-			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_sisig_rice.png")
+			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_chicken_with_bbq_sauce_rice.png")
 		"hamonado_rice":	
-			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_sisig_rice.png")
+			order_bubble.texture = load("res://assets/FOOD ASSETS/plate/plate_pork_hamonado_rice.png")
 			
 
 	# --- 2. SPAWN ANIMATION ---
@@ -188,7 +188,6 @@ func _drop_data(at_position, data):
 		print("Hey, I ordered ", my_current_order, " not ", plate_contents, "!")
 		
 func _process(delta):
-	# THE MVC UPGRADE: Sync completely with the global brain
 	if CustomerManager.active_customers.has(my_global_id):
 		var time_left = CustomerManager.active_customers[my_global_id]["patience"]
 		
@@ -199,7 +198,6 @@ func _process(delta):
 		check_mood_change(time_left)
 
 
-# THE MVC UPGRADE: We now accept the GameManager's time_left as an argument
 func check_mood_change(time_left: float):
 	var percentage_left = time_left / max_patience
 	
@@ -216,7 +214,6 @@ func check_mood_change(time_left: float):
 		character_art.texture = tex_angry 
 
 
-# THE MVC UPGRADE: We now trigger this when the global brain yells at us
 func _on_global_angry_leave(id: int):
 	# Check if the brain is talking to ME
 	if id == my_global_id:
