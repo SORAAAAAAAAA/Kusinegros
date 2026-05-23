@@ -5,11 +5,20 @@
 [ext_resource type="Texture2D" uid="uid://brxhrrn2lkd41" path="res://assets/2ND POV/table_w_chairs/wchair.png" id="3_x8522"]
 [ext_resource type="Texture2D" uid="uid://cm74wb0d2rnsp" path="res://assets/2ND POV/table_w_chairs/stools.png" id="4_olh0b"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eotx8"]
-bg_color = Color(0.7254902, 0.19607843, 0.2, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_olh0b"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x8522"]
-bg_color = Color(0.16470589, 0.74509805, 0, 1)
+bg_color = Color(1, 1, 1, 1)
 
 [node name="Table" type="TextureButton" unique_id=224128804]
 offset_left = 364.0
@@ -23,6 +32,31 @@ script = ExtResource("2_eotx8")
 clean_texture = ExtResource("3_u03e6")
 dirty_texture = ExtResource("3_x8522")
 
+[node name="CleanProgress" type="ProgressBar" parent="." unique_id=311264844]
+visible = false
+layout_mode = 0
+offset_left = 123.0
+offset_top = 49.0
+offset_right = 325.0
+offset_bottom = 61.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_olh0b")
+theme_override_styles/fill = SubResource("StyleBoxFlat_x8522")
+show_percentage = false
+
+[node name="CleanTimer" type="Timer" parent="." unique_id=56224575]
+one_shot = true
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=54455355]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -27.0
+offset_right = 64.41074
+offset_bottom = 13.0
+scale = Vector2(6.9923773, 6.9923773)
+texture = ExtResource("4_olh0b")
+expand_mode = 3
+
 [node name="Seats" type="Node2D" parent="." unique_id=1937261328]
 position = Vector2(0, -31)
 
@@ -34,28 +68,3 @@ position = Vector2(227, 146)
 
 [node name="Seat3" type="Marker2D" parent="Seats" unique_id=171973527]
 position = Vector2(348, 144)
-
-[node name="CleanProgress" type="ProgressBar" parent="." unique_id=311264844]
-visible = false
-layout_mode = 0
-offset_left = 123.0
-offset_top = 49.0
-offset_right = 325.0
-offset_bottom = 61.0
-mouse_filter = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_eotx8")
-theme_override_styles/fill = SubResource("StyleBoxFlat_x8522")
-show_percentage = false
-
-[node name="CleanTimer" type="Timer" parent="." unique_id=56224575]
-one_shot = true
-
-[node name="TextureRect" type="TextureRect" parent="." unique_id=54455355]
-layout_mode = 0
-offset_left = -2.0
-offset_top = -11.0
-offset_right = 64.41074
-offset_bottom = 29.0
-scale = Vector2(6.9923773, 6.9923773)
-texture = ExtResource("4_olh0b")
-expand_mode = 3
