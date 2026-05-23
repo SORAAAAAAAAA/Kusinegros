@@ -6,7 +6,7 @@ extends Control
 @onready var settings_overlay = %SettingsOverlay
 
 # Store the path here so we don't have to retype it multiple times!
-var target_scene_path = "res://scenes/pov_scenes/main_pov.tscn"
+var target_scene_path = "res://scenes/game_master.tscn"
 var master_bus_index: int
 @onready var continue_button = %ContinueButton
 @onready var new_game_button = %NewGameButton
