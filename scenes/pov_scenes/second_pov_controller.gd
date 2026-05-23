@@ -36,7 +36,7 @@ func _ready() -> void:
 		GameManager.customer_ready_to_eat.connect(_on_incoming_customer)
 
 func spawn_all_tables() -> void:
-	var extra_tables_count: int = 0
+	var extra_tables_count: int = 3
 	if has_node("/root/GameManager"):
 		var global_manager = get_node("/root/GameManager")
 		if "unlocked_tables_count" in global_manager:
@@ -108,7 +108,7 @@ func _on_incoming_customer(customer_data: Dictionary) -> void:
 		var queue_customer = original_scene.instantiate()
 		var wait_spots = wait_line_container.get_children()
 		
-		# THE FIX 2: Safely clean the queue without wiping the array data
+		# Safely clean the queue without wiping the array data
 		for i in range(waiting_queue.size() - 1, -1, -1):
 			if not is_instance_valid(waiting_queue[i]):
 				waiting_queue.remove_at(i)
@@ -124,19 +124,24 @@ func _on_incoming_customer(customer_data: Dictionary) -> void:
 			print("2nd POV: Wait line is full! Customer walked away.")
 
 func _on_any_table_cleaned(table: Node) -> void:
-	# THE FIX 3: Wait 0.1 seconds so the TableManager can mark the seat empty!
+	# Wait 0.1 seconds so the TableManager can mark the seat empty!
 	await get_tree().create_timer(0.1).timeout
 	
-	# THE FIX 4: Safely clean the queue again
+	# Safely clean the queue again
 	for i in range(waiting_queue.size() - 1, -1, -1):
 		if not is_instance_valid(waiting_queue[i]):
 			waiting_queue.remove_at(i)
 	
-	if waiting_queue.size() > 0:
+	# A flag to track if we actually moved anyone, so we only shuffle the line once
+	var line_was_advanced = false
+	
+	# --- THE KEEP SEATING LOOP ---
+	# As long as there are people in line, keep asking for seats!
+	while waiting_queue.size() > 0:
 		var new_stool = request_seat_for_customer()
 		
-		if new_stool:
-			# --- THE HANDOFF ---
+		# If we found an empty stool, seat the next person
+		if new_stool != null:
 			var next_in_line = waiting_queue.pop_front()
 			var saved_data = next_in_line.my_data
 			var current_global_pos = next_in_line.global_position
@@ -148,10 +153,17 @@ func _on_any_table_cleaned(table: Node) -> void:
 			puppet.global_position = current_global_pos 
 			puppet.setup_and_seat(saved_data)
 			
-			# --- MOVE THE REST OF THE LINE FORWARD ---
-			var wait_spots = wait_line_container.get_children()
-			for i in range(waiting_queue.size()):
-				waiting_queue[i].advance_in_line(wait_spots[i])
+			line_was_advanced = true
+		else:
+			# No more seats available! Break out of the loop completely.
+			break
+			
+	# --- SHUFFLE THE LINE ---
+	# Only do this ONCE after everyone possible has been seated
+	if line_was_advanced:
+		var wait_spots = wait_line_container.get_children()
+		for i in range(waiting_queue.size()):
+			waiting_queue[i].advance_in_line(wait_spots[i])
 
 # =====================================================================
 # SCENE TRANSITIONS

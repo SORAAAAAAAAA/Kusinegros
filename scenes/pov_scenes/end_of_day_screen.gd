@@ -25,7 +25,7 @@ func show_summary():
 func _on_continue_pressed():
 	SaveManager.save_game()
 	# Reload the room
-	get_tree().change_scene_to_file("res://scenes/pov_scenes/main_pov.tscn")
+	get_tree().change_scene_to_file("res://scenes/game_master.tscn")
 
 func _on_leave_pressed():
 	SaveManager.save_game()
