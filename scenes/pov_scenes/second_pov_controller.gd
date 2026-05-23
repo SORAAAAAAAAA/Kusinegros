@@ -36,7 +36,7 @@ func _ready() -> void:
 		GameManager.customer_ready_to_eat.connect(_on_incoming_customer)
 
 func spawn_all_tables() -> void:
-	var extra_tables_count: int = 3
+	var extra_tables_count: int = 0
 	if has_node("/root/GameManager"):
 		var global_manager = get_node("/root/GameManager")
 		if "unlocked_tables_count" in global_manager:

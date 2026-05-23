@@ -95,6 +95,8 @@ func setup_and_wait(customer_data: Dictionary) -> void:
 	show()
 	z_index = 100
 	
+	scale = Vector2(0.6, 0.6)
+	
 	my_data = customer_data
 	my_global_id = customer_data["id"]
 	my_current_order = customer_data["order"]
