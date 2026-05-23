@@ -22,12 +22,8 @@ FinanceManager="*uid://1gm035yjub1w"
 CustomerManager="*uid://8xo5exkdqxlw"
 KitchenManager="*uid://bsj27ea8bs7u1"
 SaveManager="*uid://dkt4bl06r34dp"
-<<<<<<< HEAD
-MusicManager="*uid://bs7pkll1wemvn"
 ShopUI="*uid://bm7y0tl4r2a5x"
-=======
-MusicManager="*uid://cpiaepkso87pu"
->>>>>>> d2dc19f48c2ee56cdf3d88a2e4e60c19bf031e6a
+MusicManager="*uid://bs7pkll1wemvn"
 
 [physics]
 
