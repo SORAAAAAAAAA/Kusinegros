@@ -10,6 +10,7 @@ var play_spawn_animation: bool = false
 # --- NEW: QUEUE VARIABLES ---
 var in_queue_mode: bool = false 
 var my_data: Dictionary # Stores their data so we can hand it to the puppet later
+var queue_patience: float = 30.0 # NEW: Their local timer for the wait line!
 
 # --- MOOD TEXTURES ---
 @export var customer_name: String
@@ -90,26 +91,22 @@ func _ready():
 # ==========================================
 func setup_and_wait(customer_data: Dictionary) -> void:
 	in_queue_mode = true
-	
-	# --- THE FIX: Force visibility and render on top ---
 	show()
 	z_index = 100
-	
-	scale = Vector2(0.6, 0.6)
+	scale = Vector2(0.6, 0.6) # (Your scale fix)
 	
 	my_data = customer_data
 	my_global_id = customer_data["id"]
 	my_current_order = customer_data["order"]
 	
-	# Turn off front-counter visuals
-	if order_bubble:
-		order_bubble.hide()
+	if order_bubble: order_bubble.hide()
 		
-	# Sync patience directly from the brain right away
-	if CustomerManager.active_customers.has(my_global_id):
-		mood_bar.max_value = CustomerManager.active_customers[my_global_id]["max_patience"]
+	# --- THE FIX: Set up their local queue patience ---
+	queue_patience = 30.0 # You can make this longer or shorter for the queue
+	max_patience = 30.0
+	mood_bar.max_value = max_patience
+	mood_bar.value = queue_patience
 
-	# --- THE FIX: Smoothly slide them to the center of their assigned Marker2D ---
 	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "position", Vector2.ZERO, 0.8)
 
@@ -165,11 +162,22 @@ func _drop_data(at_position, data):
 		print("Hey, I ordered ", my_current_order, " not ", plate_contents, "!")
 		
 func _process(delta):
-	if CustomerManager.active_customers.has(my_global_id):
-		var time_left = CustomerManager.active_customers[my_global_id]["patience"]
-		mood_bar.value = time_left
-		check_mood_change(time_left)
-
+	if not in_queue_mode:
+		# MAIN POV: Still tracked by the Brain
+		if CustomerManager.active_customers.has(my_global_id):
+			var time_left = CustomerManager.active_customers[my_global_id]["patience"]
+			mood_bar.value = time_left
+			check_mood_change(time_left)
+	else:
+		# 2ND POV QUEUE: They track their own patience!
+		if queue_patience > 0:
+			queue_patience -= delta
+			mood_bar.value = queue_patience
+			check_mood_change(queue_patience)
+			
+			if queue_patience <= 0:
+				_on_queue_angry_leave()
+				
 func check_mood_change(time_left: float):
 	var percentage_left = time_left / max_patience
 	
@@ -191,3 +199,12 @@ func _on_global_angry_leave(id: int):
 			sfx_wrong.play()
 			await sfx_wrong.finished
 		queue_free()
+		
+func _on_queue_angry_leave():
+	queue_patience = 0 # Stop the timer
+	print("2nd POV: Customer got tired of waiting in line and left!")
+	hide()
+	if sfx_wrong: 
+		sfx_wrong.play()
+		await sfx_wrong.finished
+	queue_free()
