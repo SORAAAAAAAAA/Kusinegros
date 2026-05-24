@@ -12,21 +12,21 @@ var current_tab   := "ulam"
 var selected_card := -1
 
 var ulam_upgrades := [
-	{"id": "cordon",    "name": "Cordon Bleu",      "desc": "Breaded pork stuffed\nwith ham and cheese",     "price": 50,  "image": "res://assets/FOOD ASSETS/shop/cordon_bleu.png"},	
-	{"id": "mushroom",  "name": "Pork Mushroom",    "desc": "Tender pork strips\nwith creamy mushroom",      "price": 75,  "image": "res://assets/FOOD ASSETS/shop/pork_mushroom.png"},
-	{"id": "hamonado",  "name": "Pork Hamonado",    "desc": "Sweet pork braised\nin pineapple sauce",        "price": 100, "image": "res://assets/FOOD ASSETS/shop/pork_hamonado.png"},
-	{"id": "pansit",    "name": "Pansit",           "desc": "Stir-fried noodles\nwith meat and veggies",     "price": 120, "image": "res://assets/FOOD ASSETS/shop/pansit.png"},
-	{"id": "menudo",    "name": "Menudo",           "desc": "Pork and liver stew\nwith tomato sauce",        "price": 140, "image": "res://assets/FOOD ASSETS/shop/menudo.png"},
-	{"id": "bbq",       "name": "BBQ Chicken",      "desc": "Tender chicken\nsmothered in BBQ sauce",        "price": 160, "image": "res://assets/FOOD ASSETS/shop/barbeque_chicken.png"},
-	{"id": "pastil",    "name": "Chicken Pastil",   "desc": "Shredded chicken\nwrapped in banana leaf",      "price": 200, "image": "res://assets/FOOD ASSETS/shop/chicken_pastil.png"},
-	{"id": "finger",    "name": "Chicken Fingers",  "desc": "Crispy breaded strips\nserved with dip",        "price": 220, "image": "res://assets/FOOD ASSETS/shop/chicken_fingers.png"},
-	{"id": "carbonara", "name": "Carbonara",        "desc": "Creamy pasta topped\nwith bacon and cheese",    "price": 250, "image": "res://assets/FOOD ASSETS/shop/carbonara.png"},
+	{"id": "cordon",    "name": "Cordon Bleu",      "desc": "Breaded pork stuffed\nwith ham and cheese",     "price": 150,  "image": "res://assets/FOOD ASSETS/shop/cordon_bleu.png"},	
+	{"id": "mushroom",  "name": "Pork Mushroom",    "desc": "Tender pork strips\nwith creamy mushroom",      "price": 200,  "image": "res://assets/FOOD ASSETS/shop/pork_mushroom.png"},
+	{"id": "hamonado",  "name": "Pork Hamonado",    "desc": "Sweet pork braised\nin pineapple sauce",        "price": 250, "image": "res://assets/FOOD ASSETS/shop/pork_hamonado.png"},
+	{"id": "pansit",    "name": "Pansit",           "desc": "Stir-fried noodles\nwith meat and veggies",     "price": 350, "image": "res://assets/FOOD ASSETS/shop/pansit.png"},
+	{"id": "menudo",    "name": "Menudo",           "desc": "Pork and liver stew\nwith tomato sauce",        "price": 450, "image": "res://assets/FOOD ASSETS/shop/menudo.png"},
+	{"id": "bbq",       "name": "BBQ Chicken",      "desc": "Tender chicken\nsmothered in BBQ sauce",        "price": 550, "image": "res://assets/FOOD ASSETS/shop/barbeque_chicken.png"},
+	{"id": "pastil",    "name": "Chicken Pastil",   "desc": "Shredded chicken\nwrapped in banana leaf",      "price": 700, "image": "res://assets/FOOD ASSETS/shop/chicken_pastil.png"},
+	{"id": "finger",    "name": "Chicken Fingers",  "desc": "Crispy breaded strips\nserved with dip",        "price": 900, "image": "res://assets/FOOD ASSETS/shop/chicken_fingers.png"},
+	{"id": "carbonara", "name": "Carbonara",        "desc": "Creamy pasta topped\nwith bacon and cheese",    "price": 1000, "image": "res://assets/FOOD ASSETS/shop/carbonara.png"},
 ]
 
 var table_upgrades := [
-	{"id": "table_1", "name": "Table 1", "desc": "Basic wooden table\nfor small groups",    "price": 80,  "image": "res://assets/FOOD ASSETS/shop/table/table.png"},
-	{"id": "table_2", "name": "Table 2", "desc": "Sturdy family table\nseats up to six",    "price": 150, "image": "res://assets/FOOD ASSETS/shop/table/table.png"},
-	{"id": "table_3", "name": "Table 3", "desc": "Large banquet table\nfor big gatherings", "price": 250, "image": "res://assets/FOOD ASSETS/shop/table/table.png"},
+	{"id": "table_1", "name": "Table 1", "desc": "Basic wooden table\nfor small groups",    "price": 350,  "image": "res://assets/FOOD ASSETS/shop/table/table.png"},
+	{"id": "table_2", "name": "Table 2", "desc": "Sturdy family table\nseats up to six",    "price": 700, "image": "res://assets/FOOD ASSETS/shop/table/table.png"},
+	{"id": "table_3", "name": "Table 3", "desc": "Large banquet table\nfor big gatherings", "price": 1400, "image": "res://assets/FOOD ASSETS/shop/table/table.png"},
 ]
 
 # ── Node refs ─────────────────────────────────────────────────────────────────

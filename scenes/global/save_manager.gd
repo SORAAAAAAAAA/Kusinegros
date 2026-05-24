@@ -8,7 +8,8 @@ func save_game():
 	var data_to_save = {
 		"day": TimeManager.current_day,
 		"money": FinanceManager.total_money,
-		"available_menu": CustomerManager.available_menu
+		"available_menu": CustomerManager.available_menu,
+		"unlocked_tables": GameManager.unlocked_tables_count
 	}
 	
 	# 2. Open the file and write the JSON data
@@ -49,6 +50,11 @@ func load_game() -> bool:
 		TimeManager.current_day = saved_data["day"]
 		FinanceManager.total_money = saved_data["money"]
 		CustomerManager.available_menu = saved_data["available_menu"]
+		
+		if saved_data.has("unlocked_tables"):
+			GameManager.unlocked_tables_count = saved_data["unlocked_tables"]
+		else:
+			GameManager.unlocked_tables_count = 0
 		print("Archivist: Game loaded! Welcome back to Day ", TimeManager.current_day)
 		return true
 		

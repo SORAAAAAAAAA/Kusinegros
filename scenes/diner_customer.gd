@@ -56,7 +56,7 @@ func _start_eating() -> void:
 	if customer_art.has_method("play"):
 		customer_art.play(identity + "_sit") 
 	
-	eating_timer.start(10.0)
+	eating_timer.start(7.0)
 
 func _on_finished_eating() -> void:
 	print(identity + " finished eating. Leaving!")

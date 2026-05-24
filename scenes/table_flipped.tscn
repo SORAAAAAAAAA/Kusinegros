@@ -50,9 +50,10 @@ one_shot = true
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1340937746]
 layout_mode = 0
-offset_top = -50.0
-offset_right = 66.41074
-offset_bottom = -10.0
+offset_left = -3.0
+offset_top = -53.0
+offset_right = 63.410744
+offset_bottom = -13.0
 scale = Vector2(6.9923773, 6.9923773)
 texture = ExtResource("4_i0vr6")
 expand_mode = 3
