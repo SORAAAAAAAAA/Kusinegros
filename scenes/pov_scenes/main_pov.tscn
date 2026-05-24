@@ -333,10 +333,11 @@ text = "0"
 
 [node name="SwitchPOVButton" type="TextureButton" parent="HUD" unique_id=51066065]
 unique_name_in_owner = true
-offset_left = 1112.0
+custom_minimum_size = Vector2(50, 50)
+offset_left = 1099.0
 offset_top = 200.0
-offset_right = 1152.0
-offset_bottom = 240.0
+offset_right = 1149.0
+offset_bottom = 250.0
 texture_normal = ExtResource("33_rndx6")
 texture_pressed = ExtResource("34_u6qb6")
 ignore_texture_size = true
@@ -361,10 +362,11 @@ text = "➜"
 
 [node name="Settings" type="TextureButton" parent="HUD" unique_id=1351529003]
 unique_name_in_owner = true
-offset_left = 1112.0
-offset_top = 247.0
-offset_right = 1152.0
-offset_bottom = 287.0
+custom_minimum_size = Vector2(50, 50)
+offset_left = 1099.0
+offset_top = 251.0
+offset_right = 1149.0
+offset_bottom = 301.0
 texture_normal = ExtResource("33_rndx6")
 texture_pressed = ExtResource("34_u6qb6")
 ignore_texture_size = true
@@ -391,8 +393,6 @@ text = "⚙️"
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1168.0
-offset_right = 1168.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2

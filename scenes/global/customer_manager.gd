@@ -74,7 +74,7 @@ func get_random_order() -> String:
 	else: return available_menu["ulam"].pick_random() + "_rice"
 
 func _try_spawn_background_customer():
-	var max_customers = clampi(TimeManager.current_day + 1, 1, 5)
+	var max_customers = clampi(TimeManager.current_day + 1, 1, 7)
 	if active_customers.size() < max_customers:
 		if available_customer_scenes.is_empty(): return
 		
@@ -85,4 +85,4 @@ func _try_spawn_background_customer():
 		live_customer_spawned.emit(new_id)
 		
 		print("Hostess: Spawned customer ", new_id, " in the background!")
-		current_spawn_timer = maxf(5.0 - (TimeManager.current_day * 0.5), 2.5)
+		current_spawn_timer = maxf(8 - (TimeManager.current_day * 0.5), 2.5)
