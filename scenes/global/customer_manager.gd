@@ -85,4 +85,4 @@ func _try_spawn_background_customer():
 		live_customer_spawned.emit(new_id)
 		
 		print("Hostess: Spawned customer ", new_id, " in the background!")
-		current_spawn_timer = maxf(5.0 - (TimeManager.current_day * 0.5), 2.5)
+		current_spawn_timer = maxf(8 - (TimeManager.current_day * 0.5), 2.5)

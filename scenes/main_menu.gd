@@ -55,6 +55,7 @@ func _on_new_button_pressed() -> void:
 	
 	TimeManager.current_day = 1
 	FinanceManager.total_money = 0
+	CustomerManager.reset_for_new_shift()
 	
 	
 	# 3. KICK OFF THE BACKGROUND LOAD INSTANTLY
