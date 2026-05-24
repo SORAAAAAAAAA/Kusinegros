@@ -9,6 +9,16 @@ signal new_table_purchased(new_extra_count: int)
 
 signal customer_ready_to_eat(customer_data: Dictionary)
 
+func start_new_game():
+	TimeManager.current_day = 1
+	FinanceManager.total_money = 0
+	CustomerManager.available_menu = {
+		"ulam": ["adobo"],
+		"rice": ["rice"] 
+	}
+	GameManager.unlocked_tables_count = 0
+	GameManager.start_new_shift()
+
 func start_new_shift():
 	# The General Manager resets his own notebook...
 	customers_served_today = 0

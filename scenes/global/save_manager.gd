@@ -64,3 +64,4 @@ func load_game() -> bool:
 # A quick helper function for your Main Menu to check if the button should be clickable
 func has_save_file() -> bool:
 	return FileAccess.file_exists(SAVE_PATH)
+	

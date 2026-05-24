@@ -53,10 +53,8 @@ func _on_new_button_pressed() -> void:
 	$NewButton.disabled = true
 	sfx_clicked.play()
 	
-	TimeManager.current_day = 1
-	FinanceManager.total_money = 0
-	CustomerManager.reset_for_new_shift()
-	
+	# reset all game stats
+	GameManager.start_new_game()
 	
 	# 3. KICK OFF THE BACKGROUND LOAD INSTANTLY
 	# We tell the engine to start fetching the heavy data in the background 
