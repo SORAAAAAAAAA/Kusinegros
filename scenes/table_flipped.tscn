@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://djf32h8yppkti" path="res://scenes/pov_scenes/scripts/table.gd" id="2_i0vr6"]
 [ext_resource type="Texture2D" uid="uid://brxhrrn2lkd41" path="res://assets/2ND POV/table_w_chairs/wchair.png" id="3_i0vr6"]
 [ext_resource type="Texture2D" uid="uid://bb5vfsw87ix4" path="res://assets/2ND POV/table_w_chairs/stoolsred.png" id="4_i0vr6"]
+[ext_resource type="AudioStream" uid="uid://xpxryua5og77" path="res://assets/OTHER UI-ASSETS/audio/dishes and silverware clinking - sound effect.mp3" id="5_r2yy0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0vr6"]
 content_margin_left = 2.0
@@ -69,3 +70,6 @@ position = Vector2(240, 119)
 
 [node name="Seat3" type="Marker2D" parent="Seats" unique_id=171973527]
 position = Vector2(363, 119)
+
+[node name="SfxClean" type="AudioStreamPlayer" parent="." unique_id=1410543573]
+stream = ExtResource("5_r2yy0")
