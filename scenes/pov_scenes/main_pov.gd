@@ -6,6 +6,9 @@ extends Control
 @onready var time_text = %TimeText 
 @export var plate_scene: PackedScene
 @onready var food_container = %GridContainerFood
+@onready var settings = %Settings
+
+
 
 # Scene Nodes
 @onready var scene_transition = $HUD/SceneTransition
@@ -23,7 +26,9 @@ var flash_tween: Tween
 @onready var plate_container = $GridContainerPlates
 
 func _ready():
+	settings.pressed.connect(_on_settings_pressed)
 	switch_pov_button.pressed.connect(_on_switch_pov_button_pressed)
+	
 	
 	if end_of_day_screen:
 		end_of_day_screen.hide()
@@ -78,6 +83,9 @@ func _ready():
 	_refresh_food_trays()
 	
 	TimeManager.shift_ended.connect(_trigger_end_of_day)
+	
+func _on_back_settings_pressed():
+	Settings.hide()
 
 # 5. THE UPDATE FUNCTIONS
 func _on_money_changed(new_amount: int):
@@ -227,3 +235,10 @@ func _on_capacity_changed(is_full: bool):
 
 func _on_shop_pressed() -> void:
 	ShopUI.open_shop()
+	
+func _on_settings_pressed() -> void:
+	print("Openning Settings")
+	Settings.open_settings()
+	
+
+	

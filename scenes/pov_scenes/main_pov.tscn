@@ -359,6 +359,34 @@ theme_override_fonts/font = ExtResource("29_82122")
 theme_override_font_sizes/font_size = 20
 text = "➜"
 
+[node name="Settings" type="TextureButton" parent="HUD" unique_id=1351529003]
+unique_name_in_owner = true
+offset_left = 1112.0
+offset_top = 247.0
+offset_right = 1152.0
+offset_bottom = 287.0
+texture_normal = ExtResource("33_rndx6")
+texture_pressed = ExtResource("34_u6qb6")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HUD/Settings" unique_id=614983626]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -11.5
+offset_right = 7.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("29_82122")
+theme_override_font_sizes/font_size = 20
+text = "⚙️"
+
 [node name="SceneTransition" type="ColorRect" parent="HUD" unique_id=957309018]
 anchors_preset = 15
 anchor_right = 1.0
