@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://cb6rqdhjh6dhp"]
+
+[ext_resource type="Script" uid="uid://h2k8jxixnmsb" path="res://scenes/customer_scenes/customer.gd" id="2_i3o4q"]
+[ext_resource type="AudioStream" uid="uid://crsm278tlsl1u" path="res://assets/OTHER UI-ASSETS/audio/new_customer.mp3" id="2_wsgmf"]
+[ext_resource type="AudioStream" uid="uid://c2x755y6qxg2y" path="res://assets/OTHER UI-ASSETS/audio/correct_order.mp3" id="3_6q0c4"]
+[ext_resource type="AudioStream" uid="uid://dksefrasslpgj" path="res://assets/OTHER UI-ASSETS/audio/wrong_order.mp3" id="4_hk8v6"]
+[ext_resource type="PackedScene" uid="uid://myfnvl072l8l" path="res://scenes/customer_scenes/mood_bar.tscn" id="5_6q0c4"]
+[ext_resource type="Texture2D" uid="uid://dkkj20njxyr8u" path="res://assets/OTHER UI-ASSETS/coins/coinFront.png" id="6_jk1hh"]
+[ext_resource type="Texture2D" uid="uid://boctsmu5kt7vn" path="res://assets/OTHER UI-ASSETS/over.png" id="6_kiks2"]
+[ext_resource type="FontFile" uid="uid://cyujdm46vij5" path="res://assets/FONT/04B_30__.TTF" id="7_kiks2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oh4l3"]
+font = ExtResource("7_kiks2")
+font_size = 15
+font_color = Color(0.99215686, 0.85882354, 0.3882353, 1)
+outline_size = 3
+outline_color = Color(0.19607843, 0.050980393, 0.015686275, 1)
+
+[node name="Customer" type="TextureRect" unique_id=1851465821]
+custom_minimum_size = Vector2(145, 350)
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.49400002
+anchor_right = 0.5
+anchor_bottom = 0.49400002
+offset_left = -576.0
+offset_top = -320.112
+offset_right = -446.0
+offset_bottom = 29.888
+scale = Vector2(0.27606285, 0.2747198)
+mouse_filter = 0
+expand_mode = 1
+stretch_mode = 6
+script = ExtResource("2_i3o4q")
+
+[node name="Visual" type="Control" parent="." unique_id=653132011]
+layout_mode = 1
+anchor_left = 0.526
+anchor_top = 0.499
+anchor_right = 0.526
+anchor_bottom = 0.499
+offset_left = -76.270004
+offset_top = -174.65001
+offset_right = -76.270004
+offset_bottom = -174.65001
+mouse_filter = 2
+
+[node name="OrderBubble" type="TextureRect" parent="Visual" unique_id=1389198347]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.053000003
+anchor_top = 0.93200004
+anchor_right = -0.053000003
+anchor_bottom = 0.93200004
+offset_left = 32.601273
+offset_top = -50.961014
+offset_right = 112.60127
+offset_bottom = 29.038986
+pivot_offset = Vector2(96.27219, 31.79964)
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CustomerArt" type="TextureRect" parent="Visual" unique_id=411498793]
+custom_minimum_size = Vector2(145, 350)
+layout_mode = 0
+offset_right = 145.0
+offset_bottom = 350.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="SfxArrive" type="AudioStreamPlayer" parent="." unique_id=1272452448]
+stream = ExtResource("2_wsgmf")
+volume_db = -5.0
+
+[node name="SfxCorrect" type="AudioStreamPlayer" parent="." unique_id=563134916]
+stream = ExtResource("3_6q0c4")
+volume_db = -5.0
+
+[node name="SfxWrong" type="AudioStreamPlayer" parent="." unique_id=255567340]
+stream = ExtResource("4_hk8v6")
+volume_db = -5.0
+
+[node name="MoodBar" parent="." unique_id=1100839181 instance=ExtResource("5_6q0c4")]
+layout_mode = 0
+offset_left = 25.356544
+offset_top = 18.200363
+offset_right = 125.356544
+offset_bottom = 33.200363
+texture_over = ExtResource("6_kiks2")
+
+[node name="PaymentPopup" type="HBoxContainer" parent="." unique_id=903079289]
+layout_mode = 0
+offset_left = 21.734186
+offset_top = 54.60108
+offset_right = 94.734184
+offset_bottom = 70.60108
+scale = Vector2(1.5, 1.5)
+theme_override_constants/separation = 1
+
+[node name="TextureRect" type="TextureRect" parent="PaymentPopup" unique_id=1185025031]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("6_jk1hh")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="PaymentPopup" unique_id=1995272074]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_oh4l3")

@@ -1,0 +1,572 @@
+[gd_scene load_steps=37 format=3 uid="uid://3ixrdww6g6qm"]
+
+[ext_resource type="Script" uid="uid://c8nasys7se7mt" path="res://scenes/pov_scenes/main_pov.gd" id="1_82122"]
+[ext_resource type="Texture2D" uid="uid://b2mvljpgkl2xg" path="res://assets/FRONT VIEW POV/front_pov bg.png" id="1_omurv"]
+[ext_resource type="Texture2D" uid="uid://1tqflwd03mwr" path="res://assets/FRONT VIEW POV/slanted_counter.png" id="2_83ock"]
+[ext_resource type="PackedScene" uid="uid://c8i3g7p63nllm" path="res://scenes/food_scenes/chicken_finger.tscn" id="3_jetsb"]
+[ext_resource type="PackedScene" uid="uid://doovanrfwqtq7" path="res://scenes/food_scenes/carbonara.tscn" id="3_n4c5g"]
+[ext_resource type="PackedScene" uid="uid://plngxl4k72d5" path="res://scenes/food_scenes/chicken_adobo.tscn" id="4_f3hb8"]
+[ext_resource type="PackedScene" uid="uid://baqyvrm2jkxve" path="res://scenes/food_scenes/chicken_bbq.tscn" id="5_7k4av"]
+[ext_resource type="PackedScene" uid="uid://dasqdtp5xhsho" path="res://scenes/food_scenes/chicken_pastil.tscn" id="7_05dfs"]
+[ext_resource type="PackedScene" uid="uid://t3xuf0pmohs4" path="res://scenes/food_scenes/cordon_bleu.tscn" id="8_c0n7d"]
+[ext_resource type="PackedScene" uid="uid://c7mgxnvjfhm7a" path="res://scenes/food_scenes/menudo.tscn" id="9_5a1r8"]
+[ext_resource type="PackedScene" uid="uid://brosr2bo674ey" path="res://scenes/food_scenes/pansit.tscn" id="10_7y4s6"]
+[ext_resource type="PackedScene" uid="uid://cw024klg1k507" path="res://scenes/food_scenes/pork_hamonado.tscn" id="11_n6eyk"]
+[ext_resource type="PackedScene" uid="uid://pyorx5xd5llh" path="res://scenes/food_scenes/pork_mushroom.tscn" id="12_31ng2"]
+[ext_resource type="Texture2D" uid="uid://c7fcsxu7p2win" path="res://assets/FOOD ASSETS/plate/stacked_plates.png" id="13_n4c5g"]
+[ext_resource type="Script" uid="uid://c52bxrahfpt4x" path="res://scenes/pov_scenes/plate_stack_button.gd" id="14_05dfs"]
+[ext_resource type="PackedScene" uid="uid://c8p7u8bjkj8aq" path="res://scenes/food_scenes/rice_station.tscn" id="15_05dfs"]
+[ext_resource type="PackedScene" uid="uid://br8gmp817ut0w" path="res://scenes/pov_scenes/assembly_plate.tscn" id="15_c0n7d"]
+[ext_resource type="Texture2D" uid="uid://cgrtq834p4mnj" path="res://assets/OTHER UI-ASSETS/trash_can/trash_can_closed.png" id="17_n6eyk"]
+[ext_resource type="Texture2D" uid="uid://dw7r2808q5dop" path="res://assets/OTHER UI-ASSETS/trash_can/trash_can_open.png" id="18_31ng2"]
+[ext_resource type="Texture2D" uid="uid://d1suo7rsdc54w" path="res://assets/OTHER UI-ASSETS/trash_can/trash_can_hover.png" id="19_v6amk"]
+[ext_resource type="Script" uid="uid://ct1bx4prpdw6r" path="res://scenes/pov_scenes/scripts/trash_bin.gd" id="20_31ng2"]
+[ext_resource type="Texture2D" uid="uid://b6rfbjq3ll24c" path="res://assets/OTHER UI-ASSETS/buttons/DayBackground.png" id="28_1cwlq"]
+[ext_resource type="Texture2D" uid="uid://bnlqnu16lh2qk" path="res://assets/OTHER UI-ASSETS/buttons/SettingsBG.png" id="28_82122"]
+[ext_resource type="Script" uid="uid://pa8nrrbwxl7h" path="res://scenes/pov_scenes/end_of_day_screen.gd" id="28_u5556"]
+[ext_resource type="FontFile" uid="uid://cyujdm46vij5" path="res://assets/FONT/04B_30__.TTF" id="29_82122"]
+[ext_resource type="Texture2D" uid="uid://bsag67v1t355x" path="res://assets/OTHER UI-ASSETS/buttons/DarkBlueButton.png" id="29_mntjb"]
+[ext_resource type="Texture2D" uid="uid://cy5rixhb6i3gb" path="res://assets/OTHER UI-ASSETS/buttons/CoinBackground.png" id="30_mntjb"]
+[ext_resource type="Texture2D" uid="uid://dkkj20njxyr8u" path="res://assets/OTHER UI-ASSETS/coins/coinFront.png" id="32_mntjb"]
+[ext_resource type="Texture2D" uid="uid://dqjxib55ewxs" path="res://assets/OTHER UI-ASSETS/buttons/SwitchButton.png" id="33_rndx6"]
+[ext_resource type="AudioStream" uid="uid://cmgvnnnykg3uv" path="res://assets/OTHER UI-ASSETS/audio/game_start.mp3" id="33_u5556"]
+[ext_resource type="AudioStream" uid="uid://c4kfirhlbkhwv" path="res://assets/OTHER UI-ASSETS/audio/plate_sound.mp3" id="34_6mlrh"]
+[ext_resource type="Texture2D" uid="uid://ouo4bxi0tc0k" path="res://assets/OTHER UI-ASSETS/buttons/SettingsButton.png" id="34_cmai2"]
+[ext_resource type="Texture2D" uid="uid://ct7gay3ls7hlg" path="res://assets/OTHER UI-ASSETS/buttons/SwitchButtonDark.png" id="34_u6qb6"]
+[ext_resource type="Texture2D" uid="uid://cktntyyyc021t" path="res://assets/OTHER UI-ASSETS/buttons/DarkSettingsButton.png" id="35_rndx6"]
+[ext_resource type="AudioStream" uid="uid://cukck3jpsrq3h" path="res://assets/OTHER UI-ASSETS/audio/button_clicked.mp3" id="37_u6qb6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u5556"]
+font = ExtResource("29_82122")
+font_size = 20
+font_color = Color(0.906925, 0.253739, 0.234022, 1)
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[node name="MainPOV" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_82122")
+plate_scene = ExtResource("15_c0n7d")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -16.0
+offset_top = -184.0
+offset_right = 1546.07
+offset_bottom = 2516.0
+grow_horizontal = 2
+scale = Vector2(0.436244, 0.37674)
+texture = ExtResource("1_omurv")
+stretch_mode = 6
+
+[node name="CustomerSlots" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 109.0
+offset_top = 143.0
+offset_right = 459.0
+offset_bottom = 493.0
+
+[node name="TrashBin" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = -24.0
+offset_top = 266.0
+offset_right = 126.0
+offset_bottom = 416.0
+texture_normal = ExtResource("17_n6eyk")
+texture_pressed = ExtResource("18_31ng2")
+texture_hover = ExtResource("19_v6amk")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("20_31ng2")
+
+[node name="CounterTop" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 366.0
+offset_right = 1639.0
+offset_bottom = 742.0
+scale = Vector2(0.708155, 0.748795)
+texture = ExtResource("2_83ock")
+
+[node name="GridContainerFood" type="GridContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -280.0
+offset_right = -532.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 1
+columns = 5
+
+[node name="FoodTray" parent="GridContainerFood" instance=ExtResource("3_n4c5g")]
+layout_mode = 2
+
+[node name="FoodTray2" parent="GridContainerFood" instance=ExtResource("4_f3hb8")]
+layout_mode = 2
+
+[node name="FoodTray3" parent="GridContainerFood" instance=ExtResource("5_7k4av")]
+layout_mode = 2
+
+[node name="FoodTray4" parent="GridContainerFood" instance=ExtResource("3_jetsb")]
+layout_mode = 2
+
+[node name="FoodTray5" parent="GridContainerFood" instance=ExtResource("7_05dfs")]
+layout_mode = 2
+
+[node name="FoodTray6" parent="GridContainerFood" instance=ExtResource("8_c0n7d")]
+layout_mode = 2
+
+[node name="FoodTray7" parent="GridContainerFood" instance=ExtResource("9_5a1r8")]
+layout_mode = 2
+
+[node name="FoodTray8" parent="GridContainerFood" instance=ExtResource("10_7y4s6")]
+layout_mode = 2
+
+[node name="FoodTray9" parent="GridContainerFood" instance=ExtResource("11_n6eyk")]
+layout_mode = 2
+
+[node name="FoodTray10" parent="GridContainerFood" instance=ExtResource("12_31ng2")]
+layout_mode = 2
+
+[node name="GridContainerPlates" type="GridContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 621.0
+offset_top = -256.0
+offset_right = -301.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 1
+columns = 2
+
+[node name="RiceStation" parent="." instance=ExtResource("15_05dfs")]
+layout_mode = 1
+offset_left = 930.0
+offset_top = 329.0
+offset_right = 1826.0
+offset_bottom = 1729.0
+scale = Vector2(0.128304, 0.120645)
+
+[node name="PlateStackButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 787.0
+offset_top = 403.0
+offset_right = 2707.0
+offset_bottom = 1939.0
+scale = Vector2(0.124933, 0.124933)
+texture_normal = ExtResource("13_n4c5g")
+script = ExtResource("14_05dfs")
+plate_scene = ExtResource("15_c0n7d")
+
+[node name="SfxStart" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("33_u5556")
+volume_db = -5.0
+
+[node name="SfxPlate" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("34_6mlrh")
+volume_db = -5.0
+
+[node name="SfxClicked" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("37_u6qb6")
+volume_db = -5.0
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 20
+
+[node name="TopBar" type="HBoxContainer" parent="HUD/MarginContainer"]
+layout_mode = 2
+
+[node name="DayTimeHUD" type="HBoxContainer" parent="HUD/MarginContainer/TopBar"]
+layout_mode = 2
+theme_override_constants/separation = -15
+
+[node name="DayBackground" type="NinePatchRect" parent="HUD/MarginContainer/TopBar/DayTimeHUD"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("28_1cwlq")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/TopBar/DayTimeHUD/DayBackground"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -22.0
+offset_right = 15.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer/TopBar/DayTimeHUD/DayBackground/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 3
+
+[node name="DayText" type="Label" parent="HUD/MarginContainer/TopBar/DayTimeHUD/DayBackground/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.792157, 0.941176, 0.972549, 1)
+theme_override_fonts/font = ExtResource("29_82122")
+text = "Day"
+horizontal_alignment = 1
+
+[node name="DayNumber" type="Label" parent="HUD/MarginContainer/TopBar/DayTimeHUD/DayBackground/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.792157, 0.941176, 0.972549, 1)
+theme_override_fonts/font = ExtResource("29_82122")
+text = "1"
+horizontal_alignment = 1
+
+[node name="TimeBackground" type="NinePatchRect" parent="HUD/MarginContainer/TopBar/DayTimeHUD"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+texture = ExtResource("28_1cwlq")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/TopBar/DayTimeHUD/TimeBackground"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.0
+offset_top = -8.5
+offset_right = 29.0
+offset_bottom = 8.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoxContainer" type="HBoxContainer" parent="HUD/MarginContainer/TopBar/DayTimeHUD/TimeBackground/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="TimeText" type="Label" parent="HUD/MarginContainer/TopBar/DayTimeHUD/TimeBackground/MarginContainer/BoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.792157, 0.941176, 0.972549, 1)
+theme_override_fonts/font = ExtResource("29_82122")
+theme_override_font_sizes/font_size = 10
+text = "7:00 Am"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="HUD/MarginContainer/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MoneyBackground" type="NinePatchRect" parent="HUD/MarginContainer/TopBar"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+texture = ExtResource("30_mntjb")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/TopBar/MoneyBackground"]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -20.0
+offset_right = 60.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer/TopBar/MoneyBackground/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="CoinIcon" type="TextureRect" parent="HUD/MarginContainer/TopBar/MoneyBackground/MarginContainer/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("32_mntjb")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="MoneyText" type="Label" parent="HUD/MarginContainer/TopBar/MoneyBackground/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("29_82122")
+text = "0"
+
+[node name="SwitchPOVButton" type="TextureButton" parent="HUD"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+offset_left = 1099.0
+offset_top = 200.0
+offset_right = 1149.0
+offset_bottom = 250.0
+texture_normal = ExtResource("33_rndx6")
+texture_pressed = ExtResource("34_u6qb6")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HUD/SwitchPOVButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -11.5
+offset_right = 7.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("29_82122")
+theme_override_font_sizes/font_size = 20
+text = "➜"
+
+[node name="Settings" type="TextureButton" parent="HUD"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+offset_left = 1099.0
+offset_top = 251.0
+offset_right = 1149.0
+offset_bottom = 301.0
+texture_normal = ExtResource("33_rndx6")
+texture_pressed = ExtResource("34_u6qb6")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HUD/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -11.5
+offset_right = 7.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("29_82122")
+theme_override_font_sizes/font_size = 20
+text = "⚙️"
+
+[node name="SceneTransition" type="ColorRect" parent="HUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="HUD"]
+
+[node name="EndOfDayScreen" type="Control" parent="HUD/CanvasLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("28_u5556")
+
+[node name="ColorRect" type="ColorRect" parent="HUD/CanvasLayer/EndOfDayScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="TextureRect" type="TextureRect" parent="HUD/CanvasLayer/EndOfDayScreen/ColorRect"]
+custom_minimum_size = Vector2(700, 500)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("28_82122")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer"]
+layout_mode = 2
+
+[node name="ShiftOverText" type="Label" parent="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.431204, 0.286828, 0.129133, 1)
+theme_override_fonts/font = ExtResource("29_82122")
+theme_override_font_sizes/font_size = 50
+text = "ShifT Over"
+horizontal_alignment = 1
+
+[node name="StatsText" type="Label" parent="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("29_82122")
+theme_override_font_sizes/font_size = 25
+text = "Customer: 0
+Profit: 0"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 100
+
+[node name="Leave" type="TextureButton" parent="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+texture_normal = ExtResource("28_1cwlq")
+texture_pressed = ExtResource("29_mntjb")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Leave"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("29_82122")
+theme_override_font_sizes/font_size = 12
+text = "Leave"
+vertical_alignment = 1
+
+[node name="Shop" type="TextureButton" parent="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+texture_normal = ExtResource("34_cmai2")
+texture_pressed = ExtResource("35_rndx6")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Shop"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("29_82122")
+text = "Shop"
+
+[node name="Continue" type="TextureButton" parent="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = ExtResource("33_rndx6")
+texture_pressed = ExtResource("34_u6qb6")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Continue"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("29_82122")
+theme_override_font_sizes/font_size = 11
+text = "Continue"
+vertical_alignment = 1
+
+[node name="SeatsFullContainer" type="MarginContainer" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -167.5
+offset_top = 17.0
+offset_right = 167.5
+offset_bottom = 57.0
+grow_horizontal = 2
+
+[node name="SeatsFullIndicator" type="Label" parent="HUD/SeatsFullContainer"]
+visible = false
+layout_mode = 2
+text = "NO SEATS AVAILABLE!"
+label_settings = SubResource("LabelSettings_u5556")
+
+[connection signal="pressed" from="PlateStackButton" to="PlateStackButton" method="_on_plate_stack_button_pressed"]
+[connection signal="pressed" from="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Leave" to="HUD/CanvasLayer/EndOfDayScreen" method="_on_leave_pressed"]
+[connection signal="pressed" from="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Shop" to="." method="_on_shop_pressed"]
+[connection signal="pressed" from="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Continue" to="HUD/CanvasLayer/EndOfDayScreen" method="_on_continue_pressed"]

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://t3xuf0pmohs4"]
+
+[ext_resource type="PackedScene" uid="uid://cs8c0yd41h0rl" path="res://scenes/food_scenes/food_tray.tscn" id="1_xbvss"]
+[ext_resource type="Texture2D" uid="uid://cobx1l3ud43mu" path="res://assets/FOOD ASSETS/food_tray_cordon_bleu NEW/food_tray_cordon_bleu_full.png" id="2_3sbps"]
+[ext_resource type="Texture2D" uid="uid://b87jjqnidd8l1" path="res://assets/FOOD ASSETS/food_tray_cordon_bleu NEW/food_tray_cordon_bleu_half_empty.png" id="3_7tfnf"]
+[ext_resource type="Texture2D" uid="uid://cxtqfoypr7nao" path="res://assets/FOOD ASSETS/food_tray_cordon_bleu NEW/food_tray_cordon_bleu_empty.png" id="4_upd0m"]
+
+[node name="FoodTray" unique_id=1887151873 instance=ExtResource("1_xbvss")]
+texture_normal = ExtResource("2_3sbps")
+food_name = "cordon"
+tex_full = ExtResource("2_3sbps")
+tex_half = ExtResource("3_7tfnf")
+tex_empty = ExtResource("4_upd0m")

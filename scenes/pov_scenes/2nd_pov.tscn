@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://cujaihjb77bni"]
+
+[ext_resource type="Texture2D" uid="uid://d206x42u1nsdn" path="res://assets/2ND POV/2npov.png" id="1_eoap7"]
+[ext_resource type="Script" uid="uid://cppqhl4lehtyq" path="res://scenes/pov_scenes/second_pov_controller.gd" id="1_f246j"]
+[ext_resource type="PackedScene" uid="uid://b6w8fgwhxey6c" path="res://scenes/table.tscn" id="3_eoap7"]
+[ext_resource type="PackedScene" uid="uid://101v5h6jcrer" path="res://scenes/table_flipped.tscn" id="3_y5t78"]
+[ext_resource type="PackedScene" uid="uid://dopk057g1ghu7" path="res://scenes/diner_customer.tscn" id="4_q55f5"]
+[ext_resource type="Script" uid="uid://dgkuxns6rsmgo" path="res://scenes/pov_scenes/table_manager.gd" id="5_rw3u7"]
+[ext_resource type="Texture2D" uid="uid://dhpcwqilhg3wu" path="res://assets/2ND POV/counter (1).png" id="5_y5t78"]
+[ext_resource type="Texture2D" uid="uid://d1o7jwhu7jema" path="res://assets/2ND POV/counter_on_hover.png" id="7_q55f5"]
+
+[node name="2nd_pov" type="Control" unique_id=1580903826]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1151.0
+offset_bottom = 649.0
+script = ExtResource("1_f246j")
+table_scene = ExtResource("3_eoap7")
+table_flipped_scene = ExtResource("3_y5t78")
+diner_customer_scene = ExtResource("4_q55f5")
+
+[node name="Background" type="TextureRect" parent="." unique_id=138519211]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -29.0
+offset_right = 1156.0
+offset_bottom = 649.0
+texture = ExtResource("1_eoap7")
+expand_mode = 1
+
+[node name="Counter" type="TextureButton" parent="." unique_id=1243870104]
+layout_mode = 0
+offset_left = -30.0
+offset_top = 204.0
+offset_right = 511.74017
+offset_bottom = 651.5245
+rotation = -0.034906585
+texture_normal = ExtResource("5_y5t78")
+texture_hover = ExtResource("7_q55f5")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TablesContainer" type="Control" parent="." unique_id=1634170158]
+anchors_preset = 0
+offset_left = 635.0
+offset_top = 295.0
+offset_right = 1153.0
+offset_bottom = 648.0
+
+[node name="TableManager" type="Node" parent="." unique_id=905921494]
+script = ExtResource("5_rw3u7")
+
+[node name="SpawnDoor" type="Marker2D" parent="." unique_id=971988617]
+position = Vector2(497, 375)
+
+[node name="WaitLine" type="Node2D" parent="." unique_id=653287266]
+position = Vector2(-67, -47)
+
+[node name="Spot1" type="Marker2D" parent="WaitLine" unique_id=979294205]
+position = Vector2(481, 407)
+
+[node name="Spot2" type="Marker2D" parent="WaitLine" unique_id=559446407]
+position = Vector2(465, 437)
+
+[node name="Spot3" type="Marker2D" parent="WaitLine" unique_id=972006519]
+position = Vector2(449, 467)
+
+[node name="Spot4" type="Marker2D" parent="WaitLine" unique_id=130410701]
+position = Vector2(434, 496)
+
+[node name="Spot5" type="Marker2D" parent="WaitLine" unique_id=455127187]
+position = Vector2(413, 524)
+
+[node name="Spot6" type="Marker2D" parent="WaitLine" unique_id=913436406]
+position = Vector2(397, 554)
+
+[node name="Spot7" type="Marker2D" parent="WaitLine" unique_id=1672545029]
+position = Vector2(381, 584)
+
+[node name="Spot8" type="Marker2D" parent="WaitLine" unique_id=867814854]
+position = Vector2(366, 613)

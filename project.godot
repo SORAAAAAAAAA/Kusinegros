@@ -1,0 +1,39 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Kusinegros"
+run/main_scene="uid://bd5mjln0uyis4"
+config/features=PackedStringArray("4.4", "Forward Plus")
+config/icon="uid://br1ipm5vfn5pn"
+config/windows_native_icon="res://assets/OTHER UI-ASSETS/LOGO.ico"
+
+[autoload]
+
+GameManager="*uid://bywv4ikxtyxqd"
+TimeManager="*uid://dr1o5bifk7xaa"
+FinanceManager="*uid://1gm035yjub1w"
+CustomerManager="*uid://8xo5exkdqxlw"
+KitchenManager="*uid://bsj27ea8bs7u1"
+SaveManager="*uid://dkt4bl06r34dp"
+ShopUI="*uid://bm7y0tl4r2a5x"
+Settings="*uid://jscndgtnogqf"
+MusicManager="*uid://bs7pkll1wemvn"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

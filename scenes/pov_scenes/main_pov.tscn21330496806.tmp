@@ -1,0 +1,162 @@
+[gd_scene format=3 uid="uid://3ixrdww6g6qm"]
+
+[ext_resource type="Texture2D" uid="uid://b2mvljpgkl2xg" path="res://assets/FRONT VIEW POV/front_pov bg.png" id="1_omurv"]
+[ext_resource type="Texture2D" uid="uid://1tqflwd03mwr" path="res://assets/FRONT VIEW POV/slanted_counter.png" id="2_83ock"]
+[ext_resource type="PackedScene" uid="uid://c8i3g7p63nllm" path="res://scenes/food_scenes/chicken_finger.tscn" id="3_jetsb"]
+[ext_resource type="PackedScene" uid="uid://doovanrfwqtq7" path="res://scenes/food_scenes/carbonara.tscn" id="3_n4c5g"]
+[ext_resource type="PackedScene" uid="uid://plngxl4k72d5" path="res://scenes/food_scenes/chicken_adobo.tscn" id="4_f3hb8"]
+[ext_resource type="PackedScene" uid="uid://baqyvrm2jkxve" path="res://scenes/food_scenes/chicken_bbq.tscn" id="5_7k4av"]
+[ext_resource type="PackedScene" uid="uid://dasqdtp5xhsho" path="res://scenes/food_scenes/chicken_pastil.tscn" id="7_05dfs"]
+[ext_resource type="PackedScene" uid="uid://t3xuf0pmohs4" path="res://scenes/food_scenes/cordon_bleu.tscn" id="8_c0n7d"]
+[ext_resource type="PackedScene" uid="uid://c7mgxnvjfhm7a" path="res://scenes/food_scenes/menudo.tscn" id="9_5a1r8"]
+[ext_resource type="PackedScene" uid="uid://brosr2bo674ey" path="res://scenes/food_scenes/pansit.tscn" id="10_7y4s6"]
+[ext_resource type="PackedScene" uid="uid://cw024klg1k507" path="res://scenes/food_scenes/pork_hamonado.tscn" id="11_n6eyk"]
+[ext_resource type="PackedScene" uid="uid://pyorx5xd5llh" path="res://scenes/food_scenes/pork_mushroom.tscn" id="12_31ng2"]
+[ext_resource type="Texture2D" uid="uid://c7fcsxu7p2win" path="res://assets/FOOD ASSETS/plate/stacked_plates.png" id="13_n4c5g"]
+[ext_resource type="Script" uid="uid://c52bxrahfpt4x" path="res://scenes/pov_scenes/plate_stack_button.gd" id="14_05dfs"]
+[ext_resource type="PackedScene" uid="uid://c8p7u8bjkj8aq" path="res://scenes/food_scenes/rice_station.tscn" id="15_05dfs"]
+[ext_resource type="PackedScene" uid="uid://br8gmp817ut0w" path="res://scenes/pov_scenes/assembly_plate.tscn" id="15_c0n7d"]
+[ext_resource type="Texture2D" uid="uid://cgrtq834p4mnj" path="res://assets/OTHER UI-ASSETS/trash_can/trash_can_closed.png" id="17_n6eyk"]
+[ext_resource type="Texture2D" uid="uid://dw7r2808q5dop" path="res://assets/OTHER UI-ASSETS/trash_can/trash_can_open.png" id="18_31ng2"]
+[ext_resource type="Texture2D" uid="uid://d1suo7rsdc54w" path="res://assets/OTHER UI-ASSETS/trash_can/trash_can_hover.png" id="19_v6amk"]
+
+[node name="MainPOV" type="Control" unique_id=1147711962]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="." unique_id=1716247626]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -16.0
+offset_top = -184.0
+offset_right = 1546.075
+offset_bottom = 2516.0
+grow_horizontal = 2
+scale = Vector2(0.4362444, 0.37673995)
+texture = ExtResource("1_omurv")
+stretch_mode = 6
+
+[node name="CounterTop" type="TextureRect" parent="." unique_id=196750768]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 366.00003
+offset_right = 1639.0
+offset_bottom = 742.0
+scale = Vector2(0.7081546, 0.7487946)
+texture = ExtResource("2_83ock")
+
+[node name="CustomerSlots" type="Node2D" parent="." unique_id=949597275]
+
+[node name="Slot1" type="Marker2D" parent="CustomerSlots" unique_id=1382023444]
+position = Vector2(128, 320)
+
+[node name="Slot2" type="Marker2D" parent="CustomerSlots" unique_id=119998333]
+position = Vector2(320, 320)
+
+[node name="Slot3" type="Marker2D" parent="CustomerSlots" unique_id=882747861]
+position = Vector2(544, 320)
+
+[node name="Slot4" type="Marker2D" parent="CustomerSlots" unique_id=1475090537]
+position = Vector2(800, 320)
+
+[node name="Slot5" type="Marker2D" parent="CustomerSlots" unique_id=1594328709]
+position = Vector2(1024, 320)
+
+[node name="GridContainerFood" type="GridContainer" parent="." unique_id=212629507]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -280.0
+offset_right = -532.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 1
+columns = 5
+
+[node name="FoodTray" parent="GridContainerFood" unique_id=1887151873 instance=ExtResource("3_n4c5g")]
+layout_mode = 2
+
+[node name="FoodTray2" parent="GridContainerFood" unique_id=1217105833 instance=ExtResource("4_f3hb8")]
+layout_mode = 2
+
+[node name="FoodTray3" parent="GridContainerFood" unique_id=1857645864 instance=ExtResource("5_7k4av")]
+layout_mode = 2
+
+[node name="FoodTray4" parent="GridContainerFood" unique_id=1297032808 instance=ExtResource("3_jetsb")]
+layout_mode = 2
+
+[node name="FoodTray5" parent="GridContainerFood" unique_id=1718454355 instance=ExtResource("7_05dfs")]
+layout_mode = 2
+
+[node name="FoodTray6" parent="GridContainerFood" unique_id=379466550 instance=ExtResource("8_c0n7d")]
+layout_mode = 2
+
+[node name="FoodTray7" parent="GridContainerFood" unique_id=408574750 instance=ExtResource("9_5a1r8")]
+layout_mode = 2
+
+[node name="FoodTray8" parent="GridContainerFood" unique_id=530936510 instance=ExtResource("10_7y4s6")]
+layout_mode = 2
+
+[node name="FoodTray9" parent="GridContainerFood" unique_id=148900583 instance=ExtResource("11_n6eyk")]
+layout_mode = 2
+
+[node name="FoodTray10" parent="GridContainerFood" unique_id=60930062 instance=ExtResource("12_31ng2")]
+layout_mode = 2
+
+[node name="GridContainerPlates" type="GridContainer" parent="." unique_id=2013205974]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 621.0
+offset_top = -256.0
+offset_right = -301.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 1
+columns = 2
+
+[node name="PlateStackButton" type="TextureButton" parent="." unique_id=2076157133]
+layout_mode = 0
+offset_left = 786.9999
+offset_top = 403.00003
+offset_right = 2707.0
+offset_bottom = 1939.0
+scale = Vector2(0.12493252, 0.12493252)
+texture_normal = ExtResource("13_n4c5g")
+script = ExtResource("14_05dfs")
+plate_scene = ExtResource("15_c0n7d")
+
+[node name="RiceStation" parent="." unique_id=1567660347 instance=ExtResource("15_05dfs")]
+layout_mode = 1
+offset_left = 930.0
+offset_top = 329.0
+offset_right = 1826.0
+offset_bottom = 1729.0
+scale = Vector2(0.12830383, 0.12064463)
+max_portions = null
+
+[node name="TrashBin" type="TextureButton" parent="." unique_id=1919398363]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 248.0
+offset_right = 116.0
+offset_bottom = 348.0
+texture_normal = ExtResource("17_n6eyk")
+texture_pressed = ExtResource("18_31ng2")
+texture_hover = ExtResource("19_v6amk")
+ignore_texture_size = true
+stretch_mode = 5
+
+[connection signal="pressed" from="PlateStackButton" to="PlateStackButton" method="_on_plate_stack_button_pressed"]

@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://101v5h6jcrer"]
+
+[ext_resource type="Texture2D" uid="uid://0oep1yvuofuu" path="res://assets/2ND POV/table_w_chairs/w_chair.png" id="1_t807g"]
+[ext_resource type="Script" uid="uid://djf32h8yppkti" path="res://scenes/pov_scenes/scripts/table.gd" id="2_i0vr6"]
+[ext_resource type="Texture2D" uid="uid://brxhrrn2lkd41" path="res://assets/2ND POV/table_w_chairs/wchair.png" id="3_i0vr6"]
+[ext_resource type="Texture2D" uid="uid://bb5vfsw87ix4" path="res://assets/2ND POV/table_w_chairs/stoolsred.png" id="4_i0vr6"]
+[ext_resource type="AudioStream" uid="uid://xpxryua5og77" path="res://assets/OTHER UI-ASSETS/audio/dishes and silverware clinking - sound effect.mp3" id="5_r2yy0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0vr6"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x8522"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="Table" type="TextureButton" unique_id=224128804]
+offset_left = 364.0
+offset_top = 180.0
+offset_right = 828.63855
+offset_bottom = 458.0
+texture_normal = ExtResource("1_t807g")
+ignore_texture_size = true
+stretch_mode = 4
+flip_h = true
+script = ExtResource("2_i0vr6")
+clean_texture = ExtResource("1_t807g")
+dirty_texture = ExtResource("3_i0vr6")
+
+[node name="CleanProgress" type="ProgressBar" parent="." unique_id=311264844]
+visible = false
+layout_mode = 0
+offset_left = 123.0
+offset_top = 49.0
+offset_right = 325.0
+offset_bottom = 61.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_i0vr6")
+theme_override_styles/fill = SubResource("StyleBoxFlat_x8522")
+show_percentage = false
+
+[node name="CleanTimer" type="Timer" parent="." unique_id=56224575]
+one_shot = true
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1340937746]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -53.0
+offset_right = 63.410744
+offset_bottom = -13.0
+scale = Vector2(6.9923773, 6.9923773)
+texture = ExtResource("4_i0vr6")
+expand_mode = 3
+
+[node name="Seats" type="Node2D" parent="." unique_id=1937261328]
+position = Vector2(-2, -25)
+
+[node name="Seat1" type="Marker2D" parent="Seats" unique_id=245873743]
+position = Vector2(117, 119)
+
+[node name="Seat2" type="Marker2D" parent="Seats" unique_id=1265390165]
+position = Vector2(240, 119)
+
+[node name="Seat3" type="Marker2D" parent="Seats" unique_id=171973527]
+position = Vector2(363, 119)
+
+[node name="SfxClean" type="AudioStreamPlayer" parent="." unique_id=1410543573]
+stream = ExtResource("5_r2yy0")

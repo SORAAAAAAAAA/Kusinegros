@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://plngxl4k72d5"]
+
+[ext_resource type="PackedScene" uid="uid://cs8c0yd41h0rl" path="res://scenes/food_scenes/food_tray.tscn" id="1_daipm"]
+[ext_resource type="Texture2D" uid="uid://cx5rxoyfayans" path="res://assets/FOOD ASSETS/food_tray_chicken_adobo NEW/food_tray_chicken_adobo_full.png" id="2_4ctoq"]
+[ext_resource type="Texture2D" uid="uid://dk61cnutflt61" path="res://assets/FOOD ASSETS/food_tray_chicken_adobo NEW/food_tray_chicken_adobo_half_empty.png" id="3_mo4xg"]
+[ext_resource type="Texture2D" uid="uid://nr52qacehp0o" path="res://assets/FOOD ASSETS/food_tray_chicken_adobo NEW/food_tray_chicken_adobo_empty.png" id="4_nlt7y"]
+
+[node name="FoodTray" unique_id=1887151873 instance=ExtResource("1_daipm")]
+texture_normal = ExtResource("2_4ctoq")
+food_name = "adobo"
+tex_full = ExtResource("2_4ctoq")
+tex_half = ExtResource("3_mo4xg")
+tex_empty = ExtResource("4_nlt7y")

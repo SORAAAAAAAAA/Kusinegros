@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://myfnvl072l8l"]
+
+[ext_resource type="Script" uid="uid://b521fwtsng4bl" path="res://scenes/customer_scenes/mood_bar.gd" id="1_dea6i"]
+
+[sub_resource type="Gradient" id="Gradient_dea6i"]
+offsets = PackedFloat32Array(0, 0.987013)
+colors = PackedColorArray(0.9607843, 0.9019608, 0.7921569, 1, 0.9607843, 0.9019608, 0.7921569, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hybk7"]
+gradient = SubResource("Gradient_dea6i")
+
+[sub_resource type="Gradient" id="Gradient_m0r1w"]
+offsets = PackedFloat32Array(0.025974026)
+colors = PackedColorArray(0.9724029, 0.35165676, 0.26270267, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_843pf"]
+gradient = SubResource("Gradient_m0r1w")
+
+[node name="MoodBar" type="TextureProgressBar" unique_id=735813912]
+custom_minimum_size = Vector2(100, 10)
+offset_right = 80.0
+offset_bottom = 5.0
+mouse_filter = 2
+rounded = true
+nine_patch_stretch = true
+texture_under = SubResource("GradientTexture2D_hybk7")
+texture_progress = SubResource("GradientTexture1D_843pf")
+script = ExtResource("1_dea6i")

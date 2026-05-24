@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://cujaihjb77bni"]
+
+[ext_resource type="Texture2D" uid="uid://d206x42u1nsdn" path="res://assets/2ND POV/2npov.png" id="1_eoap7"]
+[ext_resource type="Script" uid="uid://cppqhl4lehtyq" path="res://scenes/pov_scenes/second_pov_controller.gd" id="1_f246j"]
+[ext_resource type="Texture2D" uid="uid://d2lwcxytbenp1" path="res://assets/2ND POV/counter.png" id="2_eoap7"]
+[ext_resource type="PackedScene" uid="uid://b6w8fgwhxey6c" path="res://scenes/table.tscn" id="3_eoap7"]
+[ext_resource type="Script" uid="uid://dgkuxns6rsmgo" path="res://scenes/pov_scenes/table_manager.gd" id="5_rw3u7"]
+
+[node name="2nd_pov" type="Control" unique_id=1580903826]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1151.0
+offset_bottom = 649.0
+script = ExtResource("1_f246j")
+table_scene = ExtResource("3_eoap7")
+
+[node name="Background" type="TextureRect" parent="." unique_id=138519211]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -29.0
+offset_right = 1156.0
+offset_bottom = 649.0
+texture = ExtResource("1_eoap7")
+expand_mode = 1
+
+[node name="Counter" type="TextureRect" parent="." unique_id=615933463]
+layout_mode = 0
+offset_left = 71.0
+offset_top = 218.0
+offset_right = 543.0
+offset_bottom = 652.0
+texture = ExtResource("2_eoap7")
+expand_mode = 1
+
+[node name="TablesContainer" type="Control" parent="." unique_id=1634170158]
+anchors_preset = 0
+offset_left = 635.0
+offset_top = 295.0
+offset_right = 1153.0
+offset_bottom = 648.0
+
+[node name="Table" parent="TablesContainer" unique_id=1973497857 instance=ExtResource("3_eoap7")]
+layout_mode = 0
+offset_left = 203.0
+offset_top = 131.0
+offset_right = 553.0
+offset_bottom = 334.0
+
+[node name="TableManager" type="Node" parent="." unique_id=905921494]
+script = ExtResource("5_rw3u7")

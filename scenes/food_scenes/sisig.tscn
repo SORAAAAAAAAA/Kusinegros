@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://6w4r5mgaydve"]
+
+[ext_resource type="PackedScene" uid="uid://cs8c0yd41h0rl" path="res://scenes/food_scenes/food_tray.tscn" id="1_qvq11"]
+[ext_resource type="Texture2D" uid="uid://dyxe0fx80r8kr" path="res://assets/FOOD ASSETS/food_tray_sisig NEW/food_tray_sisig_full.png" id="2_k0yr5"]
+[ext_resource type="Texture2D" uid="uid://btmmxvswkybii" path="res://assets/FOOD ASSETS/food_tray_sisig NEW/food_tray_sisig_half_empty.png" id="3_nswlp"]
+[ext_resource type="Texture2D" uid="uid://dh1nx8lxvxh5r" path="res://assets/FOOD ASSETS/food_tray_sisig NEW/food_tray_sisig_empty.png" id="4_e0xj8"]
+
+[node name="FoodTray" unique_id=1887151873 instance=ExtResource("1_qvq11")]
+texture_normal = ExtResource("2_k0yr5")
+food_name = "sisig"
+tex_full = ExtResource("2_k0yr5")
+tex_half = ExtResource("3_nswlp")
+tex_empty = ExtResource("4_e0xj8")

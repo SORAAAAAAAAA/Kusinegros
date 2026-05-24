@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cw024klg1k507"]
+
+[ext_resource type="PackedScene" uid="uid://cs8c0yd41h0rl" path="res://scenes/food_scenes/food_tray.tscn" id="1_dm3wk"]
+[ext_resource type="Texture2D" uid="uid://b0dkupsjfrdlv" path="res://assets/FOOD ASSETS/pork_hamonado/food_tray_pork_hamonado_full.png" id="2_6femn"]
+[ext_resource type="Texture2D" uid="uid://tbhpwines7pg" path="res://assets/FOOD ASSETS/pork_hamonado/food_tray_pork_hamonado_half_empty.png" id="3_61oq1"]
+[ext_resource type="Texture2D" uid="uid://bqywfnxd3ocr6" path="res://assets/FOOD ASSETS/pork_hamonado/food_tray_pork_hamonado_empty.png" id="4_mi3jt"]
+
+[node name="FoodTray" unique_id=1887151873 instance=ExtResource("1_dm3wk")]
+texture_normal = ExtResource("2_6femn")
+food_name = "hamonado"
+tex_full = ExtResource("2_6femn")
+tex_half = ExtResource("3_61oq1")
+tex_empty = ExtResource("4_mi3jt")

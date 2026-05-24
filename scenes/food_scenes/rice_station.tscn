@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://c8p7u8bjkj8aq"]
+
+[ext_resource type="Script" uid="uid://1j8ybhkti307" path="res://scenes/food_scenes/rice_station.gd" id="1_bhdn0"]
+[ext_resource type="Texture2D" uid="uid://dp6ji0mhls8k1" path="res://assets/FOOD ASSETS/rice/rice_full.png" id="2_pweyf"]
+[ext_resource type="Texture2D" uid="uid://be8gjyhneogum" path="res://assets/FOOD ASSETS/rice/rice_half_empty.png" id="3_1dujb"]
+[ext_resource type="Texture2D" uid="uid://d1iusomobxc6x" path="res://assets/FOOD ASSETS/rice/rice_empty.png" id="4_mo77g"]
+[ext_resource type="Texture2D" uid="uid://bhw8y7wlqspfx" path="res://assets/FOOD ASSETS/rice/rice_cooking.png" id="5_2tjly"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhdn0"]
+bg_color = Color(0.3137255, 0.78431374, 0.47058824, 1)
+
+[node name="RiceStation" type="TextureButton" unique_id=1567660347]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 256.00003
+offset_top = 48.0
+offset_right = 1152.0
+offset_bottom = 1448.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2813688, 0.26457226)
+texture_normal = ExtResource("2_pweyf")
+script = ExtResource("1_bhdn0")
+tex_full = ExtResource("2_pweyf")
+tex_half = ExtResource("3_1dujb")
+tex_empty = ExtResource("4_mo77g")
+tex_cooking = ExtResource("5_2tjly")
+
+[node name="CookingTimer" type="Timer" parent="." unique_id=1182612529]
+one_shot = true
+
+[node name="CookingBar" type="ProgressBar" parent="." unique_id=1924628201]
+custom_minimum_size = Vector2(800, 130)
+layout_mode = 0
+offset_left = 653.946
+offset_top = 1209.4994
+offset_right = 1453.946
+offset_bottom = 1339.4994
+theme_override_styles/fill = SubResource("StyleBoxFlat_bhdn0")
+show_percentage = false
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="timeout" from="CookingTimer" to="." method="_on_cooking_timer_timeout"]

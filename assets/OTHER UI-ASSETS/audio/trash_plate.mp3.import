@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://qpwduengywbh"
+path="res://.godot/imported/trash_plate.mp3-68d42098a2c35c9b0aad60a90c35a2fb.mp3str"
+
+[deps]
+
+source_file="res://assets/OTHER UI-ASSETS/audio/trash_plate.mp3"
+dest_files=["res://.godot/imported/trash_plate.mp3-68d42098a2c35c9b0aad60a90c35a2fb.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

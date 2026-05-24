@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://br8gmp817ut0w"]
+
+[ext_resource type="Script" uid="uid://dw6imakpjscd5" path="res://scenes/pov_scenes/scripts/assembly_plate.gd" id="1_vt5t4"]
+[ext_resource type="Texture2D" uid="uid://bc6nh8ukeaiac" path="res://assets/FOOD ASSETS/plate/plate_empty.png" id="2_yn505"]
+[ext_resource type="Texture2D" uid="uid://bgse57qkg27m7" path="res://assets/FOOD ASSETS/plate/plate_only_rice.png" id="3_41r65"]
+[ext_resource type="Texture2D" uid="uid://cmg4xcorlymwc" path="res://assets/FOOD ASSETS/plate/plate_only_adobo.png" id="4_tgj8c"]
+[ext_resource type="Texture2D" uid="uid://dt8lipqvudfba" path="res://assets/FOOD ASSETS/plate/plate_adobo_rice.png" id="4_ud35w"]
+[ext_resource type="Texture2D" uid="uid://b2l0rvvvfd03a" path="res://assets/FOOD ASSETS/plate/plate_only_chicken_pastil.png" id="5_1mx6s"]
+[ext_resource type="Texture2D" uid="uid://dggk2vq6iwxdi" path="res://assets/FOOD ASSETS/plate/plate_chicken_pastil_rice.png" id="5_70aoi"]
+[ext_resource type="Texture2D" uid="uid://bd6kv2aew3ukr" path="res://assets/FOOD ASSETS/plate/plate_cordon_bleu_rice.png" id="6_a8p8k"]
+[ext_resource type="Texture2D" uid="uid://dsnl7jy47jn6d" path="res://assets/FOOD ASSETS/plate/plate_only_cordon_bleu.png" id="6_ubmpg"]
+[ext_resource type="Texture2D" uid="uid://c8bbjk5nrqifo" path="res://assets/FOOD ASSETS/plate/plate_menudo_rice.png" id="7_f2ljn"]
+[ext_resource type="Texture2D" uid="uid://b0x1sl8crak78" path="res://assets/FOOD ASSETS/plate/plate_only_menudo.png" id="7_sp1wo"]
+[ext_resource type="Texture2D" uid="uid://cmyhrarpd2v6u" path="res://assets/FOOD ASSETS/plate/plate_sisig_rice.png" id="8_a31ll"]
+[ext_resource type="Texture2D" uid="uid://bl7h80nlah2vv" path="res://assets/FOOD ASSETS/plate/plate_only_pansit.png" id="8_xh41c"]
+[ext_resource type="Texture2D" uid="uid://dnj3g3y0b8si8" path="res://assets/FOOD ASSETS/plate/plate_only_sisig.png" id="9_4ijio"]
+[ext_resource type="Texture2D" uid="uid://csl6tew7uqby7" path="res://assets/FOOD ASSETS/plate/plate_only_carbonara.png" id="10_1mx6s"]
+[ext_resource type="Texture2D" uid="uid://cg70h5eonw5n7" path="res://assets/FOOD ASSETS/plate/plate_only_pork_hamonado.png" id="11_dm474"]
+[ext_resource type="Texture2D" uid="uid://bxk2n6ois7kt" path="res://assets/FOOD ASSETS/plate/plate_only_chicken_fingers.png" id="12_2j8ls"]
+[ext_resource type="Texture2D" uid="uid://ch8g6xj2ptfcr" path="res://assets/FOOD ASSETS/plate/plate_only_chicken_with_bbq_sauce.png" id="13_gmfx7"]
+[ext_resource type="Texture2D" uid="uid://cilbwms7tsci3" path="res://assets/FOOD ASSETS/plate/plate_only_pork_with_mushroom.png" id="14_fuc3q"]
+[ext_resource type="Texture2D" uid="uid://cqfos23l4poqh" path="res://assets/FOOD ASSETS/plate/plate_pansit_rice.png" id="15_pt4cx"]
+[ext_resource type="Texture2D" uid="uid://dypbv4eyl771i" path="res://assets/FOOD ASSETS/plate/plate_carbonara_rice.png" id="17_ubmpg"]
+[ext_resource type="Texture2D" uid="uid://br36ht4tm3fvp" path="res://assets/FOOD ASSETS/plate/plate_chicken_with_bbq_sauce_rice.png" id="22_lloie"]
+[ext_resource type="Texture2D" uid="uid://cbkrl6i2g3nbq" path="res://assets/FOOD ASSETS/plate/plate_chicken_fingers_rice.png" id="23_bwles"]
+[ext_resource type="Texture2D" uid="uid://mbn4pg7m3fan" path="res://assets/FOOD ASSETS/plate/plate_pork_with_mushroom_rice.png" id="24_dee40"]
+[ext_resource type="Texture2D" uid="uid://dswspt0watvjr" path="res://assets/FOOD ASSETS/plate/plate_pork_hamonado_rice.png" id="25_w5217"]
+
+[node name="AssemblyPlate" type="TextureButton" unique_id=1818213175]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = -1
+anchor_left = 0.46500003
+anchor_top = 0.5
+anchor_right = 0.46500003
+anchor_bottom = 0.5
+offset_left = -143.68005
+offset_top = -116.0
+offset_right = 1776.32
+offset_bottom = 1420.0
+scale = Vector2(0.15195072, 0.15195072)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_yn505")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("1_vt5t4")
+tex_empty = ExtResource("2_yn505")
+tex_rice_only = ExtResource("3_41r65")
+ulam_only_textures = {
+"adobo": ExtResource("4_tgj8c"),
+"bbq": ExtResource("13_gmfx7"),
+"carbonara": ExtResource("10_1mx6s"),
+"cordon": ExtResource("6_ubmpg"),
+"finger": ExtResource("12_2j8ls"),
+"hamonado": ExtResource("11_dm474"),
+"menudo": ExtResource("7_sp1wo"),
+"mushroom": ExtResource("14_fuc3q"),
+"pansit": ExtResource("8_xh41c"),
+"pastil": ExtResource("5_1mx6s"),
+"sisig": ExtResource("9_4ijio")
+}
+full_plate_textures = {
+"adobo": ExtResource("4_ud35w"),
+"bbq": ExtResource("22_lloie"),
+"carbonara": ExtResource("17_ubmpg"),
+"cordon": ExtResource("6_a8p8k"),
+"finger": ExtResource("23_bwles"),
+"hamonado": ExtResource("25_w5217"),
+"menudo": ExtResource("7_f2ljn"),
+"mushroom": ExtResource("24_dee40"),
+"pansit": ExtResource("15_pt4cx"),
+"pastil": ExtResource("5_70aoi"),
+"sisig": ExtResource("8_a31ll")
+}
