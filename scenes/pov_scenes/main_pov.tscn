@@ -34,6 +34,13 @@
 [ext_resource type="Texture2D" uid="uid://ct7gay3ls7hlg" path="res://assets/OTHER UI-ASSETS/buttons/SwitchButtonDark.png" id="34_u6qb6"]
 [ext_resource type="AudioStream" uid="uid://cukck3jpsrq3h" path="res://assets/OTHER UI-ASSETS/audio/button_clicked.mp3" id="37_u6qb6"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_u5556"]
+font = ExtResource("29_82122")
+font_size = 20
+font_color = Color(0.9069254, 0.25373873, 0.23402163, 1)
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
 [node name="MainPOV" type="Control" unique_id=1147711962]
 layout_mode = 3
 anchors_preset = 15
@@ -351,6 +358,7 @@ theme_override_font_sizes/font_size = 20
 text = "➜"
 
 [node name="SceneTransition" type="ColorRect" parent="HUD" unique_id=957309018]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -486,6 +494,22 @@ theme_override_fonts/font = ExtResource("29_82122")
 theme_override_font_sizes/font_size = 11
 text = "Continue"
 vertical_alignment = 1
+
+[node name="SeatsFullContainer" type="MarginContainer" parent="HUD" unique_id=2129389736]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -167.5
+offset_top = 17.0
+offset_right = 167.5
+offset_bottom = 57.0
+grow_horizontal = 2
+
+[node name="SeatsFullIndicator" type="Label" parent="HUD/SeatsFullContainer" unique_id=1527121455]
+visible = false
+layout_mode = 2
+text = "NO SEATS AVAILABLE!"
+label_settings = SubResource("LabelSettings_u5556")
 
 [connection signal="pressed" from="PlateStackButton" to="PlateStackButton" method="_on_plate_stack_button_pressed"]
 [connection signal="pressed" from="HUD/CanvasLayer/EndOfDayScreen/ColorRect/TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Leave" to="HUD/CanvasLayer/EndOfDayScreen" method="_on_leave_pressed"]

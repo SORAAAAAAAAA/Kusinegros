@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dopk057g1ghu7"]
 
-[ext_resource type="Texture2D" uid="uid://c6cfgkuqf84nw" path="res://assets/CHARACTERS/customers/customer_1/customer1_spritesheet.png" id="1_c74vr"]
 [ext_resource type="Script" uid="uid://mgssjo1ee0tf" path="res://scenes/diner_customer.gd" id="1_g4nii"]
+[ext_resource type="Texture2D" uid="uid://cqa086kkt6pei" path="res://assets/CHARACTERS/customers/customer_1/customer1_sitting.png" id="2_g4nii"]
 [ext_resource type="Texture2D" uid="uid://ho4xn3fgu3v0" path="res://assets/CHARACTERS/customers/customer_1/customer1_walking.png" id="2_ogvqr"]
 [ext_resource type="Texture2D" uid="uid://bkwn5g5dskjif" path="res://assets/CHARACTERS/customers/customer_3/Customer_3_spritesheet.png" id="3_oiyoe"]
 [ext_resource type="Texture2D" uid="uid://c67cs2aq4loyw" path="res://assets/CHARACTERS/customers/customer_3/Customer_3_walk.png" id="4_wtpeg"]
@@ -15,8 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://bkse6rr0vgtqq" path="res://assets/CHARACTERS/customers/customer_6/customer_6_walk.png" id="12_g4nii"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iymj5"]
-atlas = ExtResource("1_c74vr")
-region = Rect2(0, 0, 512, 1024)
+atlas = ExtResource("2_g4nii")
+region = Rect2(511, 0, 511, 1000)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2f41e"]
 atlas = ExtResource("2_ogvqr")
@@ -293,7 +293,8 @@ script = ExtResource("1_g4nii")
 
 [node name="CustomerArt" type="AnimatedSprite2D" parent="." unique_id=163172576]
 sprite_frames = SubResource("SpriteFrames_sih5k")
-animation = &"lullu_sit"
+animation = &"ana_sit"
+frame_progress = 0.5181968
 
 [node name="EatingTimer" type="Timer" parent="." unique_id=1531919389]
 wait_time = 2.0

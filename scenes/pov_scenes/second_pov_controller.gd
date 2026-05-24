@@ -1,9 +1,11 @@
 extends Control
 
+signal capacity_status_changed(is_full: bool)
+
 # --- DUAL ASSET EXPORTS ---
 @export var table_scene: PackedScene          
 @export var table_flipped_scene: PackedScene  
-@export var diner_customer_scene: PackedScene # <--- Your Puppet Scene!
+@export var diner_customer_scene: PackedScene 
 
 @onready var tables_container: Control = $TablesContainer
 @onready var table_manager: TableManager = $TableManager
@@ -13,7 +15,6 @@ extends Control
 # --- QUEUE SYSTEM ---
 @onready var wait_line_container = $WaitLine 
 
-# THE FIX 1: Untyped array prevents Godot 4 from wiping your queue memory!
 var waiting_queue: Array = [] 
 
 var all_table_positions: Array[Vector2] = [
@@ -87,16 +88,13 @@ func _on_incoming_customer(customer_data: Dictionary) -> void:
 		# --- THE FIX: GET OR BUILD THE SCENE PATH ---
 		if not customer_data.has("scene_path") or customer_data["scene_path"] == "":
 			
-			# ATTEMPT 1: Ask the Brain (Works if they haven't ordered yet)
 			if customer_data.has("id") and CustomerManager.active_customers.has(customer_data["id"]):
 				customer_data["scene_path"] = CustomerManager.active_customers[customer_data["id"]]["scene_path"]
 				
-			# ATTEMPT 2: Build it from their name (Works if they just paid and were deleted from the Brain)
 			elif customer_data.has("name") and customer_data["name"] != "":
 				var clean_name = customer_data["name"].to_lower()
 				customer_data["scene_path"] = "res://scenes/customer_scenes/" + clean_name + ".tscn"
 				
-		# Final Safety Check
 		if not customer_data.has("scene_path") or customer_data["scene_path"] == "": 
 			print("2nd POV Error: Missing scene path for queue! Data: ", customer_data)
 			return
@@ -122,6 +120,9 @@ func _on_incoming_customer(customer_data: Dictionary) -> void:
 			waiting_queue.append(queue_customer)
 		else:
 			print("2nd POV: Wait line is full! Customer walked away.")
+			
+	# --- UPDATE HUD CAPACITY ---
+	check_and_emit_capacity()
 
 func _on_any_table_cleaned(table: Node) -> void:
 	# Wait 0.1 seconds so the TableManager can mark the seat empty!
@@ -165,6 +166,9 @@ func _on_any_table_cleaned(table: Node) -> void:
 		for i in range(waiting_queue.size()):
 			waiting_queue[i].advance_in_line(wait_spots[i])
 
+	# --- UPDATE HUD CAPACITY ---
+	check_and_emit_capacity()
+
 # =====================================================================
 # SCENE TRANSITIONS
 # =====================================================================
@@ -177,3 +181,16 @@ func _force_return_to_main():
 	var game_master = get_parent()
 	if game_master and game_master.has_method("go_to_main_pov"):
 		game_master.go_to_main_pov()
+
+func check_and_emit_capacity():
+	# First, safely clear out anyone who left the line
+	for i in range(waiting_queue.size() - 1, -1, -1):
+		if not is_instance_valid(waiting_queue[i]):
+			waiting_queue.remove_at(i)
+			
+	# If there is even ONE person in the waiting line, it means all tables 
+	# are full and the player needs a warning to go clean them!
+	var people_are_waiting = (waiting_queue.size() > 0)
+	
+	# Emit true to flash the warning, false to hide it
+	capacity_status_changed.emit(people_are_waiting)

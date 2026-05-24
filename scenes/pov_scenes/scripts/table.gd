@@ -7,13 +7,13 @@ var current_state: State = State.EMPTY
 
 # Signal to notify the TableManager when cleaning is finished
 signal table_cleaned(table: TableControl)
-
+@onready var sfx_clean = $SfxClean
 # 2. Export slots to hold your Clean and Dirty PNG assets
 @export var clean_texture: Texture2D
 @export var dirty_texture: Texture2D
 
 # How long the player must wait while cleaning (in seconds)
-@export var cleaning_duration: float = 2.0 
+@export var cleaning_duration: float = 5.0 
 @export var max_customers_before_dirty: int = 3 # --- NEW: Easy to tweak later! ---
 
 @onready var seats_container: Node2D = $Seats
@@ -99,6 +99,8 @@ func start_cleaning() -> void:
 	clean_progress.visible = true
 	clean_timer.start(cleaning_duration)
 	print("Wiping down the table...")
+	if sfx_clean:
+		sfx_clean.play()
 
 func _on_cleaning_finished() -> void:
 	is_cleaning = false
@@ -107,3 +109,5 @@ func _on_cleaning_finished() -> void:
 	reset_seats() # Re-open all 3 stools for the next batch of students
 	table_cleaned.emit(self)
 	print("Table is sparkling clean and ready for 3 more customers!")
+	if sfx_clean:
+		sfx_clean.stop()

@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://djf32h8yppkti" path="res://scenes/pov_scenes/scripts/table.gd" id="2_eotx8"]
 [ext_resource type="Texture2D" uid="uid://0oep1yvuofuu" path="res://assets/2ND POV/table_w_chairs/w_chair.png" id="3_u03e6"]
 [ext_resource type="Texture2D" uid="uid://brxhrrn2lkd41" path="res://assets/2ND POV/table_w_chairs/wchair.png" id="3_x8522"]
-[ext_resource type="Texture2D" uid="uid://cm74wb0d2rnsp" path="res://assets/2ND POV/table_w_chairs/stools.png" id="4_olh0b"]
+[ext_resource type="Texture2D" uid="uid://bb5vfsw87ix4" path="res://assets/2ND POV/table_w_chairs/stoolsred.png" id="4_olh0b"]
+[ext_resource type="AudioStream" uid="uid://xpxryua5og77" path="res://assets/OTHER UI-ASSETS/audio/dishes and silverware clinking - sound effect.mp3" id="5_u03e6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_olh0b"]
 content_margin_left = 2.0
@@ -50,21 +51,24 @@ one_shot = true
 [node name="TextureRect" type="TextureRect" parent="." unique_id=54455355]
 layout_mode = 0
 offset_left = -2.0
-offset_top = -27.0
+offset_top = -45.0
 offset_right = 64.41074
-offset_bottom = 13.0
+offset_bottom = -5.0
 scale = Vector2(6.9923773, 6.9923773)
 texture = ExtResource("4_olh0b")
 expand_mode = 3
 
 [node name="Seats" type="Node2D" parent="." unique_id=1937261328]
-position = Vector2(0, -31)
+position = Vector2(8, -35)
 
 [node name="Seat1" type="Marker2D" parent="Seats" unique_id=245873743]
-position = Vector2(101, 145)
+position = Vector2(109, 132)
 
 [node name="Seat2" type="Marker2D" parent="Seats" unique_id=1265390165]
-position = Vector2(227, 146)
+position = Vector2(230, 132)
 
 [node name="Seat3" type="Marker2D" parent="Seats" unique_id=171973527]
-position = Vector2(348, 144)
+position = Vector2(353, 132)
+
+[node name="SfxClean" type="AudioStreamPlayer" parent="." unique_id=1410190156]
+stream = ExtResource("5_u03e6")

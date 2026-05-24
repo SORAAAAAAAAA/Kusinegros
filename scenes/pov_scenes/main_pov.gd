@@ -13,6 +13,10 @@ extends Control
 @onready var sfx_clicked = $SfxClicked
 @onready var switch_pov_button = %SwitchPOVButton
 
+# --- NEW: CAPACITY INDICATOR VARIABLES ---
+@onready var seats_full_indicator = $HUD/SeatsFullContainer/SeatsFullIndicator
+var flash_tween: Tween
+
 # Core Loop Nodes (Make sure to right-click these and "Access as Unique Name" too!)
 @onready var customer_container = %CustomerSlots
 @onready var end_of_day_screen = %EndOfDayScreen
@@ -23,6 +27,14 @@ func _ready():
 	
 	if end_of_day_screen:
 		end_of_day_screen.hide()
+
+	# --- NEW: HIDE INDICATOR & CONNECT SIGNAL ---
+	if seats_full_indicator:
+		seats_full_indicator.hide()
+		
+	var second_pov = get_node("../2nd_pov")
+	if second_pov:
+		second_pov.capacity_status_changed.connect(_on_capacity_changed)
 
 	# 1. CONNECT THE RADIO SIGNALS
 	FinanceManager.money_changed.connect(_on_money_changed)
@@ -183,3 +195,32 @@ func _on_live_spawn_received(id: int):
 func _trigger_end_of_day():
 	print("Showing summary.")
 	%EndOfDayScreen.show_summary()
+
+# =====================================================================
+# CAPACITY INDICATOR LOGIC
+# =====================================================================
+func _on_capacity_changed(is_full: bool):
+	if not seats_full_indicator: return
+	
+	if is_full:
+		# If it's already flashing, don't start a new animation
+		if flash_tween and flash_tween.is_valid():
+			return 
+			
+		seats_full_indicator.show()
+		seats_full_indicator.modulate.a = 1.0 # Make sure it starts fully visible
+		
+		# Create a tween and set it to loop infinitely
+		flash_tween = create_tween().set_loops()
+		
+		# Fade out quickly (to 20% opacity over 0.3 seconds)
+		flash_tween.tween_property(seats_full_indicator, "modulate:a", 0.2, 0.3).set_trans(Tween.TRANS_SINE)
+		# Fade back in quickly (to 100% opacity over 0.3 seconds)
+		flash_tween.tween_property(seats_full_indicator, "modulate:a", 1.0, 0.3).set_trans(Tween.TRANS_SINE)
+		
+	else:
+		# Stop the animation and hide the label
+		if flash_tween and flash_tween.is_valid():
+			flash_tween.kill()
+		
+		seats_full_indicator.hide()
