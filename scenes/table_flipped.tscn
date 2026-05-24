@@ -61,10 +61,10 @@ expand_mode = 3
 position = Vector2(-2, -25)
 
 [node name="Seat1" type="Marker2D" parent="Seats" unique_id=245873743]
-position = Vector2(117, 94)
+position = Vector2(117, 119)
 
 [node name="Seat2" type="Marker2D" parent="Seats" unique_id=1265390165]
-position = Vector2(240, 94)
+position = Vector2(240, 119)
 
 [node name="Seat3" type="Marker2D" parent="Seats" unique_id=171973527]
-position = Vector2(363, 94)
+position = Vector2(363, 119)

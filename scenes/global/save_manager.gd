@@ -3,12 +3,8 @@ extends Node
 const SAVE_PATH = "user://kusinegros_save.json"
 
 func save_game():
-	TimeManager.advance_to_next_day()
-	# Freeze the clock before the room reloads
-	TimeManager.is_shop_open = false
-	TimeManager.time_elapsed = 0.0
-	
 	# 1. Gather the data from your Managers
+	# Notice we removed the TimeManager changes here! We just read the current day.
 	var data_to_save = {
 		"day": TimeManager.current_day,
 		"money": FinanceManager.total_money,

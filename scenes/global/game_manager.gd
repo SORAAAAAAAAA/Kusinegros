@@ -1,6 +1,12 @@
 extends Node
 
 var customers_served_today: int = 0
+
+# --- NEW: Table Shop Tracking ---
+var unlocked_tables_count: int = 0
+signal new_table_purchased(new_extra_count: int)
+# --------------------------------
+
 signal customer_ready_to_eat(customer_data: Dictionary)
 
 func start_new_shift():

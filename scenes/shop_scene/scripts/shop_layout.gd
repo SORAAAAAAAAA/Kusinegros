@@ -114,6 +114,12 @@ func _setup_card(card: PanelContainer, item: Dictionary, index: int) -> void:
 	var is_owned = false
 	if current_tab == "ulam" and CustomerManager.available_menu["ulam"].has(item["id"]):
 		is_owned = true
+	elif current_tab == "table":
+		# Parses "table_1" into integer 1, "table_2" into 2, etc.
+		var table_level = item["id"].trim_prefix("table_").to_int()
+		# Check against global unlocked count
+		if GameManager.unlocked_tables_count >= table_level:
+			is_owned = true
 	
 	if is_owned:
 		buy_btn.disabled = true
@@ -166,7 +172,8 @@ func _on_buy_pressed(item: Dictionary, btn: Button, price_label: Label) -> void:
 		if current_tab == "ulam":
 			CustomerManager.add_new_ulam(item["id"])
 		elif current_tab == "table":
-			print("TODO: Add table logic for ", item["id"])
+			GameManager.unlocked_tables_count += 1
+			GameManager.new_table_purchased.emit(GameManager.unlocked_tables_count)
 		
 		FinanceManager.deduct_funds(item["price"])
 		# 3. Save the game immediately so they don't lose the purchase

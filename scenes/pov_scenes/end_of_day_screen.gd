@@ -23,8 +23,15 @@ func show_summary():
 	show()
 	
 func _on_continue_pressed():
+	# 1. Advance the day and reset the time ONLY when they click continue
+	TimeManager.advance_to_next_day()
+	TimeManager.is_shop_open = false
+	TimeManager.time_elapsed = 0.0
+	
+	# 2. Save the progress
 	SaveManager.save_game()
-	# Reload the room
+	
+	# 3. Reload the room
 	get_tree().change_scene_to_file("res://scenes/game_master.tscn")
 
 func _on_leave_pressed():
