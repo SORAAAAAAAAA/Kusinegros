@@ -1,24 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://bri58nc0h8k6n"]
+[gd_scene format=3 uid="uid://bri58nc0h8k6n"]
 
 [ext_resource type="Script" uid="uid://dn6vu2wdircw1" path="res://scenes/control.gd" id="1_8ho6b"]
 [ext_resource type="FontFile" uid="uid://bgxr3ha8bifx0" path="res://assets/FONT/Jersey10-Regular.ttf" id="2_ph3nu"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ho6b"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4kmhl"]
 bg_color = Color(0.470588, 0.568627, 0.25098, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ho6b"]
-bg_color = Color(0.383493, 0.469697, 0.194669, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cq4me"]
-bg_color = Color(0.46882, 0.570285, 0.249237, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -31,9 +24,16 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cq4me"]
+bg_color = Color(0.46882, 0.570285, 0.249237, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
-[node name="Control" type="Control" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" unique_id=2089223607]
+
+[node name="Control" type="Control" parent="." unique_id=634610717]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,26 +42,27 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8ho6b")
 
-[node name="TextureRect" type="TextureRect" parent="Control"]
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=262962662]
 layout_mode = 0
 offset_right = 1156.0
 offset_bottom = 652.0
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Next" type="Button" parent="Control"]
+[node name="Next" type="Button" parent="Control" unique_id=89342054]
 layout_mode = 0
 offset_left = 965.0
 offset_top = 565.0
 offset_right = 1085.0
 offset_bottom = 610.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_ph3nu")
 theme_override_font_sizes/font_size = 25
-theme_override_styles/hover = SubResource("StyleBoxFlat_4kmhl")
 theme_override_styles/normal = SubResource("StyleBoxFlat_8ho6b")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4kmhl")
 text = "Next"
 
-[node name="Start" type="Button" parent="Control"]
+[node name="Start" type="Button" parent="Control" unique_id=2061354368]
 layout_mode = 0
 offset_left = 965.0
 offset_top = 565.0
@@ -69,11 +70,11 @@ offset_right = 1085.0
 offset_bottom = 610.0
 theme_override_fonts/font = ExtResource("2_ph3nu")
 theme_override_font_sizes/font_size = 25
-theme_override_styles/hover = SubResource("StyleBoxFlat_cq4me")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ph3nu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cq4me")
 text = "Start"
 
-[node name="Label" type="Label" parent="Control"]
+[node name="Label" type="Label" parent="Control" unique_id=870813800]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 500.0
