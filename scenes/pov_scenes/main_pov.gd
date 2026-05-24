@@ -224,3 +224,6 @@ func _on_capacity_changed(is_full: bool):
 			flash_tween.kill()
 		
 		seats_full_indicator.hide()
+
+func _on_shop_pressed() -> void:
+	ShopUI.open_shop()

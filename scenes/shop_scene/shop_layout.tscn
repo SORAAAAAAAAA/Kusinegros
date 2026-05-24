@@ -1,0 +1,196 @@
+[gd_scene format=3 uid="uid://bm7y0tl4r2a5x"]
+
+[ext_resource type="Script" uid="uid://dmtgaydynshjv" path="res://scenes/shop_scene/scripts/shop_layout.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bnlqnu16lh2qk" path="res://assets/OTHER UI-ASSETS/buttons/SettingsBG.png" id="2_vqrps"]
+[ext_resource type="Texture2D" uid="uid://b6rfbjq3ll24c" path="res://assets/OTHER UI-ASSETS/buttons/DayBackground.png" id="3_iwp4j"]
+[ext_resource type="Texture2D" uid="uid://bsag67v1t355x" path="res://assets/OTHER UI-ASSETS/buttons/DarkBlueButton.png" id="4_k8ta0"]
+
+[sub_resource type="StyleBoxFlat" id="SB_tu_n"]
+bg_color = Color(0.412, 0.259, 0.129, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0, 0, 0, 0.3)
+shadow_size = 4
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="SB_tu_p"]
+bg_color = Color(0.28, 0.165, 0.06, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0, 0, 0, 0.18)
+shadow_size = 2
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="SB_tu_h"]
+bg_color = Color(0.53, 0.35, 0.19, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="SB_tt_n"]
+bg_color = Color(0.502, 0.341, 0.196, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0, 0, 0, 0.3)
+shadow_size = 4
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="SB_tt_p"]
+bg_color = Color(0.34, 0.21, 0.082, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0, 0, 0, 0.18)
+shadow_size = 2
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="SB_tt_h"]
+bg_color = Color(0.62, 0.445, 0.27, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="SB_scroll"]
+bg_color = Color(0, 0, 0, 0)
+
+[node name="ShopLayout" type="CanvasLayer" unique_id=1328438559]
+process_mode = 3
+layer = 100
+script = ExtResource("1_script")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1411659112]
+custom_minimum_size = Vector2(950, 600)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vqrps")
+expand_mode = 1
+
+[node name="CloseButton" type="TextureButton" parent="TextureRect" unique_id=1031296150]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+texture_normal = ExtResource("3_iwp4j")
+texture_pressed = ExtResource("4_k8ta0")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="TextureRect/CloseButton" unique_id=1258108107]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "❌"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect" unique_id=137325649]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -104.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="FrameInset" type="MarginContainer" parent="TextureRect/MarginContainer" unique_id=157770477]
+layout_mode = 2
+theme_override_constants/margin_left = 88
+theme_override_constants/margin_top = 72
+theme_override_constants/margin_right = 88
+theme_override_constants/margin_bottom = 72
+
+[node name="ContentVBox" type="VBoxContainer" parent="TextureRect/MarginContainer/FrameInset" unique_id=195807169]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 18
+
+[node name="TabRow" type="HBoxContainer" parent="TextureRect/MarginContainer/FrameInset/ContentVBox" unique_id=1965765844]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 14
+
+[node name="TabUlam" type="Button" parent="TextureRect/MarginContainer/FrameInset/ContentVBox/TabRow" unique_id=568251109]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_colors/font_color = Color(0.95, 0.93, 0.88, 1)
+theme_override_colors/font_pressed_color = Color(0.78, 0.72, 0.65, 1)
+theme_override_colors/font_hover_color = Color(1, 0.98, 0.94, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("SB_tu_n")
+theme_override_styles/pressed = SubResource("SB_tu_p")
+theme_override_styles/hover = SubResource("SB_tu_h")
+theme_override_styles/focus = SubResource("SB_tu_n")
+text = "ulam upgrades"
+
+[node name="TabTable" type="Button" parent="TextureRect/MarginContainer/FrameInset/ContentVBox/TabRow" unique_id=705266025]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_colors/font_color = Color(0.95, 0.93, 0.88, 1)
+theme_override_colors/font_pressed_color = Color(0.78, 0.72, 0.65, 1)
+theme_override_colors/font_hover_color = Color(1, 0.98, 0.94, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("SB_tt_n")
+theme_override_styles/pressed = SubResource("SB_tt_p")
+theme_override_styles/hover = SubResource("SB_tt_h")
+theme_override_styles/focus = SubResource("SB_tt_n")
+text = "table upgrades"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TextureRect/MarginContainer/FrameInset/ContentVBox" unique_id=1788155637]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("SB_scroll")
+vertical_scroll_mode = 0
+
+[node name="CardContainer" type="HBoxContainer" parent="TextureRect/MarginContainer/FrameInset/ContentVBox/ScrollContainer" unique_id=189015833]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[connection signal="pressed" from="TextureRect/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="TextureRect/MarginContainer/FrameInset/ContentVBox/TabRow/TabUlam" to="." method="_on_tab_ulam_pressed"]
+[connection signal="pressed" from="TextureRect/MarginContainer/FrameInset/ContentVBox/TabRow/TabTable" to="." method="_on_tab_table_pressed"]
