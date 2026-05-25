@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bd5mjln0uyis4"]
+[gd_scene load_steps=13 format=3 uid="uid://bd5mjln0uyis4"]
 
 [ext_resource type="Script" uid="uid://b8b2dajmkaihu" path="res://scenes/main_menu.gd" id="1_8ln24"]
 [ext_resource type="Texture2D" uid="uid://douy4qw82w5md" path="res://assets/LANDING PAGE/MainMenu.png" id="2_8ln24"]
@@ -15,7 +15,7 @@
 [sub_resource type="Theme" id="Theme_lgwnu"]
 default_font = ExtResource("3_oa1go")
 
-[node name="MainMenu" type="Control" unique_id=1637504522]
+[node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,7 +24,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8ln24")
 
-[node name="Background" type="TextureRect" parent="." unique_id=1665254637]
+[node name="Background" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(1152, 648)
 layout_mode = 1
 anchors_preset = 15
@@ -36,7 +36,7 @@ texture = ExtResource("2_8ln24")
 expand_mode = 2
 stretch_mode = 6
 
-[node name="Logo" type="TextureRect" parent="." unique_id=1150074375]
+[node name="Logo" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 0
 offset_left = 320.0
@@ -47,34 +47,34 @@ texture = ExtResource("3_jk1qb")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="NewButton" type="TextureButton" parent="." unique_id=1484414429]
+[node name="NewButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 460.0
-offset_top = 325.99997
+offset_top = 326.0
 offset_right = 1132.0
 offset_bottom = 619.0
-scale = Vector2(0.3287941, 0.25153866)
+scale = Vector2(0.328794, 0.251539)
 texture_normal = ExtResource("4_tbmy8")
 texture_pressed = ExtResource("5_oa1go")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="NewButton" unique_id=801483017]
+[node name="Label" type="Label" parent="NewButton"]
 layout_mode = 0
-offset_left = 87.46467
-offset_top = 101.933754
-offset_right = 781.46466
-offset_bottom = 202.93375
+offset_left = 87.4647
+offset_top = 101.934
+offset_right = 781.465
+offset_bottom = 202.934
 theme = SubResource("Theme_lgwnu")
 theme_override_font_sizes/font_size = 75
 text = "New Game"
 
-[node name="ContinueButton" type="TextureButton" parent="." unique_id=2747617]
+[node name="ContinueButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 463.0001
-offset_top = 418.00003
+offset_left = 463.0
+offset_top = 418.0
 offset_right = 1135.0
 offset_bottom = 711.0
 scale = Vector2(0.323, 0.252)
@@ -84,44 +84,44 @@ texture_disabled = ExtResource("7_lgwnu")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="ContinueButton" unique_id=632077773]
+[node name="Label" type="Label" parent="ContinueButton"]
 layout_mode = 0
-offset_left = 82.16377
-offset_top = 98.535866
-offset_right = 717.16376
-offset_bottom = 199.53586
+offset_left = 82.1638
+offset_top = 98.5359
+offset_right = 717.164
+offset_bottom = 199.536
 theme = SubResource("Theme_lgwnu")
 theme_override_font_sizes/font_size = 80
 text = "Continue"
 
-[node name="SettingsButton" type="TextureButton" parent="." unique_id=1724343619]
+[node name="SettingsButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 463.00003
-offset_top = 506.99994
+offset_left = 463.0
+offset_top = 507.0
 offset_right = 1159.0
 offset_bottom = 893.0
-scale = Vector2(0.31151113, 0.19100453)
+scale = Vector2(0.311511, 0.191005)
 texture_normal = ExtResource("5_jk1qb")
 texture_pressed = ExtResource("7_tbmy8")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="SettingsButton" unique_id=1612368231]
+[node name="Label" type="Label" parent="SettingsButton"]
 layout_mode = 0
-offset_left = 82.16377
-offset_top = 98.535866
-offset_right = 717.16376
-offset_bottom = 199.53586
-scale = Vector2(1.0070051, 2.0251124)
+offset_left = 82.1638
+offset_top = 98.5359
+offset_right = 717.164
+offset_bottom = 199.536
+scale = Vector2(1.00701, 2.02511)
 theme = SubResource("Theme_lgwnu")
 theme_override_font_sizes/font_size = 80
 text = "Settings"
 
-[node name="SfxClicked" type="AudioStreamPlayer" parent="." unique_id=425944938]
+[node name="SfxClicked" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_tbmy8")
 volume_db = -5.0
 
-[node name="FadeOverlay" type="ColorRect" parent="." unique_id=135760770]
+[node name="FadeOverlay" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -131,7 +131,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[node name="SettingsOverlay" type="ColorRect" parent="." unique_id=2106919772]
+[node name="SettingsOverlay" type="ColorRect" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -141,7 +141,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.6)
 
-[node name="SettingsBox" type="NinePatchRect" parent="SettingsOverlay" unique_id=1809869417]
+[node name="SettingsBox" type="NinePatchRect" parent="SettingsOverlay"]
 texture_filter = 1
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 0
@@ -155,7 +155,7 @@ patch_margin_top = 48
 patch_margin_right = 48
 patch_margin_bottom = 48
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SettingsOverlay/SettingsBox" unique_id=199553363]
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsOverlay/SettingsBox"]
 custom_minimum_size = Vector2(600, 200)
 layout_mode = 1
 anchors_preset = 15
@@ -164,14 +164,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SettingBG" type="TextureRect" parent="SettingsOverlay/SettingsBox/VBoxContainer" unique_id=2049570651]
+[node name="SettingBG" type="TextureRect" parent="SettingsOverlay/SettingsBox/VBoxContainer"]
 custom_minimum_size = Vector2(200, 150)
 layout_mode = 2
 texture = ExtResource("5_oa1go")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="SettingText" type="Label" parent="SettingsOverlay/SettingsBox/VBoxContainer/SettingBG" unique_id=1574469580]
+[node name="SettingText" type="Label" parent="SettingsOverlay/SettingsBox/VBoxContainer/SettingBG"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -191,18 +191,18 @@ theme_override_font_sizes/font_size = 40
 text = "Settings"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SettingsOverlay/SettingsBox/VBoxContainer" unique_id=894202640]
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsOverlay/SettingsBox/VBoxContainer"]
 custom_minimum_size = Vector2(0, 350)
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="VolumeText" type="Label" parent="SettingsOverlay/SettingsBox/VBoxContainer/HBoxContainer" unique_id=754948656]
+[node name="VolumeText" type="Label" parent="SettingsOverlay/SettingsBox/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_oa1go")
 text = "Volume"
 
-[node name="VolumeSlider" type="HSlider" parent="SettingsOverlay/SettingsBox/VBoxContainer/HBoxContainer" unique_id=494965089]
+[node name="VolumeSlider" type="HSlider" parent="SettingsOverlay/SettingsBox/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 20)
 layout_mode = 2
@@ -212,7 +212,7 @@ max_value = 1.0
 step = 0.01
 value = 0.5
 
-[node name="BackButton" type="TextureButton" parent="SettingsOverlay/SettingsBox/VBoxContainer" unique_id=542525727]
+[node name="BackButton" type="TextureButton" parent="SettingsOverlay/SettingsBox/VBoxContainer"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -221,7 +221,7 @@ texture_pressed = ExtResource("7_tbmy8")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Close" type="Label" parent="SettingsOverlay/SettingsBox/VBoxContainer/BackButton" unique_id=515925177]
+[node name="Close" type="Label" parent="SettingsOverlay/SettingsBox/VBoxContainer/BackButton"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

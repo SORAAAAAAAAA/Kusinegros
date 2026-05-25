@@ -4,6 +4,9 @@ extends Node
 @onready var second_pov = $"2nd_pov" # Replace with the exact name of your 2nd POV node
 
 func _ready() -> void:
+	# Don't start immediately — wait one frame so everything is fully loaded
+	await get_tree().process_frame
+	
 	# Start the game looking at the Main POV
 	go_to_main_pov()
 	MusicManager.play_game_music()

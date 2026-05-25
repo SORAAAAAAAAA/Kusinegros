@@ -6,7 +6,9 @@ extends Control
 @onready var settings_overlay = %SettingsOverlay
 
 # Store the path here so we don't have to retype it multiple times!
-var target_scene_path = "res://scenes/game_master.tscn"
+var target_scene_path = "res://scenes/tutorial.tscn"
+var continue_scene_path = "res://scenes/game_master.tscn"
+var active_target_path = ""
 var master_bus_index: int
 @onready var continue_button = %ContinueButton
 @onready var new_game_button = %NewButton
@@ -28,7 +30,7 @@ func _process(delta):
 	# This function only wakes up AFTER the screen has faded to black.
 	# Check how far along the background loading is:
 	var progress = []
-	var status = ResourceLoader.load_threaded_get_status(target_scene_path, progress)
+	var status = ResourceLoader.load_threaded_get_status(active_target_path, progress)
 	
 	if status == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 		# The scene is still loading. 
@@ -37,7 +39,7 @@ func _process(delta):
 		
 	elif status == ResourceLoader.THREAD_LOAD_LOADED:
 		# It's 100% done! Grab the packed scene from the background thread.
-		var next_scene = ResourceLoader.load_threaded_get(target_scene_path)
+		var next_scene = ResourceLoader.load_threaded_get(active_target_path)
 		
 		# Swap to the new scene and put the process loop back to sleep.
 		get_tree().change_scene_to_packed(next_scene)
@@ -49,17 +51,24 @@ func _process(delta):
 
 
 func _on_new_button_pressed() -> void:
+	# Check if tutorial was already seen
+	if FileAccess.file_exists("user://tutorial_done.dat"):
+		active_target_path = "res://scenes/game_master.tscn"
+	else:
+		active_target_path = target_scene_path
+	
 	# 1. PREVENT DOUBLE-CLICKS & PLAY SOUND
 	$NewButton.disabled = true
 	sfx_clicked.play()
 	
-	# reset all game stats
-	GameManager.start_new_game()
+	# Clear tutorial flag so new game always shows tutorial
+	if FileAccess.file_exists("user://tutorial_done.dat"):
+		DirAccess.remove_absolute("user://tutorial_done.dat")
 	
 	# 3. KICK OFF THE BACKGROUND LOAD INSTANTLY
 	# We tell the engine to start fetching the heavy data in the background 
 	# right now, while our Main Thread handles the UI fade-out.
-	ResourceLoader.load_threaded_request(target_scene_path)
+	ResourceLoader.load_threaded_request(active_target_path)
 	
 	# 4. START THE VISUAL FADE
 	var tween = create_tween()
@@ -78,13 +87,14 @@ func _on_new_button_pressed() -> void:
 
 
 func _on_continue_button_pressed() -> void:
+	active_target_path = continue_scene_path
 	$ContinueButton.disabled = true
 	sfx_clicked.play()
 	# 1. Tell the Archivist to inject the saved data into the Managers
 	SaveManager.load_game()
 	
 	# 2. Load into the game!
-	ResourceLoader.load_threaded_request(target_scene_path)
+	ResourceLoader.load_threaded_request(continue_scene_path)
 	
 	# 4. START THE VISUAL FADE
 	var tween = create_tween()
