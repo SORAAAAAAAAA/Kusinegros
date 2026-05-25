@@ -2,6 +2,16 @@ extends Node
 
 const SAVE_PATH = "user://kusinegros_save.json"
 
+func delete_save():
+	# First, check if a save file even exists
+	if FileAccess.file_exists(SAVE_PATH):
+		# If it does, physically delete it from the hard drive
+		DirAccess.remove_absolute(SAVE_PATH)
+		print("SaveManager: Old save file physically deleted!")
+	else:
+		print("SaveManager: No save file found to delete. Starting completely fresh!")
+	
+
 func save_game():
 	# 1. Gather the data from your Managers
 	# Notice we removed the TimeManager changes here! We just read the current day.

@@ -74,6 +74,7 @@ func _on_new_button_pressed() -> void:
 	# The screen is now completely black. We wake up the _process function 
 	# to check if the background loading finished while we were fading.
 	set_process(true)
+	SaveManager.delete_save()
 
 
 func _on_continue_button_pressed() -> void:
